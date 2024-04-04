@@ -1,4 +1,4 @@
-package model;
+package com.personal.sistemaPersonal.model;
 
 import jakarta.persistence.*;
 

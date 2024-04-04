@@ -1,0 +1,24 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.w3.org/1999/xhtml">
+<head>
+    <meta charset="UTF-8">
+    <link rel="stylesheet" href="/css/home.css">
+    <title>Home</title>
+</head>
+<body>
+<button><a href="aluno/formAluno">Adicionar Aluno</a></button>
+<section class="alunos">
+    <div th:each="aluno : ${alunos}" class="list_alunos">
+        <img src="/img/boy.png" alt="foto do aluno"/>
+        <h3 th:text="${aluno.nome}"/>
+        <a th:href="@{aluno/addAvalicao/{id}(id = ${aluno.id})}">Adicionar avaliação física</a>
+        <a th:href="@{aluno/alunoAvaliacoes/{id}(id = ${aluno.id})}">Histórico de avaliçãoes físicas</a>
+        <a th:href="@{aluno/alunoFicha/{id}(id = ${aluno.id})}">FIcha de treino</a>
+        <div class="actions_aluno">
+            <a th:href="@{aluno/alunoEdit/{id}(id = ${aluno.id})}"><img src="/img/edit.png" alt="botão de editar aluno"/></a>
+            <a th:href="@{aluno/alunoDelete/{id}(id = ${aluno.id})}"><img src="/img/bin.png" alt="botão de deletar aluno"/></a>
+        </div>
+    </div>
+</section>
+</body>
+</html>

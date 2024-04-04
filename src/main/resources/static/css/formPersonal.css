@@ -1,0 +1,67 @@
+/* styles.css */
+*{
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+html, body{
+    height: 100%;
+    width: 100%;
+}
+.sectionForm{
+    width: 100%;
+    height: 100%;
+    background-color: #133E42;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+}
+.userForm{
+    /*background-color: #19585E;*/
+    background-color: white;
+    color: black;
+    border: 1px solid transparent;
+    border-radius: 1em;
+    padding: 4em;
+    width: 30em;
+}
+.userForm form{
+    display: flex;
+    flex-direction: column;
+    align-items: left;
+    justify-content: center;
+    gap: 2em;
+}
+.userForm input{
+    outline: none;
+    border: none;
+    border-bottom: 1px solid rgb(182, 181, 181);
+    background-color: transparent;
+    font-size: 17px;
+}
+.userForm label{
+    color: black;
+}
+.userForm div{
+    display: flex;
+    flex-direction: column;
+    flex-direction: center;
+    gap: 1em;
+    width: 100%;
+}
+.userForm button{
+    background-color: #71BFC6;
+    width: 50%;
+    border: none;
+    border-radius: 0.7em;
+    color: white;
+    font-size: 20px;
+    font-weight: 600;
+    padding: 0.5em;
+    transition: 0.1s ease-in-out;
+    cursor: pointer;
+}
+.userForm button:hover{
+    background-color:#44cad6 ;
+}

@@ -1,7 +1,8 @@
-package model;
+package com.personal.sistemaPersonal.model;
 
 import jakarta.persistence.*;
 
+import java.util.ArrayList;
 import java.util.List;
 
 @Entity
@@ -13,7 +14,7 @@ public class Aluno {
     @Column(length = 30)
     private String nome;
     @OneToMany
-    private List<Avalicao> avalicoesFisicas;
+    private List<Avalicao> avalicoesFisicas = new ArrayList<>();
     @OneToOne
     private FichaTreino fichaTreino;
     public Aluno(){};

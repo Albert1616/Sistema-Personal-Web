@@ -1,0 +1,21 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.w3.org/1999/xhtml">
+<head>
+    <meta charset="UTF-8">
+    <title>Formulário de aluno</title>
+</head>
+<body>
+    <form action="" th:action="@{/aluno/addAluno}" th:object="${aluno}" method="post">
+        <label>Nome: </label>
+        <input type="text" th:field="*{nome}">
+<!--        <h3>Avaliação física</h3>-->
+<!--        <label>Titulo: </label>-->
+<!--        <input type="text" th:field="*{avalicoesFisicas[0].titulo}">-->
+<!--        <label>Peso do aluno(KG): </label>-->
+<!--        <input type="number" th:field="*{avalicoesFisicas[0].alunoPeso}">-->
+<!--        <label>Altura do aluno(cm): </label>-->
+<!--        <input type="number" th:field="*{avalicoesFisicas[0].alunoAltura}">-->
+        <button type="submit">Cadastrar novo aluno</button>
+    </form>
+</body>
+</html>

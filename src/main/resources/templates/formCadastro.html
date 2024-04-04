@@ -1,0 +1,31 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.w3.org/1999/xhtml">
+<head>
+    <meta charset="UTF-8">
+    <title>Cadastro usuário</title>
+    <link rel="stylesheet" href="/css/style.css">
+</head>
+<body class="sectionForm">
+    <div class="userForm">
+        <form action="" th:action="@{/personal/addPersonal}" th:object="${personal}" method="post">
+            <div>
+                <label for="nome">Usuário</label>
+                <input type="text" name="nome" id="nome" th:field="*{nome}" required>
+            </div>
+            <div>
+                <label for="email">Email </label>
+                <input type="text" name="email" id="email" th:field="*{email}" required>
+            </div>
+            <div>
+                <label for="dataNascimento">Data de Nascimento </label>
+                <input type="date" name="dataNascimento" id="dataNascimento" th:field="*{dataNascimento}" required>
+            </div>
+            <div>
+                <label for="cref">CREF</label>
+                <input type="text" name="cref" id="cref" th:field="*{CREF}">
+            </div>
+            <button type="submit">Cadastrar</button>
+        </form>
+    </div>
+</body>
+</html>

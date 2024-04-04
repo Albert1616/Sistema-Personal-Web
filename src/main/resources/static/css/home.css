@@ -1,0 +1,29 @@
+.alunos{
+    display:grid;
+    grid-template-columns: repeat(4, 1fr);
+    gap: 0.8em;
+}
+.list_alunos{
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: left;
+    gap: .5em;
+    background-color: gainsboro;
+    border: 1px solid transparent;
+    border-radius: 1em;
+    padding: 1em;
+}
+.list_alunos img{
+    width: 160px;
+    height: 90px;
+}
+.actions_aluno{
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+}
+.actions_aluno img{
+    width: 30px;
+    height: 15px;
+}

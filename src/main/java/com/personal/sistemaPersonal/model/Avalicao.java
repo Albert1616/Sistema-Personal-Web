@@ -1,4 +1,4 @@
-package model;
+package com.personal.sistemaPersonal.model;
 
 import jakarta.persistence.*;
 
@@ -27,6 +27,7 @@ public class Avalicao {
         this.aluno = aluno;
         this.alunoAltura = alunoAltura;
         this.alunoPeso= alunoPeso;
+        this.data = LocalDate.now();
     };
 
     public String getTitulo() {
