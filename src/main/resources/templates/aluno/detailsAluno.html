@@ -1,0 +1,15 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Página do aluno</title>
+</head>
+<body>
+    <p th:text= "'Nome: ' + ${aluno.nome}"> </p>
+    <p th:text="'Email: ' +  ${aluno.email}"> </p>
+    <p th:text="'Data de nascimento: ' + ${aluno.data_nascimento}"> </p>
+    <a th:href="@{/aluno/showFormEdit/{idAluno}(idAluno = ${id_aluno})}">Editar</a>
+</body>
+</html>

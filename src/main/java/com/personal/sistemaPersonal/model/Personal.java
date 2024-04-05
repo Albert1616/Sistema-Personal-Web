@@ -12,16 +12,22 @@ public class Personal {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Integer id;
+
     @Column(length = 30)
     private String nome;
+
     @Column(length = 40)
     private String email;
+
     @Column(length = 10)
     private LocalDate dataNascimento;
+
     @Column(length = 10)
     private String CREF;
-    @OneToMany
+
+    @OneToMany(mappedBy = "personal", fetch = FetchType.LAZY)
     private List<Aluno> alunos;
+
     public Personal(){};
     public Personal(String nome, String email, LocalDate dataNascimento, String CREF){
         this.nome = nome;
@@ -73,6 +79,7 @@ public class Personal {
     public void setEmail(String email) {
         this.email = email;
     }
+
     public void adicionarAluno(Aluno aluno){
         this.alunos.add(aluno);
     }

@@ -5,24 +5,31 @@ import jakarta.persistence.*;
 import java.time.LocalDate;
 
 @Entity
-@Table(name = "avalicao")
-
-public class Avalicao {
+@Table(name = "avaliacao_fisica")
+public class AvalicaoFisica {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Integer id;
-    @Column(length = 15)
+
+    @Column(length = 50)
     private String titulo;
-    @Column(length = 10)
+
+    @Column
     private LocalDate data;
+
     @ManyToOne
+    @JoinColumn(name = "aluno_id")
     private Aluno aluno;
-    @Column(length = 3)
-    private Integer alunoPeso;
-    @Column(length = 3)
-    private Integer alunoAltura;
-    public Avalicao(){};
-    public Avalicao(String titulo, Aluno aluno, Integer alunoAltura, Integer alunoPeso){
+
+    @Column
+    private Double alunoPeso;
+
+    @Column
+    private Double alunoAltura;
+
+    public AvalicaoFisica(){};
+
+    public AvalicaoFisica(String titulo, Aluno aluno, Double alunoAltura, Double alunoPeso){
         this.titulo = titulo;
         this.aluno = aluno;
         this.alunoAltura = alunoAltura;
@@ -38,11 +45,11 @@ public class Avalicao {
         return aluno;
     }
 
-    public Integer getAlunoAltura() {
+    public Double getAlunoAltura() {
         return alunoAltura;
     }
 
-    public Integer getAlunoPeso() {
+    public Double getAlunoPeso() {
         return alunoPeso;
     }
 
@@ -62,11 +69,11 @@ public class Avalicao {
         this.aluno = aluno;
     }
 
-    public void setAlunoAltura(Integer alunoAltura) {
+    public void setAlunoAltura(Double alunoAltura) {
         this.alunoAltura = alunoAltura;
     }
 
-    public void setAlunoPeso(Integer alunoPeso) {
+    public void setAlunoPeso(Double alunoPeso) {
         this.alunoPeso = alunoPeso;
     }
 

@@ -12,18 +12,26 @@ public class Treino {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Integer id;
+
     @Column(length = 20)
     private String titulo;
+
     @Column(length = 1)
-    private TipoTreino Tipo;
+    private TipoTreino tipo;
+
     @ManyToOne
-    private FichaTreino fichaTreino;
+    @JoinColumn(name = "ficha_treino_id")
+    private FichaTreino ficha_treino;
+
     @Column(length = 10)
-    private LocalDate dataCriacao;
+    private LocalDate data_criacao;
+
     @Column(length = 2)
     private Integer duracao;
+
     @Column(length = 10)
-    private LocalDate dataVencimento;
+    private LocalDate data_vencimento;
+
     @ManyToMany
     @JoinTable(name = "treino_exercicio", joinColumns = @JoinColumn(name = "treino_id"),
     inverseJoinColumns = @JoinColumn(name = "exercicio_id"))
@@ -31,10 +39,10 @@ public class Treino {
     public Treino(){};
     public Treino(String titulo, TipoTreino tipoTreino, Integer duracao){
         this.titulo = titulo;
-        this.Tipo = tipoTreino;
+        this.tipo = tipoTreino;
         this.duracao = duracao;
-        this.dataCriacao = LocalDate.now();
-        this.dataVencimento = this.dataCriacao.plusMonths(this.duracao);
+        this.data_criacao = LocalDate.now();
+        this.data_vencimento = this.data_criacao.plusMonths(this.duracao);
     };
     public void adicionarExercicio(Exercicio exercicio){
         this.exercicios.add(exercicio);
@@ -45,7 +53,7 @@ public class Treino {
     }
 
     public FichaTreino getFichaTreino() {
-        return fichaTreino;
+        return ficha_treino;
     }
 
     public String getTitulo() {
@@ -61,19 +69,19 @@ public class Treino {
     }
 
     public LocalDate getDataCriacao() {
-        return dataCriacao;
+        return data_criacao;
     }
 
     public LocalDate getDataVencimento() {
-        return dataVencimento;
+        return data_vencimento;
     }
 
     public TipoTreino getTipo() {
-        return Tipo;
+        return tipo;
     }
 
     public void setFichaTreino(FichaTreino fichaTreino) {
-        this.fichaTreino = fichaTreino;
+        this.ficha_treino = fichaTreino;
     }
 
     public void setTitulo(String titulo) {
@@ -81,7 +89,7 @@ public class Treino {
     }
     public void setDuracao(Integer duracao) {
         this.duracao = duracao;
-        this.dataVencimento = this.dataCriacao.plusMonths(duracao);
+        this.data_vencimento = this.data_criacao.plusMonths(duracao);
     }
 
     public void setExercicios(List<Exercicio> exercicios) {
@@ -89,6 +97,6 @@ public class Treino {
     }
 
     public void setTipo(TipoTreino tipo) {
-        Tipo = tipo;
+        tipo = tipo;
     }
 }

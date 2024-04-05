@@ -24,7 +24,7 @@ public class HomeController {
     AlunoService alunoService;
     @GetMapping("/")
     public String validateUser(){
-        if(personalService.getAll().size()>0){
+        if(!personalService.getAll().isEmpty()){
             return "redirect:/home";
         }else{
             return "redirect:/personal/formPersonal";

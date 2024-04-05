@@ -2,32 +2,55 @@ package com.personal.sistemaPersonal.model;
 
 import jakarta.persistence.*;
 
+import java.time.LocalDate;
 import java.util.ArrayList;
 import java.util.List;
 
 @Entity
 @Table(name = "aluno")
 public class Aluno {
+
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Integer id;
-    @Column(length = 30)
+
+    @Column(length = 50)
     private String nome;
-    @OneToMany
-    private List<Avalicao> avalicoesFisicas = new ArrayList<>();
-    @OneToOne
-    private FichaTreino fichaTreino;
+
+    @Column(length = 50)
+    private String email;
+
+    @Column
+    private LocalDate data_nascimento;
+
+    @OneToMany(mappedBy = "aluno", fetch = FetchType.LAZY)
+    private List<AvalicaoFisica> avalicoes_fisicas = new ArrayList<>();
+
+    @OneToOne(cascade = CascadeType.ALL)
+    @JoinColumn(name = "ficha_treino_id", referencedColumnName = "id")
+    private FichaTreino ficha_treino;
+
+    @ManyToOne
+    @JoinColumn(name = "personal_id")
+    private Personal personal;
+
     public Aluno(){};
-    public Aluno(String nome){
+
+    public Aluno(String nome, String email, LocalDate data_nascimento){
         this.nome = nome;
     }
+
     public Aluno(String nome, FichaTreino fichaTreino){
         this.nome = nome;
-        this.fichaTreino = fichaTreino;
+        this.ficha_treino = fichaTreino;
     }
 
     public Integer getId() {
         return id;
+    }
+
+    public void setId(Integer id) {
+        this.id = id;
     }
 
     public String getNome() {
@@ -35,25 +58,42 @@ public class Aluno {
     }
 
     public FichaTreino getFichaTreino() {
-        return fichaTreino;
+        return ficha_treino;
     }
 
-    public List<Avalicao> getAvalicoesFisicas() {
-        return avalicoesFisicas;
+    public List<AvalicaoFisica> getAvalicoesFisicas() {
+        return avalicoes_fisicas;
     }
 
     public void setNome(String nome) {
         this.nome = nome;
     }
 
-    public void setAvalicoesFisicas(List<Avalicao> avalicoesFisicas) {
-        this.avalicoesFisicas = avalicoesFisicas;
+    public void setAvalicoesFisicas(List<AvalicaoFisica> avalicoesFisicas) {
+        this.avalicoes_fisicas = avalicoesFisicas;
     }
 
     public void setFichaTreino(FichaTreino fichaTreino) {
-        this.fichaTreino = fichaTreino;
+        this.ficha_treino = fichaTreino;
     }
-    public void adicionarAvalicao(Avalicao avalicao){
-        this.avalicoesFisicas.add(avalicao);
+
+    public void adicionarAvalicao(AvalicaoFisica avalicao){
+        this.avalicoes_fisicas.add(avalicao);
+    }
+
+    public LocalDate getData_nascimento() {
+        return data_nascimento;
+    }
+
+    public void setData_nascimento(LocalDate data_nascimento) {
+        this.data_nascimento = data_nascimento;
+    }
+
+    public String getEmail() {
+        return email;
+    }
+
+    public void setEmail(String email) {
+        this.email = email;
     }
 }

@@ -15,8 +15,8 @@
         <a th:href="@{aluno/alunoAvaliacoes/{id}(id = ${aluno.id})}">Histórico de avaliçãoes físicas</a>
         <a th:href="@{aluno/alunoFicha/{id}(id = ${aluno.id})}">FIcha de treino</a>
         <div class="actions_aluno">
-            <a th:href="@{aluno/alunoEdit/{id}(id = ${aluno.id})}"><img src="/img/edit.png" alt="botão de editar aluno"/></a>
-            <a th:href="@{aluno/alunoDelete/{id}(id = ${aluno.id})}"><img src="/img/bin.png" alt="botão de deletar aluno"/></a>
+            <a th:href="@{aluno/detailsAluno/{idAluno}(idAluno = ${aluno.id})}"><img src="/img/edit.png" alt="botão de editar aluno"/></a>
+            <a th:href="@{aluno/deleteAluno/{idAluno}(idAluno = ${aluno.id})}"><img src="/img/bin.png" alt="botão de deletar aluno"/></a>
         </div>
     </div>
 </section>

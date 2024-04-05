@@ -26,7 +26,7 @@ public class AlunoServiceImpl implements AlunoService {
 
     @Override
     public boolean delete(Aluno aluno) {
-        if(alunoRepository.findById(aluno.getId())!=null){
+        if(alunoRepository.findById(aluno.getId()).isPresent()){
             alunoRepository.delete(aluno);
             return true;
         }
@@ -36,8 +36,8 @@ public class AlunoServiceImpl implements AlunoService {
 
     @Override
     public boolean update(Integer id) {
-        if(alunoRepository.findById(id)!=null){
-            Optional<Aluno> aluno = alunoRepository.findById(id);
+        Optional<Aluno> aluno = alunoRepository.findById(id);
+        if(aluno.isPresent()){
             alunoRepository.save(aluno.get());
             return true;
         }
@@ -53,6 +53,6 @@ public class AlunoServiceImpl implements AlunoService {
     @Override
     public Aluno getAlunoById(Integer id) {
         Optional<Aluno> aluno =  alunoRepository.findById(id);
-        return aluno.get();
+        return aluno.orElse(null);
     }
 }
