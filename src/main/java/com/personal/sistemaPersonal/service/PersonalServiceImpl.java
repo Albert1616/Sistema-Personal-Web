@@ -1,5 +1,6 @@
 package com.personal.sistemaPersonal.service;
 
+import com.personal.sistemaPersonal.model.AvalicaoFisica;
 import com.personal.sistemaPersonal.model.Personal;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Component;
@@ -26,7 +27,7 @@ public class PersonalServiceImpl implements PersonalService {
 
     @Override
     public boolean delete(Personal personal) {
-        if(personalRepository.findById(personal.getId())!=null){
+        if(personalRepository.findById(personal.getId()).isPresent()){
             personalRepository.delete(personal);
             return true;
         }
@@ -36,7 +37,7 @@ public class PersonalServiceImpl implements PersonalService {
 
     @Override
     public boolean update(Integer id) {
-        if(personalRepository.findById(id)!=null){
+        if(personalRepository.findById(id).isPresent()){
             Optional<Personal> personal = personalRepository.findById(id);
             personalRepository.save(personal.get());
             return true;

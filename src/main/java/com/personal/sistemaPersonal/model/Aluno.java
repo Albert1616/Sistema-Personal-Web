@@ -24,6 +24,7 @@ public class Aluno {
     private LocalDate data_nascimento;
 
     @OneToMany(mappedBy = "aluno", fetch = FetchType.LAZY)
+    @OrderBy("data desc")
     private List<AvalicaoFisica> avalicoes_fisicas = new ArrayList<>();
 
     @OneToOne(cascade = CascadeType.ALL)

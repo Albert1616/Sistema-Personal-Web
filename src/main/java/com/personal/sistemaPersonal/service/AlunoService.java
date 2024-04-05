@@ -1,6 +1,7 @@
 package com.personal.sistemaPersonal.service;
 
 import com.personal.sistemaPersonal.model.Aluno;
+import com.personal.sistemaPersonal.model.AvalicaoFisica;
 import org.springframework.stereotype.Service;
 
 import java.util.List;

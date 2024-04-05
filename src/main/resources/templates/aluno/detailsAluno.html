@@ -5,11 +5,39 @@
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Página do aluno</title>
+    <style>
+        .container-card-avaliacao{
+            border: 1px solid black;
+            margin-bottom: 10px;
+            width: 400px;
+            padding: 10px;
+            display: flex;
+            flex-direction: row;
+            justify-content: space-between;
+            align-items: center;
+        }
+    </style>
 </head>
 <body>
     <p th:text= "'Nome: ' + ${aluno.nome}"> </p>
     <p th:text="'Email: ' +  ${aluno.email}"> </p>
     <p th:text="'Data de nascimento: ' + ${aluno.data_nascimento}"> </p>
     <a th:href="@{/aluno/showFormEdit/{idAluno}(idAluno = ${id_aluno})}">Editar</a>
+    <br>
+    <br>
+    <br>
+    <p><b>Avaliações físicas</b></p>
+    <p th:if="${#lists.isEmpty(avaliacoes_fisicas)}">Nenhuma avaliação física cadastrada!</p>
+    <div class="container-card-avaliacao" th:each="avaliaca_fisica : ${avaliacoes_fisicas}">
+        <div>
+            <p th:text="${avaliaca_fisica.titulo}"></p>
+            <p th:text="${avaliaca_fisica.data}"></p>
+        </div>
+        <div>
+            <a th:href="@{/avaliacao_fisica/showFormEdit/{id}(id = ${avaliaca_fisica.id})}">Editar</a>
+            <a th:href="@{/avaliacao_fisica/deleteAvaliacaoFisica/{id}(id = ${avaliaca_fisica.id})}">Apagar</a>
+        </div>
+    </div>
+    <p><a th:href="@{/avaliacao_fisica/showForm/{idAluno}(idAluno = ${id_aluno})}">Adicionar avaliação física</a></p>
 </body>
 </html>

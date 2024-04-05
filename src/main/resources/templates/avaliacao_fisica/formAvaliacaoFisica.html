@@ -1,0 +1,31 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Formulário de aluno</title>
+</head>
+<body>
+    <form action="#" th:action="@{/avaliacao_fisica/addAvaliacaoFisica}" th:object="${avaliacao_fisica}" method="post">
+        <input type="hidden" th:field="*{id}">
+        <input type="hidden" th:field="*{aluno}">
+        <input type="hidden" th:field="*{data}"/>
+
+        <div>
+            <label>Título: </label>
+            <input type="text" th:field="*{titulo}"/>
+        </div>
+        <div>
+            <label>Peso: </label>
+            <input type="number" step="0.01" min="0.01" placeholder="87.5" th:field="*{alunoPeso}" />
+        </div>
+        <div>
+            <label>Altura: </label>
+            <input type="number" step="0.01" min="0.01" placeholder="1.75" th:field="*{alunoAltura}" />
+        </div>
+
+        <p><input type="submit" value="Salvar"/></p>
+    </form>
+</body>
+</html>

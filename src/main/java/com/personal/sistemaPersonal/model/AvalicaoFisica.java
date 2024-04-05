@@ -61,6 +61,10 @@ public class AvalicaoFisica {
         return id;
     }
 
+    public void setId(Integer id) {
+        this.id = id;
+    }
+
     public void setTitulo(String titulo) {
         this.titulo = titulo;
     }

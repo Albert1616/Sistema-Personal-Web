@@ -4,6 +4,7 @@ import com.personal.sistemaPersonal.model.Aluno;
 import com.personal.sistemaPersonal.model.AvalicaoFisica;
 import com.personal.sistemaPersonal.model.FichaTreino;
 import com.personal.sistemaPersonal.service.AlunoService;
+import com.personal.sistemaPersonal.service.AvaliacaoFisicaService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.beans.factory.annotation.Qualifier;
 import org.springframework.stereotype.Controller;
@@ -18,6 +19,9 @@ public class AlunoController {
     @Autowired
     @Qualifier("alunoServiceImpl")
     AlunoService alunoService;
+
+    @Autowired
+    AvaliacaoFisicaService avaliacaoFisicaService;
 
     @RequestMapping("/formAluno")
     public String formAluno(Model model){
@@ -49,6 +53,7 @@ public class AlunoController {
     public String getDetailsAluno(@PathVariable("id_aluno") Integer id, Model model){
         Aluno aluno = alunoService.getAlunoById(id);
         model.addAttribute("aluno", aluno);
+        model.addAttribute("avaliacoes_fisicas", avaliacaoFisicaService.getAvaliacoesFisicasByIdAluno(aluno.getId()));
 
         return "aluno/detailsAluno";
     }
@@ -59,5 +64,4 @@ public class AlunoController {
 
         return "redirect:/home";
     }
-
 }
