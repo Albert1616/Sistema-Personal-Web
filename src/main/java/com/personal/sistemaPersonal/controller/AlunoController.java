@@ -39,7 +39,8 @@ public class AlunoController {
     @RequestMapping("/addAluno")
     public String formAluno(@ModelAttribute("aluno") Aluno aluno){
         alunoService.save(aluno);
-        return "redirect:/home";
+
+        return "redirect:/aluno/detailsAluno/" + aluno.getId();
     }
 
     @RequestMapping("/getAlunos")
