@@ -11,19 +11,26 @@ public class Exercicio {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Integer id;
-    @Column(length = 20)
+
+    @Column
     private String nome;
-    @Column(length = 2)
+
+    @Column
     private Integer series;
+
     @Column(length = 50)
     private Integer repeticoes;
+
     @Column(length = 100)
     private String observacoes;
+
     @ManyToMany
     @JoinTable(name = "treino_exercicio", joinColumns = @JoinColumn(name = "exercicio_id"),
     inverseJoinColumns = @JoinColumn(name = "treino_id"))
     private List<FichaTreino> fichas;
+
     public Exercicio(){};
+
     public Exercicio(String nome, Integer series, Integer repeticoes, String observacoes){
         this.nome = nome;
         this.series = series;
@@ -36,6 +43,10 @@ public class Exercicio {
 
     public Integer getId() {
         return id;
+    }
+
+    public void setId(Integer id) {
+        this.id = id;
     }
 
     public String getNome() {

@@ -1,0 +1,32 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Formulário de exercício</title>
+</head>
+<body>
+    <form action="#" th:action="@{/exercicio/addExercicio}" th:object="${exercicio}" method="post">
+        <input type="hidden" th:field="*{id}">
+        <div>
+            <label>Nome: </label>
+            <input type="text" th:field="*{nome}"/>
+        </div>
+        <div>
+            <label>Séries: </label>
+            <input type="number" th:field="*{series}" />
+        </div>
+        <div>
+            <label>Repetições: </label>
+            <input type="number" th:field="*{repeticoes}" />
+        </div>
+        <div>
+            <label>Observações: </label>
+            <br>
+            <textarea th:field="*{observacoes}" rows="5" cols="35" style="resize: vertical"> </textarea>
+        </div>
+        <p><input type="submit" value="Salvar"/></p>
+    </form>
+</body>
+</html>

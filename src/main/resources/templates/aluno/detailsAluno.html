@@ -19,6 +19,7 @@
     </style>
 </head>
 <body>
+    <p><b>Dados do aluno</b></p>
     <p th:text= "'Nome: ' + ${aluno.nome}"> </p>
     <p th:text="'Email: ' +  ${aluno.email}"> </p>
     <p th:text="'Data de nascimento: ' + ${aluno.data_nascimento}"> </p>
@@ -39,5 +40,8 @@
         </div>
     </div>
     <p><a th:href="@{/avaliacao_fisica/showForm/{idAluno}(idAluno = ${id_aluno})}">Adicionar avaliação física</a></p>
+
+    <br><br>
+    <a href="/">Home</a>
 </body>
 </html>
