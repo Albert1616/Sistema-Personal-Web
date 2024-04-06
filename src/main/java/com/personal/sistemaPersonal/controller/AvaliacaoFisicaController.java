@@ -58,4 +58,11 @@ public class AvaliacaoFisicaController {
 
         return "redirect:/aluno/detailsAluno/" + avaliacaoFisica.getAluno().getId();
     }
+
+    @RequestMapping("/showDetails/{id}")
+    public String getDetailsAvaliacaoFisica(@PathVariable("id") Integer id, Model model) {
+        model.addAttribute("avaliacao_fisica", avaliacaoFisicaService.getAvaliacaoFisicaById(id));
+
+        return "/avaliacao_fisica/detailsAvaliacaoFisica";
+    }
 }

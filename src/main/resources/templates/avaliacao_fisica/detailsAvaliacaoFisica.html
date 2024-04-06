@@ -4,12 +4,14 @@
     <meta charset="UTF-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Página do aluno</title>
+    <title>Avaliação Física</title>
 </head>
 <body>
-    <p th:text= "'Nome: ' + ${aluno.nome}"> </p>
-    <p th:text="'Email: ' +  ${aluno.email}"> </p>
-    <p th:text="'Data de nascimento: ' + ${aluno.data_nascimento}"> </p>
-    <a th:href="@{/aluno/showFormEdit/{idAluno}(idAluno = ${id_aluno})}">Editar</a>
+    <h3 th:text= "${avaliacao_fisica.titulo}"> </h3>
+    <p th:text="'Data de nascimento: ' + ${avaliacao_fisica.data}"> </p>
+    <p th:text="'Peso: ' +  ${avaliacao_fisica.alunoPeso}"> </p>
+    <p th:text="'Altura: ' +  ${avaliacao_fisica.alunoAltura}"> </p>
+
+    <a th:href="@{/avaliacao_fisica/showFormEdit/{id}(id = ${avaliacao_fisica.id})}">Editar</a>
 </body>
 </html>
