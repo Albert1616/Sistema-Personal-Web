@@ -1,4 +1,4 @@
-html, body{
+body, html{
     width: 100%;
     height: 100%;
 }
@@ -11,18 +11,24 @@ header{
     width: 100%;
     top: 0;
     left: 0;
+    margin-bottom: 2em;
 }
-.list-exercicios{
-    height: 100%;
+.section-form{
     width: 100%;
-    padding: 1em;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+.section-form form{
     display: flex;
     flex-direction: column;
-    gap: 1em;
+    gap: 1.7em;
+    width: 30%;
 }
-.list-exercicios-card{
+.select-card{
     display: flex;
-    flex-wrap: wrap;
+    flex-direction: row;
+    align-items: center;
 }
 .card-custom{
     width: 26em;
@@ -30,7 +36,7 @@ header{
     flex-direction: row;
     align-items: center;
     height: 8em;
-    margin: 1rem;
+    margin: 1rem 1rem;
 }
 .card-body{
     display: flex;
@@ -41,33 +47,22 @@ header{
 .card-body p{
     margin-bottom: 0;
 }
-.card-body a{
-    padding: 0.5rem;
-}
-.card-actions{
+
+.btn-div{
     display: flex;
+    justify-content: center;
     align-items: center;
-    justify-content: space-between;
-}
-.div-actions{
-    display: flex;
-    align-items: left;
-    justify-content: left;
-    gap: 1em;
-    margin-top: 1em;
 }
 .btn-custom{
     background-color: #5ad6a7;
-    color:white;
-    width: 20%;
-    display: flex;
-    align-items: center;
-    justify-content: center;
+    color: white;
+    width: 50%;
 }
 .btn-custom:hover{
     background-color: #339771;
-}
-.btn-custom a{
-    text-decoration: none;
     color: white;
+}
+.container-checkbox{
+    max-height: 20em;
+    overflow: auto;
 }

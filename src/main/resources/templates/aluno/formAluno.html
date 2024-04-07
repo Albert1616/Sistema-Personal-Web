@@ -27,19 +27,20 @@
         </div>
     </header>
     <section class="section-form">
-        <form action="#" th:action="@{/aluno/addAluno}" th:object="${aluno}" method="post">
-            <input type="hidden" th:field="*{id}">
+        <form action="#" th:action="@{/aluno/addAluno}" method="post">
+            <input type="hidden" th:field="*{aluno.id}">
+            <input type="hidden" th:field="*{ficha_treino.idFichaTreino}">
             <div>
                 <label for="nome" class="form-label">Nome: </label>
-                <input class="form-control" type="text" id="nome" th:field="*{nome}"/>
+                <input class="form-control" type="text" id="nome" th:field="*{aluno.nome}"/>
             </div>
             <div>
                 <label for="email" class="form-label">Email: </label>
-                <input class="form-control" type="email" id="email" th:field="*{email}"/>
+                <input class="form-control" type="email" id="email" th:field="*{aluno.email}"/>
             </div>
             <div>
                 <label for="data" class="form-label">Data de nascimento: </label>
-                <input class="form-control" type="date" th:field="*{data_nascimento}" id="data" th:value="${#dates.format(data_nascimento, 'dd-MM-yyyy')}" />
+                <input class="form-control" type="date" th:field="*{aluno.data_nascimento}" id="data" th:value="${#dates.format(aluno.data_nascimento, 'dd-MM-yyyy')}" />
             </div>
 
             <div class="btn-div">

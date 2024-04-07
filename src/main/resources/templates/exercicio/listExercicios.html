@@ -41,28 +41,32 @@
     </header>
     <section class="list-exercicios">
         <h1>Exercícios</h1>
-        <p th:if="${#lists.isEmpty(exercicios)}">Não há nenhum exercício cadastrado!</p>
-        <section class="list-exercicios-card">
+        <p th:if="${#lists.isEmpty(exercicios)}">Não há exercício cadastrado!</p>
+        <div class="list-exercicios-card">
             <div class="card card-custom" th:each="exercicio : ${exercicios}">
-                <div>
-                    <h3 th:text="${exercicio.nome}"></h3>
-                    
-                    <p th:text="'Séries:' + ${exercicio.series}"></p>
-                    <p th:text="'Repetições:' + ${exercicio.repeticoes}"></p>                </div>
-                <div class="card-actions">
-                    <a th:href="@{/exercicio/showDetailsExercicio/{id}(id = ${exercicio.id})}">
-                        <svg xmlns="http://www.w3.org/2000/svg" width="21" height="18" fill="currentColor" class="bi bi-search" viewBox="0 0 16 16">
-                            <path d="M11.742 10.344a6.5 6.5 0 1 0-1.397 1.398h-.001q.044.06.098.115l3.85 3.85a1 1 0 0 0 1.415-1.414l-3.85-3.85a1 1 0 0 0-.115-.1zM12 6.5a5.5 5.5 0 1 1-11 0 5.5 5.5 0 0 1 11 0"/>
-                          </svg>
-                    </a>
-                    <a th:href="@{/exercicio/deleteExercicio/{id}(id = ${exercicio.id})}">
-                        <svg xmlns="http://www.w3.org/2000/svg" width="21" height="18" fill="currentColor" class="bi bi-trash3" viewBox="0 0 16 16">
-                            <path d="M6.5 1h3a.5.5 0 0 1 .5.5v1H6v-1a.5.5 0 0 1 .5-.5M11 2.5v-1A1.5 1.5 0 0 0 9.5 0h-3A1.5 1.5 0 0 0 5 1.5v1H1.5a.5.5 0 0 0 0 1h.538l.853 10.66A2 2 0 0 0 4.885 16h6.23a2 2 0 0 0 1.994-1.84l.853-10.66h.538a.5.5 0 0 0 0-1zm1.958 1-.846 10.58a1 1 0 0 1-.997.92h-6.23a1 1 0 0 1-.997-.92L3.042 3.5zm-7.487 1a.5.5 0 0 1 .528.47l.5 8.5a.5.5 0 0 1-.998.06L5 5.03a.5.5 0 0 1 .47-.53Zm5.058 0a.5.5 0 0 1 .47.53l-.5 8.5a.5.5 0 1 1-.998-.06l.5-8.5a.5.5 0 0 1 .528-.47M8 4.5a.5.5 0 0 1 .5.5v8.5a.5.5 0 0 1-1 0V5a.5.5 0 0 1 .5-.5"/>
-                          </svg>
-                    </a>
+                <img src="/img/academia.png" style="width: 120px; height: 100px" class="card-img-left" alt="...">
+                <div class="card-body">
+                    <div>
+                        <h4 th:text="${exercicio.nome}"></h4>
+
+                        <p th:text="'Séries: ' + ${exercicio.series}"></p>
+                        <p th:text="'Repetições: ' + ${exercicio.repeticoes}"></p>
+                    </div>
+                    <div class="card-actions">
+                        <a th:href="@{/exercicio/showDetailsExercicio/{id}(id = ${exercicio.id})}">
+                            <svg xmlns="http://www.w3.org/2000/svg" width="28" height="28" fill="black" class="bi bi-search" viewBox="0 0 16 16">
+                                <path d="M11.742 10.344a6.5 6.5 0 1 0-1.397 1.398h-.001q.044.06.098.115l3.85 3.85a1 1 0 0 0 1.415-1.414l-3.85-3.85a1 1 0 0 0-.115-.1zM12 6.5a5.5 5.5 0 1 1-11 0 5.5 5.5 0 0 1 11 0"/>
+                              </svg>
+                        </a>
+                        <a th:href="@{/exercicio/deleteExercicio/{id}(id = ${exercicio.id})}">
+                            <svg xmlns="http://www.w3.org/2000/svg" width="28" height="28" fill="red" class="bi bi-trash3" viewBox="0 0 16 16">
+                                <path d="M6.5 1h3a.5.5 0 0 1 .5.5v1H6v-1a.5.5 0 0 1 .5-.5M11 2.5v-1A1.5 1.5 0 0 0 9.5 0h-3A1.5 1.5 0 0 0 5 1.5v1H1.5a.5.5 0 0 0 0 1h.538l.853 10.66A2 2 0 0 0 4.885 16h6.23a2 2 0 0 0 1.994-1.84l.853-10.66h.538a.5.5 0 0 0 0-1zm1.958 1-.846 10.58a1 1 0 0 1-.997.92h-6.23a1 1 0 0 1-.997-.92L3.042 3.5zm-7.487 1a.5.5 0 0 1 .528.47l.5 8.5a.5.5 0 0 1-.998.06L5 5.03a.5.5 0 0 1 .47-.53Zm5.058 0a.5.5 0 0 1 .47.53l-.5 8.5a.5.5 0 1 1-.998-.06l.5-8.5a.5.5 0 0 1 .528-.47M8 4.5a.5.5 0 0 1 .5.5v8.5a.5.5 0 0 1-1 0V5a.5.5 0 0 1 .5-.5"/>
+                              </svg>
+                        </a>
+                    </div>
                 </div>
             </div>
-        </section>
+        </div>
         <div class="div-actions">
             <button class="btn btn-custom"><a href="/exercicio/showForm">
                 <svg xmlns="http://www.w3.org/2000/svg" width="28" height="22" fill="currentColor" class="bi bi-plus" viewBox="0 0 16 16">

@@ -2,25 +2,32 @@ html,body{
     width: 100%;
     height: 100%;
 }
-body{
-    padding-top: 6em;
-}
 header{
     display: flex;
     justify-content: space-between;
     align-items: center;
     background-color: #085444;
     padding: 1em;
-    position: fixed;
     width: 100%;
     top: 0;
     left: 0;
 }
+.card{
+    flex-direction: row;
+    align-items: center;
+    padding: 0.8rem;
+    height: 10rem;
+    margin: 1rem;
+}
+.card-body{
+    display: flex;
+    flex-direction: row;
+    justify-content: space-between;
+    align-items: center;
+}
 .alunos{
-    display:grid;
-    grid-template-columns: repeat(4, 1fr);
-    gap: 0.8em;
-    padding: 2em;
+    display:flex;
+    flex-wrap: wrap;
 }
 .btn-custom{
     background-color: #5ad6a7;
@@ -44,8 +51,8 @@ header{
      padding: 1em;
  }
 .list_alunos img{
-    width: 210px;
-    height: 130px;
+    width: 120px;
+    height: 100px;
 }
 .list_alunos a{
     color: #1d7ebe;

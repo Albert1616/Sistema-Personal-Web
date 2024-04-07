@@ -26,56 +26,97 @@
             </ul>
         </div>
     </header>
-    <section class="details-aluno">
-        <div>
-            <h3><b>Dados do aluno</b></h3>
-            <p th:text= "'Nome: ' + ${aluno.nome}"> </p>
-            <p th:text="'Email: ' +  ${aluno.email}"> </p>
-            <p th:text="'Data de nascimento: ' + ${aluno.data_nascimento}"> </p>
-            <a th:href="@{/aluno/showFormEdit/{idAluno}(idAluno = ${id_aluno})}">
-                Editar
-                <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" class="bi bi-pencil-square" viewBox="0 0 16 16">
-                    <path d="M15.502 1.94a.5.5 0 0 1 0 .706L14.459 3.69l-2-2L13.502.646a.5.5 0 0 1 .707 0l1.293 1.293zm-1.75 2.456-2-2L4.939 9.21a.5.5 0 0 0-.121.196l-.805 2.414a.25.25 0 0 0 .316.316l2.414-.805a.5.5 0 0 0 .196-.12l6.813-6.814z"/>
-                    <path fill-rule="evenodd" d="M1 13.5A1.5 1.5 0 0 0 2.5 15h11a1.5 1.5 0 0 0 1.5-1.5v-6a.5.5 0 0 0-1 0v6a.5.5 0 0 1-.5.5h-11a.5.5 0 0 1-.5-.5v-11a.5.5 0 0 1 .5-.5H9a.5.5 0 0 0 0-1H2.5A1.5 1.5 0 0 0 1 2.5z"/>
-                </svg>
-            </a>
-        </div>
-        <div>
-            <h3><b>Avaliações físicas</b></h3>
-            <p th:if="${#lists.isEmpty(avaliacoes_fisicas)}">Nenhuma avaliação física cadastrada!</p>
-            <div class="list-avalicoes">
-                <div class="card card-custom" th:each="avaliaca_fisica : ${avaliacoes_fisicas}">
-                    <div>
-                        <h3 th:text="${avaliaca_fisica.titulo}"></h3>
-                        <p th:text="'Data de avalição: ' + ${avaliaca_fisica.data}"></p>
-                    </div>
-                    <div class="card-actions">
-                        <a th:href="@{/avaliacao_fisica/showDetails/{id}(id = ${avaliaca_fisica.id})}">
-                            <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" class="bi bi-search" viewBox="0 0 16 16">
-                                <path d="M11.742 10.344a6.5 6.5 0 1 0-1.397 1.398h-.001q.044.06.098.115l3.85 3.85a1 1 0 0 0 1.415-1.414l-3.85-3.85a1 1 0 0 0-.115-.1zM12 6.5a5.5 5.5 0 1 1-11 0 5.5 5.5 0 0 1 11 0"/>
-                            </svg>
-                        </a>
-                        <a th:href="@{/avaliacao_fisica/deleteAvaliacaoFisica/{id}(id = ${avaliaca_fisica.id})}">
-                            <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" class="bi bi-trash3" viewBox="0 0 16 16">
-                                <path d="M6.5 1h3a.5.5 0 0 1 .5.5v1H6v-1a.5.5 0 0 1 .5-.5M11 2.5v-1A1.5 1.5 0 0 0 9.5 0h-3A1.5 1.5 0 0 0 5 1.5v1H1.5a.5.5 0 0 0 0 1h.538l.853 10.66A2 2 0 0 0 4.885 16h6.23a2 2 0 0 0 1.994-1.84l.853-10.66h.538a.5.5 0 0 0 0-1zm1.958 1-.846 10.58a1 1 0 0 1-.997.92h-6.23a1 1 0 0 1-.997-.92L3.042 3.5zm-7.487 1a.5.5 0 0 1 .528.47l.5 8.5a.5.5 0 0 1-.998.06L5 5.03a.5.5 0 0 1 .47-.53Zm5.058 0a.5.5 0 0 1 .47.53l-.5 8.5a.5.5 0 1 1-.998-.06l.5-8.5a.5.5 0 0 1 .528-.47M8 4.5a.5.5 0 0 1 .5.5v8.5a.5.5 0 0 1-1 0V5a.5.5 0 0 1 .5-.5"/>
-                              </svg>
-                        </a>
+    <section class="details-aluno container ">
+        <ul class="nav nav-pills mb-3" id="pills-tab" role="tablist">
+            <li class="nav-item" role="presentation">
+                <button class="nav-link active" id="pills-ficha-tab" data-bs-toggle="pill" data-bs-target="#section-ficha" type="button" role="tab" aria-controls="section-ficha" aria-selected="true">Ficha de treino</button>
+            </li>
+            <li class="nav-item" role="presentation">
+                <button class="nav-link" id="pills-avaliacoes-tab" data-bs-toggle="pill" data-bs-target="#section-avaliacoes" type="button" role="tab" aria-controls="section-avaliacoes" aria-selected="false">Avaliações físicas</button>
+            </li>
+            <li class="nav-item" role="presentation">
+                <button class="nav-link" id="pills-dados-tab" data-bs-toggle="pill" data-bs-target="#section-dados" type="button" role="tab" aria-controls="section-dados" aria-selected="false">Dados</button>
+            </li>
+        </ul>
+        <div class="tab-content" id="pills-tabContent">
+            <div class="tab-pane fade" id="section-dados" role="tabpanel" aria-labelledby="pills-dados-tab" tabindex="0" >
+                <h3><b>Dados do aluno</b></h3>
+                <p th:text= "'Nome: ' + ${aluno.nome}"> </p>
+                <p th:text="'Email: ' +  ${aluno.email}"> </p>
+                <p th:text="'Data de nascimento: ' + ${aluno.data_nascimento}"> </p>
+                <a th:href="@{/aluno/showFormEdit/{idAluno}(idAluno = ${id_aluno})}">
+                    Editar
+                    <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" class="bi bi-pencil-square" viewBox="0 0 16 16">
+                        <path d="M15.502 1.94a.5.5 0 0 1 0 .706L14.459 3.69l-2-2L13.502.646a.5.5 0 0 1 .707 0l1.293 1.293zm-1.75 2.456-2-2L4.939 9.21a.5.5 0 0 0-.121.196l-.805 2.414a.25.25 0 0 0 .316.316l2.414-.805a.5.5 0 0 0 .196-.12l6.813-6.814z"/>
+                        <path fill-rule="evenodd" d="M1 13.5A1.5 1.5 0 0 0 2.5 15h11a1.5 1.5 0 0 0 1.5-1.5v-6a.5.5 0 0 0-1 0v6a.5.5 0 0 1-.5.5h-11a.5.5 0 0 1-.5-.5v-11a.5.5 0 0 1 .5-.5H9a.5.5 0 0 0 0-1H2.5A1.5 1.5 0 0 0 1 2.5z"/>
+                    </svg>
+                </a>
+            </div>
+            <div  class="tab-pane fade" id="section-avaliacoes" role="tabpanel" aria-labelledby="pills-avaliacoes-tab" tabindex="0">
+                <h5 th:if="${#lists.isEmpty(avaliacoes_fisicas)}">Nenhuma avaliação física cadastrada!</h5>
+                <div class="list-avalicoes">
+                    <div class="card card-custom card-avaliacao" th:each="avaliaca_fisica : ${avaliacoes_fisicas}">
+                        <div>
+                            <h3 th:text="${avaliaca_fisica.titulo}"></h3>
+                            <p th:text="'Data de avalição: ' + ${avaliaca_fisica.data}"></p>
+                        </div>
+                        <div class="card-actions">
+                            <a class="p-2" th:href="@{/avaliacao_fisica/showDetails/{id}(id = ${avaliaca_fisica.id})}">
+                                <svg xmlns="http://www.w3.org/2000/svg" width="28" height="28" fill="black" class="bi bi-search" viewBox="0 0 16 16">
+                                    <path d="M11.742 10.344a6.5 6.5 0 1 0-1.397 1.398h-.001q.044.06.098.115l3.85 3.85a1 1 0 0 0 1.415-1.414l-3.85-3.85a1 1 0 0 0-.115-.1zM12 6.5a5.5 5.5 0 1 1-11 0 5.5 5.5 0 0 1 11 0"/>
+                                </svg>
+                            </a>
+                            <a class="p-2" th:href="@{/avaliacao_fisica/deleteAvaliacaoFisica/{id}(id = ${avaliaca_fisica.id})}">
+                                <svg xmlns="http://www.w3.org/2000/svg" width="28" height="28" fill="red" class="bi bi-trash3" viewBox="0 0 16 16">
+                                    <path d="M6.5 1h3a.5.5 0 0 1 .5.5v1H6v-1a.5.5 0 0 1 .5-.5M11 2.5v-1A1.5 1.5 0 0 0 9.5 0h-3A1.5 1.5 0 0 0 5 1.5v1H1.5a.5.5 0 0 0 0 1h.538l.853 10.66A2 2 0 0 0 4.885 16h6.23a2 2 0 0 0 1.994-1.84l.853-10.66h.538a.5.5 0 0 0 0-1zm1.958 1-.846 10.58a1 1 0 0 1-.997.92h-6.23a1 1 0 0 1-.997-.92L3.042 3.5zm-7.487 1a.5.5 0 0 1 .528.47l.5 8.5a.5.5 0 0 1-.998.06L5 5.03a.5.5 0 0 1 .47-.53Zm5.058 0a.5.5 0 0 1 .47.53l-.5 8.5a.5.5 0 1 1-.998-.06l.5-8.5a.5.5 0 0 1 .528-.47M8 4.5a.5.5 0 0 1 .5.5v8.5a.5.5 0 0 1-1 0V5a.5.5 0 0 1 .5-.5"/>
+                                  </svg>
+                            </a>
+                        </div>
                     </div>
                 </div>
-            </div>       
+                <a class="btn btn-primary mt-4"  th:href="@{/avaliacao_fisica/showForm/{idAluno}(idAluno = ${id_aluno})}">
+                    Adicionar avaliação física
+                </a>
+            </div>
+
+            <div  class="tab-pane fade show active" id="section-ficha" role="tabpanel" aria-labelledby="pills-ficha-tab" tabindex="0">
+                <h3 th:if="${#lists.isEmpty(treinos)}">Nenhum treino cadastrado</h3>
+                <div class="accordion" id="accordionExample">
+                    <div th:each="treino: ${treinos}" class="accordion-item">
+                        <h2 class="accordion-header">
+                            <button th:text="${treino.titulo}" class="accordion-button" type="button" data-bs-toggle="collapse" th:data-bs-target="'#' + ${treino.id}" aria-expanded="true" th:aria-controls="${treino.id}">
+                            </button>
+                        </h2>
+                        <div th:id="${treino.id}" class="accordion-collapse collapse " data-bs-parent="#accordionExample">
+                            <div class="accordion-body">
+                                <div class="container-treino">
+                                    <div th:each="exercicio: ${treino.exercicios}" class="card card-custom">
+                                        <img src="/img/academia.png" style="width: 120px; height: 100px" class="card-img-left" alt="...">
+                                        <div class="card-body">
+                                            <div>
+                                                <h4 th:text="${exercicio.nome}"></h4>
+
+                                                <p th:text="'Séries: ' + ${exercicio.series}"></p>
+                                                <p th:text="'Repetições: ' + ${exercicio.repeticoes}"></p>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+                                <div class="container-actions">
+                                    <a class="btn btn-primary" th:href="@{/treino/showEditForm/{id}(id = ${treino.id})}">Editar</a>
+                                    <a class="btn btn-danger" th:href="@{/treino/deleteTreino/{id}(id = ${treino.id})}">Apagar</a>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+                <a class="btn btn-primary mt-4"  th:href="@{/treino/showForm/{idAluno}(idAluno = ${aluno.id})}">Adicionar treino</a>
+                </div>
+            </div>
+
+
         </div>
-        <a th:href="@{/avaliacao_fisica/showForm/{idAluno}(idAluno = ${id_aluno})}">
-            Adicionar avaliação física
-            <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" class="bi bi-plus" viewBox="0 0 16 16">
-                <path d="M8 4a.5.5 0 0 1 .5.5v3h3a.5.5 0 0 1 0 1h-3v3a.5.5 0 0 1-1 0v-3h-3a.5.5 0 0 1 0-1h3v-3A.5.5 0 0 1 8 4"/>
-            </svg>
-        </a>
-        <a href="/">
-            Home
-            <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" class="bi bi-house" viewBox="0 0 16 16">
-                <path d="M8.707 1.5a1 1 0 0 0-1.414 0L.646 8.146a.5.5 0 0 0 .708.708L2 8.207V13.5A1.5 1.5 0 0 0 3.5 15h9a1.5 1.5 0 0 0 1.5-1.5V8.207l.646.647a.5.5 0 0 0 .708-.708L13 5.793V2.5a.5.5 0 0 0-.5-.5h-1a.5.5 0 0 0-.5.5v1.293zM13 7.207V13.5a.5.5 0 0 1-.5.5h-9a.5.5 0 0 1-.5-.5V7.207l5-5z"/>
-            </svg>
-        </a>
     </section>
     <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/js/bootstrap.bundle.min.js" integrity="sha384-YvpcrYf0tY3lHB60NNkmXc5s9fDVZLESaAA55NDzOxhy9GkcIdslK1eN7N6jIeHz" crossorigin="anonymous"></script>
 </body>
