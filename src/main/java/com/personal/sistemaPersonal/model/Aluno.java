@@ -23,7 +23,7 @@ public class Aluno {
     @Column
     private LocalDate data_nascimento;
 
-    @OneToMany(mappedBy = "aluno", fetch = FetchType.LAZY)
+    @OneToMany(mappedBy = "aluno", fetch = FetchType.LAZY, cascade = CascadeType.REMOVE)
     @OrderBy("data desc")
     private List<AvalicaoFisica> avalicoes_fisicas = new ArrayList<>();
 
@@ -58,7 +58,7 @@ public class Aluno {
         return nome;
     }
 
-    public FichaTreino getFichaTreino() {
+    public FichaTreino getFicha_treino() {
         return ficha_treino;
     }
 
@@ -74,7 +74,7 @@ public class Aluno {
         this.avalicoes_fisicas = avalicoesFisicas;
     }
 
-    public void setFichaTreino(FichaTreino fichaTreino) {
+    public void setFicha_treino(FichaTreino fichaTreino) {
         this.ficha_treino = fichaTreino;
     }
 
@@ -97,4 +97,5 @@ public class Aluno {
     public void setEmail(String email) {
         this.email = email;
     }
+
 }

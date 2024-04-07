@@ -2,6 +2,8 @@ package com.personal.sistemaPersonal.service;
 
 import com.personal.sistemaPersonal.model.Aluno;
 import com.personal.sistemaPersonal.model.AvalicaoFisica;
+import com.personal.sistemaPersonal.model.FichaTreino;
+import com.personal.sistemaPersonal.repository.FichaTreinoRepository;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Component;
 import com.personal.sistemaPersonal.repository.AlunoRepository;

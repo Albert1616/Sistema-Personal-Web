@@ -4,11 +4,12 @@ import com.personal.sistemaPersonal.model.AvalicaoFisica;
 import com.personal.sistemaPersonal.model.Exercicio;
 import com.personal.sistemaPersonal.repository.ExercicioRepository;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.stereotype.Component;
 import org.springframework.stereotype.Service;
 
 import java.util.List;
 
-@Service
+@Component
 public class ExercicioService {
 
     @Autowired

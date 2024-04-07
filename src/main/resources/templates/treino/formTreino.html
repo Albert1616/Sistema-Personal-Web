@@ -1,0 +1,30 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Formulário de exercício</title>
+</head>
+<body>
+    <form action="#" th:action="@{/treino/addTreino}" th:object="${treino}" method="post">
+        <input type="hidden" th:field="*{id}">
+        <input type="hidden" th:field="*{data_criacao}"/>
+        <input type="hidden" th:field="*{ficha_treino.idFichaTreino}">
+        <div>
+            <label>Nome: </label>
+            <input type="text" th:field="*{titulo}"/>
+        </div>
+        <div>
+            <label>Data de vencimento: </label>
+            <input type="date" th:field="*{data_vencimento}" />
+        </div>
+        <p>Exercicios
+            <div th:each="exercicio: ${exercicios}">
+                <input type="checkbox" th:field="*{exercicios}" th:value="${exercicio.id}" th:text="${exercicio.nome} + ' ' + ${exercicio.series} + 'x' + ${exercicio.repeticoes}" />
+            </div>
+        </p>
+        <p><input type="submit" value="Salvar"/></p>
+    </form>
+</body>
+</html>

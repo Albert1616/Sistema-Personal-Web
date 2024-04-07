@@ -7,22 +7,25 @@
     <title>Formulário de aluno</title>
 </head>
 <body>
-    <form action="#" th:action="@{/aluno/addAluno}" th:object="${aluno}" method="post">
-        <input type="hidden" th:field="*{id}">
+    <form action="#" th:action="@{/aluno/addAluno}" method="post">
+        <input type="hidden" th:field="*{aluno.id}" th:name="alunoId">
+        <input type="hidden" th:field="*{ficha_treino.idFichaTreino}" th:name="fichaTreinoId">
         <div>
             <label>Nome: </label>
-            <input type="text" th:field="*{nome}"/>
+            <input type="text" th:field="*{aluno.nome}"/>
         </div>
         <div>
             <label>Email: </label>
-            <input type="email" th:field="*{email}"/>
+            <input type="email" th:field="*{aluno.email}"/>
         </div>
         <div>
             <label>Data de nascimento: </label>
-            <input type="date" th:field="*{data_nascimento}" th:value="${#dates.format(data_nascimento, 'dd-MM-yyyy')}" />
+            <input type="date" th:field="*{aluno.data_nascimento}" th:value="${#dates.format(aluno.data_nascimento, 'dd-MM-yyyy')}" />
         </div>
 
         <p><input type="submit" value="Salvar"/></p>
+
+
     </form>
 </body>
 </html>

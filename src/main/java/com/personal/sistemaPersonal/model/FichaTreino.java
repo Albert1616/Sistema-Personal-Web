@@ -6,7 +6,6 @@ import java.util.List;
 
 @Entity
 @Table(name = "ficha_treino")
-
 public class FichaTreino {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
@@ -15,7 +14,7 @@ public class FichaTreino {
     @Column(length = 20)
     private String titulo;
 
-    @OneToMany(mappedBy = "ficha_treino", fetch = FetchType.LAZY)
+    @OneToMany(mappedBy = "ficha_treino", fetch = FetchType.LAZY, cascade = CascadeType.REMOVE)
     private List<Treino> treinos;
 
     @OneToOne(mappedBy = "ficha_treino")
@@ -27,7 +26,7 @@ public class FichaTreino {
         this.titulo = titulo;
     }
 
-    public Integer getId() {
+    public Integer getIdFichaTreino() {
         return id;
     }
 
@@ -48,5 +47,17 @@ public class FichaTreino {
     }
     public void adicionarTreino(Treino treino){
         this.treinos.add(treino);
+    }
+
+    public Aluno getAluno() {
+        return aluno;
+    }
+
+    public void setAluno(Aluno aluno) {
+        this.aluno = aluno;
+    }
+
+    public void setIdFichaTreino(Integer id) {
+        this.id = id;
     }
 }

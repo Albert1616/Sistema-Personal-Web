@@ -6,7 +6,7 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Página do aluno</title>
     <style>
-        .container-card-avaliacao{
+        .card{
             border: 1px solid black;
             margin-bottom: 10px;
             width: 400px;
@@ -28,8 +28,8 @@
     <br>
     <br>
     <p><b>Avaliações físicas</b></p>
-    <p th:if="${#lists.isEmpty(avaliacoes_fisicas)}">Nenhuma avaliação física cadastrada!</p>
-    <div class="container-card-avaliacao" th:each="avaliaca_fisica : ${avaliacoes_fisicas}">
+    <p th:if="${#lists.isEmpty(avaliacoes_fisicas)}">Nenhuma avaliação física cadastrada</p>
+    <div class="card" th:each="avaliaca_fisica : ${avaliacoes_fisicas}">
         <div>
             <p th:text="${avaliaca_fisica.titulo}"></p>
             <p th:text="${avaliaca_fisica.data}"></p>
@@ -40,7 +40,25 @@
         </div>
     </div>
     <p><a th:href="@{/avaliacao_fisica/showForm/{idAluno}(idAluno = ${id_aluno})}">Adicionar avaliação física</a></p>
+    <br>
 
+    <p><b>Ficha de treino</b></p>
+
+    <p th:if="${#lists.isEmpty(treinos)}">Nenhum treino cadastrado</p>
+
+    <div class="card" th:each="treino : ${treinos}">
+        <div>
+            <p th:text="${treino.titulo} + '///' + ${treino.ficha_treino.titulo}"></p>
+            <div th:each="exercicio: ${treino.exercicios}">
+                <p th:text="${exercicio.nome} + ' ' + ${exercicio.series} + 'x' + ${exercicio.repeticoes}"></p>
+            </div>
+        </div>
+        <div>
+            <a th:href="@{/treino/showEditForm/{id}(id = ${treino.id})}">Editar</a>
+            <a th:href="@{/treino/deleteTreino/{id}(id = ${treino.id})}">Apagar</a>
+        </div>
+    </div>
+    <a th:href="@{/treino/showForm/{idAluno}(idAluno = ${aluno.id})}">Adicionar treino</a>
     <br><br>
     <a href="/">Home</a>
 </body>

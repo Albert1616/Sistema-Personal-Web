@@ -16,7 +16,6 @@ public class Treino {
     @Column(length = 20)
     private String titulo;
 
-    @Column(length = 1)
     private TipoTreino tipo;
 
     @ManyToOne
@@ -32,7 +31,7 @@ public class Treino {
     @Column(length = 10)
     private LocalDate data_vencimento;
 
-    @ManyToMany
+    @ManyToMany(cascade = CascadeType.DETACH)
     @JoinTable(name = "treino_exercicio", joinColumns = @JoinColumn(name = "treino_id"),
     inverseJoinColumns = @JoinColumn(name = "exercicio_id"))
     private List<Exercicio> exercicios;
@@ -98,5 +97,33 @@ public class Treino {
 
     public void setTipo(TipoTreino tipo) {
         tipo = tipo;
+    }
+
+    public void setId(Integer id) {
+        this.id = id;
+    }
+
+    public FichaTreino getFicha_treino() {
+        return ficha_treino;
+    }
+
+    public void setFicha_treino(FichaTreino ficha_treino) {
+        this.ficha_treino = ficha_treino;
+    }
+
+    public LocalDate getData_criacao() {
+        return data_criacao;
+    }
+
+    public void setData_criacao(LocalDate data_criacao) {
+        this.data_criacao = data_criacao;
+    }
+
+    public LocalDate getData_vencimento() {
+        return data_vencimento;
+    }
+
+    public void setData_vencimento(LocalDate data_vencimento) {
+        this.data_vencimento = data_vencimento;
     }
 }
