@@ -1,29 +1,65 @@
+html,body{
+    width: 100%;
+    height: 100%;
+}
+body{
+    padding-top: 6em;
+}
+header{
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    background-color: #085444;
+    padding: 1em;
+    position: fixed;
+    width: 100%;
+    top: 0;
+    left: 0;
+}
 .alunos{
     display:grid;
     grid-template-columns: repeat(4, 1fr);
     gap: 0.8em;
+    padding: 2em;
+}
+.btn-custom{
+    background-color: #5ad6a7;
+    color:white;
+    margin-top: 1em;
+    margin-left: 1em;
+}
+.btn-custom:hover{
+    background-color: #339771;
+}
+.btn-custom a{
+    text-decoration: none;
+    color: white;
 }
 .list_alunos{
-    display: flex;
-    flex-direction: column;
-    justify-content: center;
-    align-items: left;
-    gap: .5em;
-    background-color: gainsboro;
-    border: 1px solid transparent;
-    border-radius: 1em;
-    padding: 1em;
-}
+     display: flex;
+     flex-direction: column;
+     justify-content: space-between;
+     align-items: left;
+     gap: .7em;
+     padding: 1em;
+ }
 .list_alunos img{
-    width: 160px;
-    height: 90px;
+    width: 210px;
+    height: 130px;
+}
+.list_alunos a{
+    color: #1d7ebe;
+    text-decoration: none;
 }
 .actions_aluno{
     display: flex;
     justify-content: space-between;
     align-items: center;
+    margin-bottom: 0.3em;
 }
-.actions_aluno img{
-    width: 30px;
-    height: 15px;
+.actions_aluno a{
+    color: black;
+}
+.dropdown{
+background-color: transparent;
 }

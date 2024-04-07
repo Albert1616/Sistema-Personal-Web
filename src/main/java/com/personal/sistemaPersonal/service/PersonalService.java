@@ -11,4 +11,5 @@ public interface PersonalService {
     public boolean delete(Personal personal);
     public boolean update(Integer id);
     public List<Personal> getAll();
+    public void deleteAll();
 }
