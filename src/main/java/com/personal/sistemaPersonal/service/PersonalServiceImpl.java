@@ -50,4 +50,8 @@ public class PersonalServiceImpl implements PersonalService {
     public List<Personal> getAll() {
         return personalRepository.findAll();
     }
+    @Override
+    public void deleteAll(){
+        personalRepository.deleteAll();
+    }
 }

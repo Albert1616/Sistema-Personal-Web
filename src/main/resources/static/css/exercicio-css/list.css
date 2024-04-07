@@ -1,0 +1,61 @@
+html, body{
+    width: 100%;
+    height: 100%;
+}
+body{
+    padding-top: 6em;
+}
+header{
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    background-color: #085444;
+    padding: 1em;
+    position: fixed;
+    width: 100%;
+    top: 0;
+    left: 0;
+}
+.list-exercicios{
+    height: 100%;
+    width: 100%;
+    padding: 1em;
+    display: flex;
+    flex-direction: column;
+    gap: 1em;
+}
+.list-exercicios-card{
+    display: grid;
+    grid-template-columns: repeat(4, 1fr);
+    gap: 1em;
+}
+.card-custom{
+    padding: 1em;
+}
+.card-actions{
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+}
+.div-actions{
+    display: flex;
+    align-items: left;
+    justify-content: left;
+    gap: 1em;
+    margin-top: 1em;
+}
+.btn-custom{
+    background-color: #5ad6a7;
+    color:white;
+    width: 20%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+.btn-custom:hover{
+    background-color: #339771;
+}
+.btn-custom a{
+    text-decoration: none;
+    color: white;
+}

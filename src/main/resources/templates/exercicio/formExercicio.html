@@ -4,29 +4,56 @@
     <meta charset="UTF-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-QWTKZyjpPEjISv5WaRU9OFeRpok6YctnYmDr5pNlyT2bRjXh0JMhjY6hW+ALEwIH" crossorigin="anonymous">
+    <link rel="stylesheet" href="/css/exercicio-css/form.css">
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.11.3/font/bootstrap-icons.min.css">
     <title>Formulário de exercício</title>
 </head>
 <body>
-    <form action="#" th:action="@{/exercicio/addExercicio}" th:object="${exercicio}" method="post">
-        <input type="hidden" th:field="*{id}">
-        <div>
-            <label>Nome: </label>
-            <input type="text" th:field="*{nome}"/>
+    <header>
+        <a href="/"><img src="/img/logo.png" alt="logo"></a>
+        <div class="dropdown">
+            <button class="btn btn-secondary dropdown-toggle dropdown-toggle-no-arrow bg-transparent border-0" type="button" data-bs-toggle="dropdown" aria-expanded="false">
+                <svg xmlns="http://www.w3.org/2000/svg" width="60" height="40"
+                     fill="currentColor" class="bi bi-person-circle" viewBox="0 0 16 16">
+                    <path d="M11 6a3 3 0 1 1-6 0 3 3 0 0 1 6 0"/>
+                    <path fill-rule="evenodd" d="M0 8a8 8 0 1 1 16 0A8 8 0 0 1 0 8m8-7a7 7 0 0 0-5.468 11.37C3.242 11.226 4.805 10 8 10s4.757 1.225 5.468 2.37A7 7 0 0 0 8 1"/>
+                </svg>
+            </button>
+            <ul class="dropdown-menu">
+                <li><a class="dropdown-item" href="personal/detailsPersonal">Conta</a></li>
+                <li><a class="dropdown-item" href="personal/deletePersonal" style="color: red">Deletar conta</a></li>
+            </ul>
         </div>
-        <div>
-            <label>Séries: </label>
-            <input type="number" th:field="*{series}" />
-        </div>
-        <div>
-            <label>Repetições: </label>
-            <input type="number" th:field="*{repeticoes}" />
-        </div>
-        <div>
-            <label>Observações: </label>
-            <br>
-            <textarea th:field="*{observacoes}" rows="5" cols="35" style="resize: vertical"> </textarea>
-        </div>
-        <p><input type="submit" value="Salvar"/></p>
-    </form>
+    </header>
+    <section class="section-form">
+        <form action="#" th:action="@{/exercicio/addExercicio}" th:object="${exercicio}" method="post">
+            <input type="hidden" th:field="*{id}">
+            <div>
+                <label for="nome" class="form-label">Nome: </label>
+                <input class="form-control" type="text" id="nome" th:field="*{nome}"/>
+            </div>
+            <div>
+                <label for="series" class="form-label">Séries: </label>
+                <input class="form-control" type="number" id="series" th:field="*{series}" />
+            </div>
+            <div>
+                <label for="repeticoes" class="form-label">Repetições: </label>
+                <input class="form-control" type="number" id="repeticoes" th:field="*{repeticoes}" />
+            </div>
+            <div>
+                <label for="observacoes">Observacoes</label>
+                <textarea id="observacoes" class="form-control" th:field="*{observacoes}" rows="5" cols="35" style="resize: none"> </textarea>
+            </div>
+            <div class="btn-div">
+                <button type="submit" class="btn btn-custom">
+                    Salvar
+                </button>
+            </div>
+            
+        </form>
+    </section>
+   
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/js/bootstrap.bundle.min.js" integrity="sha384-YvpcrYf0tY3lHB60NNkmXc5s9fDVZLESaAA55NDzOxhy9GkcIdslK1eN7N6jIeHz" crossorigin="anonymous"></script>
 </body>
 </html>
