@@ -28,9 +28,14 @@
     </header>
     <section class="container detailsAvalicao">
         <h3 th:text= "${avaliacao_fisica.titulo}"> </h3>
-        <p th:text="'Realizada em: ' + ${#temporals.format(avaliacao_fisica.data, #locale)}"> </p>
-        <p th:text="'Peso: ' +  ${avaliacao_fisica.alunoPeso} + ' Kg'"> </p>
-        <p th:text="'Altura: ' +  ${avaliacao_fisica.alunoAltura} + ' Cm'"> </p>
+        <p th:text="'Realizada em: ' + ${#temporals.format(avaliacao_fisica.data, 'dd/MM/yyyy')}"> </p>
+        <p th:text="'Peso: ' +  ${avaliacao_fisica.alunoPeso} + ' kg'"> </p>
+        <p th:text="'Altura: ' +  ${avaliacao_fisica.alunoAltura} + ' m'"> </p>
+        <h4>Medidas</h4>
+        <p th:text="'Peito: ' +  ${avaliacao_fisica.medidaPeito != null ? avaliacao_fisica.medidaPeito + ' cm' : 'Não informado'}"> </p>
+        <p th:text="'Braço: ' +  ${avaliacao_fisica.medidaBraco != null ? avaliacao_fisica.medidaBraco + ' cm' : 'Não informado'}"> </p>
+        <p th:text="'Cintura: ' +  ${avaliacao_fisica.medidaCintura != null ? avaliacao_fisica.medidaCintura  + ' cm' : 'Não informado'}"> </p>
+        <p th:text="'Perna: ' +  ${avaliacao_fisica.medidaPerna != null ? avaliacao_fisica.medidaPerna  + ' cm' : 'Não informado'}"> </p>
     
         <a th:href="@{/avaliacao_fisica/showFormEdit/{id}(id = ${avaliacao_fisica.id})}">
             Editar

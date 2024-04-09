@@ -58,7 +58,7 @@
                     <div class="card card-custom card-avaliacao" th:each="avaliaca_fisica : ${avaliacoes_fisicas}">
                         <div>
                             <h3 th:text="${avaliaca_fisica.titulo}"></h3>
-                            <p th:text="'Data de avalição: ' + ${avaliaca_fisica.data}"></p>
+                            <p th:text="'Realizada em: ' + ${#temporals.format(avaliaca_fisica.data, 'dd/MM/yyyy')}"></p>
                         </div>
                         <div class="card-actions">
                             <a class="p-2" th:href="@{/avaliacao_fisica/showDetails/{id}(id = ${avaliaca_fisica.id})}">
@@ -102,9 +102,12 @@
                                         </div>
                                     </div>
                                 </div>
-                                <div class="container-actions">
-                                    <a class="btn btn-primary" th:href="@{/treino/showEditForm/{id}(id = ${treino.id})}">Editar</a>
-                                    <a class="btn btn-danger" th:href="@{/treino/deleteTreino/{id}(id = ${treino.id})}">Apagar</a>
+                                <div>
+                                    <p th:text="'Validade: ' + ${#temporals.format(treino.data_vencimento, #locale)}"></p>
+                                    <div class="container-actions">
+                                        <a class="btn btn-primary" th:href="@{/treino/showEditForm/{id}(id = ${treino.id})}">Editar</a>
+                                        <a class="btn btn-danger" th:href="@{/treino/deleteTreino/{id}(id = ${treino.id})}">Apagar</a>
+                                    </div>
                                 </div>
                             </div>
                         </div>

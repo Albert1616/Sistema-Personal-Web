@@ -29,6 +29,18 @@ public class AvalicaoFisica {
     @Column
     private Double alunoAltura;
 
+    @Column
+    private Double medidaBraco;
+
+    @Column
+    private Double medidaPeito;
+
+    @Column
+    private Double medidaPerna;
+
+    @Column
+    private Double medidaCintura;
+
     public AvalicaoFisica(){};
 
     public AvalicaoFisica(String titulo, Aluno aluno, Double alunoAltura, Double alunoPeso){
@@ -85,5 +97,37 @@ public class AvalicaoFisica {
 
     public void setData(LocalDate data) {
         this.data = data;
+    }
+
+    public Double getMedidaBraco() {
+        return medidaBraco;
+    }
+
+    public void setMedidaBraco(Double medidaBraco) {
+        this.medidaBraco = medidaBraco;
+    }
+
+    public Double getMedidaPeito() {
+        return medidaPeito;
+    }
+
+    public void setMedidaPeito(Double medidaPeito) {
+        this.medidaPeito = medidaPeito;
+    }
+
+    public Double getMedidaPerna() {
+        return medidaPerna;
+    }
+
+    public void setMedidaPerna(Double medidaPerna) {
+        this.medidaPerna = medidaPerna;
+    }
+
+    public Double getMedidaCintura() {
+        return medidaCintura;
+    }
+
+    public void setMedidaCintura(Double medidaCintura) {
+        this.medidaCintura = medidaCintura;
     }
 }
