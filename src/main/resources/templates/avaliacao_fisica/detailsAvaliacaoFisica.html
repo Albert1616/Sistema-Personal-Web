@@ -26,9 +26,9 @@
             </ul>
         </div>
     </header>
-    <section class="detailsAvalicao">
+    <section class="container detailsAvalicao">
         <h3 th:text= "${avaliacao_fisica.titulo}"> </h3>
-        <p th:text="'Data de nascimento: ' + ${avaliacao_fisica.data}"> </p>
+        <p th:text="'Realizada em: ' + ${#temporals.format(avaliacao_fisica.data, #locale)}"> </p>
         <p th:text="'Peso: ' +  ${avaliacao_fisica.alunoPeso} + ' Kg'"> </p>
         <p th:text="'Altura: ' +  ${avaliacao_fisica.alunoAltura} + ' Cm'"> </p>
     

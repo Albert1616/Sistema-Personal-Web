@@ -40,7 +40,7 @@
             </div>
             <div>
                 <label for="data" class="form-label">Data de nascimento: </label>
-                <input class="form-control" type="date" th:field="*{aluno.data_nascimento}" id="data" th:value="${#dates.format(aluno.data_nascimento, 'dd-MM-yyyy')}" />
+                <input class="form-control" type="date" id="data" th:field="*{aluno.data_nascimento}"/>
             </div>
 
             <div class="btn-div">

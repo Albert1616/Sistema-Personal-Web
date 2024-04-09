@@ -1,6 +1,7 @@
 package com.personal.sistemaPersonal.model;
 
 import jakarta.persistence.*;
+import org.springframework.format.annotation.DateTimeFormat;
 
 import java.time.LocalDate;
 
@@ -15,6 +16,7 @@ public class AvalicaoFisica {
     private String titulo;
 
     @Column
+    @DateTimeFormat(pattern = "yyyy-MM-dd")
     private LocalDate data;
 
     @ManyToOne

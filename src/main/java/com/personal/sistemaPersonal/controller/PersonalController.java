@@ -27,7 +27,7 @@ public class PersonalController {
     @RequestMapping("/addPersonal")
     public String addPersonal(@ModelAttribute Personal personal){
         personalService.save(personal);
-        return "redirect:/";
+        return "redirect:/home";
     }
     @RequestMapping("/detailsPersonal")
     public String detailsPersonal(Model model){
