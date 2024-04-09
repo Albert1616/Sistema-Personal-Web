@@ -31,7 +31,7 @@ public class ExercicioController {
     }
 
     @RequestMapping("/addExercicio")
-    public String addExercicio(@ModelAttribute Exercicio exercicio) {
+    public String addExercicio(@ModelAttribute Exercicio exercicio){
         exercicioService.save(exercicio);
 
         return "redirect:/exercicio/showListaExercicio";

@@ -1,6 +1,7 @@
 package com.personal.sistemaPersonal.model;
 
 import jakarta.persistence.*;
+import org.springframework.format.annotation.DateTimeFormat;
 
 import java.time.LocalDate;
 import java.util.List;
@@ -29,6 +30,7 @@ public class Treino {
     private Integer duracao;
 
     @Column(length = 10)
+    @DateTimeFormat(pattern = "yyyy-MM-dd")
     private LocalDate data_vencimento;
 
     @ManyToMany(cascade = CascadeType.DETACH)
