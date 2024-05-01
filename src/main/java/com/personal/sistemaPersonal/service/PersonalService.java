@@ -1,14 +1,14 @@
 package com.personal.sistemaPersonal.service;
 
 import com.personal.sistemaPersonal.model.Personal;
-import org.springframework.stereotype.Service;
+import com.personal.sistemaPersonal.rest.dto.PersonalDTO;
 
 import java.util.List;
 
 public interface PersonalService {
-    public boolean save(Personal personal);
-    public boolean delete(Personal personal);
-    public boolean update(Integer id);
+    public Personal save(PersonalDTO personal);
+    public Personal getById(Integer id);
+    public void delete(Integer id);
+    public void update(Integer id, PersonalDTO personalDTO);
     public List<Personal> getAll();
-    public void deleteAll();
 }

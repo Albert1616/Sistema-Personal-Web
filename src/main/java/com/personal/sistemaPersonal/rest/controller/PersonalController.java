@@ -1,16 +1,22 @@
 package com.personal.sistemaPersonal.rest.controller;
 
 import com.personal.sistemaPersonal.model.Personal;
+import com.personal.sistemaPersonal.rest.dto.PersonalDTO;
+import com.personal.sistemaPersonal.service.PersonalService;
+import jakarta.validation.Valid;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
-import org.springframework.ui.Model;
+import org.springframework.validation.FieldError;
+import org.springframework.web.bind.MethodArgumentNotValidException;
 import org.springframework.web.bind.annotation.*;
-import com.personal.sistemaPersonal.service.PersonalService;
 
+import java.util.HashMap;
 import java.util.List;
+import java.util.Map;
 
-@RestController
+
 @RequestMapping("/api/personal")
+@RestController
 public class PersonalController {
 
     @Autowired
@@ -18,23 +24,43 @@ public class PersonalController {
 
     @PostMapping
     @ResponseStatus(HttpStatus.CREATED)
-    public Personal save(@RequestBody Personal personal){
-        return personalService.save(personal);
+    public Integer save(@RequestBody @Valid PersonalDTO dto){
+        Personal personal = personalService.save(dto);
+        return personal.getId();
     }
-    @RequestMapping("/addPersonal")
-    public String addPersonal(@ModelAttribute Personal personal){
-        personalService.save(personal);
-        return "redirect:/home";
+
+    @GetMapping("{id}")
+    public Personal getById(@PathVariable Integer id){
+        return personalService.getById(id);
     }
-    @RequestMapping("/detailsPersonal")
-    public String detailsPersonal(Model model){
-        List<Personal> lst_personal = personalService.getAll();
-        model.addAttribute("personal", lst_personal.get(0));
-        return "personal/detailsPersonal";
+
+    @GetMapping
+    public List<Personal> getAll(){
+        return personalService.getAll();
     }
-    @RequestMapping("deletePersonal")
-    public String deletePersonal(){
-        personalService.deleteAll();
-        return "redirect:/";
+
+    @PutMapping("{id}")
+    public void update(@PathVariable Integer id, @RequestBody PersonalDTO dto){
+        personalService.update(id, dto);
+    }
+
+    @DeleteMapping("{id}")
+    public void delete(@PathVariable Integer id){
+        personalService.delete(id);
+    }
+
+    @ResponseStatus(HttpStatus.BAD_REQUEST)
+    @ExceptionHandler(MethodArgumentNotValidException.class)
+    public Map<String, String> handleValidationException(MethodArgumentNotValidException ex){
+        Map<String, String> errors = new HashMap<>();
+
+        ex.getBindingResult().getAllErrors().forEach((error) -> {
+            String fieldName = ((FieldError) error).getField();
+            String errorMessage = error.getDefaultMessage();
+
+            errors.put(fieldName, errorMessage);
+        });
+
+        return errors;
     }
 }

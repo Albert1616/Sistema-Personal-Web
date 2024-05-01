@@ -21,7 +21,7 @@ public class Treino {
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Integer id;
 
-    @Column(length = 20)
+    @Column(length = 40)
     private String titulo;
 
     private TipoTreino tipo;
@@ -30,14 +30,10 @@ public class Treino {
     @JoinColumn(name = "ficha_treino_id")
     private FichaTreino ficha_treino;
 
-    @Column(length = 10)
     private LocalDate data_criacao;
 
-    @Column(length = 2)
     private Integer duracao;
 
-    @Column(length = 10)
-    @DateTimeFormat(pattern = "yyyy-MM-dd")
     private LocalDate data_vencimento;
 
     @ManyToMany(cascade = CascadeType.DETACH)

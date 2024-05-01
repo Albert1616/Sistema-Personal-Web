@@ -23,8 +23,6 @@ public class AvalicaoFisica {
     @Column(length = 50)
     private String titulo;
 
-    @Column
-    @DateTimeFormat(pattern = "yyyy-MM-dd")
     private LocalDate data;
 
     @ManyToOne
