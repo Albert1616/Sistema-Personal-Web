@@ -1,17 +1,16 @@
-package com.personal.sistemaPersonal.service;
+package com.personal.sistemaPersonal.service.impl;
 
 import com.personal.sistemaPersonal.model.Aluno;
-import com.personal.sistemaPersonal.model.AvalicaoFisica;
-import com.personal.sistemaPersonal.model.FichaTreino;
-import com.personal.sistemaPersonal.repository.FichaTreinoRepository;
+import com.personal.sistemaPersonal.service.AlunoService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Component;
 import com.personal.sistemaPersonal.repository.AlunoRepository;
+import org.springframework.stereotype.Service;
 
 import java.util.List;
 import java.util.Optional;
 
-@Component
+@Service
 public class AlunoServiceImpl implements AlunoService {
     @Autowired
     AlunoRepository alunoRepository;

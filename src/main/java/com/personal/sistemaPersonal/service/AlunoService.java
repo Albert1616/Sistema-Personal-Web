@@ -6,7 +6,6 @@ import org.springframework.stereotype.Service;
 
 import java.util.List;
 
-@Service
 public interface AlunoService {
     public boolean save(Aluno aluno);
     public boolean delete(Aluno aluno);

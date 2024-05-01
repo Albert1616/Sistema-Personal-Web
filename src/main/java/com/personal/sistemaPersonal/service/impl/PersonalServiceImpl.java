@@ -1,15 +1,16 @@
-package com.personal.sistemaPersonal.service;
+package com.personal.sistemaPersonal.service.impl;
 
-import com.personal.sistemaPersonal.model.AvalicaoFisica;
 import com.personal.sistemaPersonal.model.Personal;
+import com.personal.sistemaPersonal.service.PersonalService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Component;
 import com.personal.sistemaPersonal.repository.PersonalRepository;
+import org.springframework.stereotype.Service;
 
 import java.util.List;
 import java.util.Optional;
 
-@Component
+@Service
 public class PersonalServiceImpl implements PersonalService {
     @Autowired
     PersonalRepository personalRepository;

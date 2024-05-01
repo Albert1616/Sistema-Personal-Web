@@ -52,11 +52,11 @@ public class AlunoController {
 
     @RequestMapping("/addAluno")
     public String formAluno(@ModelAttribute("aluno") Aluno aluno, @ModelAttribute("ficha_treino") FichaTreino fichaTreino){
-        if(fichaTreino.getIdFichaTreino() == null){
+        if(fichaTreino.getId() == null){
             FichaTreino newFichaTreino = new FichaTreino();
             aluno.setFicha_treino(newFichaTreino);
         }else{
-            aluno.setFicha_treino(fichaTreinoService.findById(fichaTreino.getIdFichaTreino()));
+            aluno.setFicha_treino(fichaTreinoService.findById(fichaTreino.getId()));
         }
 
         alunoService.save(aluno);

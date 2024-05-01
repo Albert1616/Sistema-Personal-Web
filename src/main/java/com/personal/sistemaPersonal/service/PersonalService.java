@@ -5,7 +5,6 @@ import org.springframework.stereotype.Service;
 
 import java.util.List;
 
-@Service
 public interface PersonalService {
     public boolean save(Personal personal);
     public boolean delete(Personal personal);
