@@ -1,4 +1,4 @@
-package com.personal.sistemaPersonal.controller;
+package com.personal.sistemaPersonal.rest.controller;
 
 import com.personal.sistemaPersonal.model.AvalicaoFisica;
 import com.personal.sistemaPersonal.service.AlunoService;
@@ -12,8 +12,6 @@ import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.RequestMapping;
 
 import java.time.LocalDate;
-import java.time.format.DateTimeFormatter;
-import java.util.Date;
 
 @Controller
 @RequestMapping("/avaliacao_fisica")

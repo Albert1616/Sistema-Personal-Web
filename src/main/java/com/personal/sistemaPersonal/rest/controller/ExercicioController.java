@@ -1,4 +1,4 @@
-package com.personal.sistemaPersonal.controller;
+package com.personal.sistemaPersonal.rest.controller;
 
 import com.personal.sistemaPersonal.model.Exercicio;
 import com.personal.sistemaPersonal.service.ExercicioService;
