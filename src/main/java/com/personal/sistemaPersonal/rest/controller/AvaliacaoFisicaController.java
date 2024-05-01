@@ -28,7 +28,7 @@ public class AvaliacaoFisicaController {
     public String showForm(@PathVariable("idAluno") Integer idAluno, Model model) {
         AvalicaoFisica avalicaoFisica = new AvalicaoFisica();
         avalicaoFisica.setData(LocalDate.now());
-        avalicaoFisica.setAluno(alunoService.getAlunoById(idAluno));
+        avalicaoFisica.setAluno(alunoService.getById(idAluno));
 
         model.addAttribute("avaliacao_fisica", avalicaoFisica);
 

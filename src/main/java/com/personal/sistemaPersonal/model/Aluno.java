@@ -1,5 +1,6 @@
 package com.personal.sistemaPersonal.model;
 
+import com.personal.sistemaPersonal.rest.dto.AlunoDTO;
 import jakarta.persistence.*;
 import lombok.AllArgsConstructor;
 import lombok.Getter;
@@ -29,8 +30,6 @@ public class Aluno {
     @Column(length = 50)
     private String email;
 
-    @Column
-    @DateTimeFormat(pattern = "dd/MM/yyyy")
     private LocalDate data_nascimento;
 
     @OneToMany(mappedBy = "aluno", fetch = FetchType.LAZY, cascade = CascadeType.REMOVE)

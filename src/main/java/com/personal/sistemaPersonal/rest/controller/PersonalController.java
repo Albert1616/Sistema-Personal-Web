@@ -1,6 +1,7 @@
 package com.personal.sistemaPersonal.rest.controller;
 
 import com.personal.sistemaPersonal.model.Personal;
+import com.personal.sistemaPersonal.rest.dto.InformacoesPersonalDTO;
 import com.personal.sistemaPersonal.rest.dto.PersonalDTO;
 import com.personal.sistemaPersonal.service.PersonalService;
 import jakarta.validation.Valid;
@@ -24,23 +25,22 @@ public class PersonalController {
 
     @PostMapping
     @ResponseStatus(HttpStatus.CREATED)
-    public Integer save(@RequestBody @Valid PersonalDTO dto){
-        Personal personal = personalService.save(dto);
-        return personal.getId();
+    public InformacoesPersonalDTO save(@RequestBody @Valid PersonalDTO dto){
+        return personalService.save(dto);
     }
 
     @GetMapping("{id}")
-    public Personal getById(@PathVariable Integer id){
-        return personalService.getById(id);
+    public InformacoesPersonalDTO getById(@PathVariable Integer id){
+        return personalService.getInformacoesPersonalDTOById(id);
     }
 
     @GetMapping
-    public List<Personal> getAll(){
+    public List<InformacoesPersonalDTO> getAll(){
         return personalService.getAll();
     }
 
     @PutMapping("{id}")
-    public void update(@PathVariable Integer id, @RequestBody PersonalDTO dto){
+    public void update(@PathVariable Integer id, @RequestBody @Valid PersonalDTO dto){
         personalService.update(id, dto);
     }
 
