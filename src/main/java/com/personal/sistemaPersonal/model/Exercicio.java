@@ -30,9 +30,4 @@ public class Exercicio {
 
     @Column(length = 100)
     private String observacoes;
-
-    @ManyToMany
-    @JoinTable(name = "treino_exercicio", joinColumns = @JoinColumn(name = "exercicio_id"),
-    inverseJoinColumns = @JoinColumn(name = "treino_id"))
-    private List<FichaTreino> fichas;
 }
