@@ -1,69 +1,69 @@
 package com.personal.sistemaPersonal.rest.controller;
 
-import com.personal.sistemaPersonal.model.FichaTreino;
-import com.personal.sistemaPersonal.model.Treino;
-import com.personal.sistemaPersonal.service.AlunoService;
-import com.personal.sistemaPersonal.service.ExercicioService;
-import com.personal.sistemaPersonal.service.FichaTreinoService;
+import com.personal.sistemaPersonal.rest.dto.InformacoesTreinoDTO;
+import com.personal.sistemaPersonal.rest.dto.TreinoDTO;
 import com.personal.sistemaPersonal.service.TreinoService;
+import jakarta.validation.Valid;
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.stereotype.Controller;
-import org.springframework.ui.Model;
-import org.springframework.web.bind.annotation.ModelAttribute;
-import org.springframework.web.bind.annotation.PathVariable;
-import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.http.HttpStatus;
+import org.springframework.validation.FieldError;
+import org.springframework.web.bind.MethodArgumentNotValidException;
+import org.springframework.web.bind.annotation.*;
 
-import java.time.LocalDate;
+import java.util.HashMap;
+import java.util.List;
+import java.util.Map;
 
-@Controller
-@RequestMapping("/treino")
+@RestController
+@RequestMapping("/api/treino")
 public class TreinoController {
 
     @Autowired
     TreinoService treinoService;
 
-    @Autowired
-    ExercicioService exercicioService;
-
-    @Autowired
-    AlunoService alunoService;
-
-    @Autowired
-    FichaTreinoService fichaTreinoService;
-
-    @RequestMapping("/showForm/{idAluno}")
-    public String showForm(@PathVariable("idAluno") Integer idAluno, Model model) {
-        Treino treino = new Treino();
-//        treino.setFicha_treino(alunoService.getById(idAluno).getFicha_treino());
-        treino.setData_criacao(LocalDate.now());
-
-        model.addAttribute("treino", treino);
-        model.addAttribute("exercicios", exercicioService.getAll());
-
-        return "treino/formTreino";
+    @PostMapping
+    @ResponseStatus(HttpStatus.CREATED)
+    public InformacoesTreinoDTO save(@RequestBody @Valid TreinoDTO dto){
+        return treinoService.save(dto);
     }
 
-    @RequestMapping("/showEditForm/{idTreino}")
-    public String showEditForm(@PathVariable("idTreino") Integer idTreino, Model model) {
-        model.addAttribute("treino", treinoService.findById(idTreino));
-        model.addAttribute("exercicios", exercicioService.getAll());
-
-        return "treino/formTreino";
+    @PutMapping("{id}")
+    public InformacoesTreinoDTO update(@PathVariable Integer id, @RequestBody @Valid TreinoDTO dto){
+        return treinoService.update(id, dto);
     }
 
-    @RequestMapping("/addTreino")
-    public String addTreino(@ModelAttribute("treino") Treino treino) {
-        treinoService.save(treino);
-        FichaTreino fichaTreino = fichaTreinoService.getById(treino.getFicha_treino().getId());
-
-        return "redirect:/aluno/detailsAluno/" + fichaTreino.getAluno().getId();
+    @DeleteMapping("{id}")
+    public void delete(@PathVariable Integer id){
+        treinoService.delete(id);
     }
 
-    @RequestMapping("/deleteTreino/{id}")
-    public String deleteTreino(@PathVariable("id") Integer idTreino) {
-        Treino treino = treinoService.findById(idTreino);
-        treinoService.delete(treino);
+    @GetMapping("{id}")
+    public InformacoesTreinoDTO getById(@PathVariable Integer id){
+        return treinoService.getInformacoesTreinoDTO(id);
+    }
 
-        return "redirect:/aluno/detailsAluno/" + treino.getFicha_treino().getAluno().getId();
+    @GetMapping
+    public List<InformacoesTreinoDTO> getAll(){
+        return treinoService.getAll();
+    }
+
+    @GetMapping("/getTreinoByIdAluno/{id}")
+    public List<InformacoesTreinoDTO> getAllByIdAluno(@PathVariable Integer id){
+        return treinoService.getByIdAluno(id);
+    }
+
+    @ResponseStatus(HttpStatus.BAD_REQUEST)
+    @ExceptionHandler(MethodArgumentNotValidException.class)
+    public Map<String, String> handleValidationException(MethodArgumentNotValidException ex){
+        Map<String, String> errors = new HashMap<>();
+
+        ex.getBindingResult().getAllErrors().forEach((error) -> {
+            String fieldName = ((FieldError) error).getField();
+            String errorMessage = error.getDefaultMessage();
+
+            errors.put(fieldName, errorMessage);
+        });
+
+        return errors;
     }
 }
