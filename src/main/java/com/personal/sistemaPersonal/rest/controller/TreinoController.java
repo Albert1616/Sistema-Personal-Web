@@ -1,7 +1,7 @@
 package com.personal.sistemaPersonal.rest.controller;
 
-import com.personal.sistemaPersonal.rest.dto.InformacoesTreinoDTO;
-import com.personal.sistemaPersonal.rest.dto.TreinoDTO;
+import com.personal.sistemaPersonal.rest.dto.response.TreinoResponseDTO;
+import com.personal.sistemaPersonal.rest.dto.request.TreinoRequestDTO;
 import com.personal.sistemaPersonal.service.TreinoService;
 import jakarta.validation.Valid;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -23,12 +23,12 @@ public class TreinoController {
 
     @PostMapping
     @ResponseStatus(HttpStatus.CREATED)
-    public InformacoesTreinoDTO save(@RequestBody @Valid TreinoDTO dto){
+    public TreinoResponseDTO save(@RequestBody @Valid TreinoRequestDTO dto){
         return treinoService.save(dto);
     }
 
     @PutMapping("{id}")
-    public InformacoesTreinoDTO update(@PathVariable Integer id, @RequestBody @Valid TreinoDTO dto){
+    public TreinoResponseDTO update(@PathVariable Integer id, @RequestBody @Valid TreinoRequestDTO dto){
         return treinoService.update(id, dto);
     }
 
@@ -38,17 +38,17 @@ public class TreinoController {
     }
 
     @GetMapping("{id}")
-    public InformacoesTreinoDTO getById(@PathVariable Integer id){
+    public TreinoResponseDTO getById(@PathVariable Integer id){
         return treinoService.getInformacoesTreinoDTO(id);
     }
 
     @GetMapping
-    public List<InformacoesTreinoDTO> getAll(){
+    public List<TreinoResponseDTO> getAll(){
         return treinoService.getAll();
     }
 
     @GetMapping("/getTreinoByIdAluno/{id}")
-    public List<InformacoesTreinoDTO> getAllByIdAluno(@PathVariable Integer id){
+    public List<TreinoResponseDTO> getAllByIdAluno(@PathVariable Integer id){
         return treinoService.getByIdAluno(id);
     }
 

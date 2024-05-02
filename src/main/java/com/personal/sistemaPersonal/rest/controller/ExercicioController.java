@@ -1,7 +1,7 @@
 package com.personal.sistemaPersonal.rest.controller;
 
 import com.personal.sistemaPersonal.model.Exercicio;
-import com.personal.sistemaPersonal.rest.dto.ExercicioDTO;
+import com.personal.sistemaPersonal.rest.dto.request.ExercicioRequestDTO;
 import com.personal.sistemaPersonal.service.ExercicioService;
 import jakarta.validation.Valid;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -23,7 +23,7 @@ public class ExercicioController {
 
     @PostMapping
     @ResponseStatus(HttpStatus.CREATED)
-    public Exercicio save(@RequestBody @Valid ExercicioDTO dto){
+    public Exercicio save(@RequestBody @Valid ExercicioRequestDTO dto){
         return exercicioService.save(dto);
     }
 
@@ -38,7 +38,7 @@ public class ExercicioController {
     }
 
     @PutMapping("{id}")
-    public Exercicio update(@PathVariable Integer id, @RequestBody @Valid ExercicioDTO dto){
+    public Exercicio update(@PathVariable Integer id, @RequestBody @Valid ExercicioRequestDTO dto){
         return exercicioService.update(id, dto);
     }
 

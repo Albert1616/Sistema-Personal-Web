@@ -1,4 +1,4 @@
-package com.personal.sistemaPersonal.rest.dto;
+package com.personal.sistemaPersonal.rest.dto.request;
 
 import jakarta.validation.constraints.Email;
 import jakarta.validation.constraints.NotBlank;
@@ -10,7 +10,7 @@ import java.time.LocalDate;
 
 @Getter
 @Setter
-public class PersonalDTO {
+public class PersonalRequestDTO {
     @NotBlank(message = "Campo não informado.")
     private String nome;
 

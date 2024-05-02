@@ -1,4 +1,4 @@
-package com.personal.sistemaPersonal.rest.dto;
+package com.personal.sistemaPersonal.rest.dto.response;
 
 import com.personal.sistemaPersonal.model.Exercicio;
 import lombok.Builder;
@@ -11,7 +11,7 @@ import java.util.List;
 @Getter
 @Setter
 @Builder
-public class InformacoesTreinoDTO {
+public class TreinoResponseDTO {
     private Integer id;
     private String titulo;
     private LocalDate data_criacao;

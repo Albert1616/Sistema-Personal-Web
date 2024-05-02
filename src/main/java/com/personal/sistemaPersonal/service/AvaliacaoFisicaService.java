@@ -1,20 +1,20 @@
 package com.personal.sistemaPersonal.service;
 
 import com.personal.sistemaPersonal.model.AvaliacaoFisica;
-import com.personal.sistemaPersonal.rest.dto.AvaliacaoFisicaDTO;
-import com.personal.sistemaPersonal.rest.dto.InformacoesAvaliacaoFisicaDTO;
+import com.personal.sistemaPersonal.rest.dto.response.AvaliacaoFisicaResponseDTO;
+import com.personal.sistemaPersonal.rest.dto.request.AvaliacaoFisicaRequestDTO;
 
 import java.util.List;
 
 public interface AvaliacaoFisicaService {
-    InformacoesAvaliacaoFisicaDTO save(AvaliacaoFisicaDTO avalicaoFisica);
+    AvaliacaoFisicaResponseDTO save(AvaliacaoFisicaRequestDTO avalicaoFisica);
     void delete(Integer id);
-    InformacoesAvaliacaoFisicaDTO update(Integer id, AvaliacaoFisicaDTO avaliacaoFisicaDTO);
-    List<InformacoesAvaliacaoFisicaDTO> getAll();
+    AvaliacaoFisicaResponseDTO update(Integer id, AvaliacaoFisicaRequestDTO avaliacaoFisicaRequestDTO);
+    List<AvaliacaoFisicaResponseDTO> getAll();
     AvaliacaoFisica getById(Integer id);
-    InformacoesAvaliacaoFisicaDTO getInformacoesAvaliacaoFisicaDTOById(Integer id);
-    List<InformacoesAvaliacaoFisicaDTO> getAvaliacoesFisicasByIdAluno(Integer idAluno);
-    AvaliacaoFisica convert(AvaliacaoFisicaDTO dto);
-    InformacoesAvaliacaoFisicaDTO convertToInformacoesAvaliacaoFisicaDTO(AvaliacaoFisica avaliacaoFisica);
-    List<InformacoesAvaliacaoFisicaDTO> convertToInformacoesAvaliacaoFisicaDTO(List<AvaliacaoFisica> avaliacoesFisicas);
+    AvaliacaoFisicaResponseDTO getInformacoesAvaliacaoFisicaDTOById(Integer id);
+    List<AvaliacaoFisicaResponseDTO> getAvaliacoesFisicasByIdAluno(Integer idAluno);
+    AvaliacaoFisica convert(AvaliacaoFisicaRequestDTO dto);
+    AvaliacaoFisicaResponseDTO convertToAvaliacaoFisicaResponseDTO(AvaliacaoFisica avaliacaoFisica);
+    List<AvaliacaoFisicaResponseDTO> convertToAvaliacaoFisicaResponseDTO(List<AvaliacaoFisica> avaliacoesFisicas);
 }

@@ -1,11 +1,8 @@
 package com.personal.sistemaPersonal.rest.controller;
 
-import com.personal.sistemaPersonal.rest.dto.AvaliacaoFisicaDTO;
-import com.personal.sistemaPersonal.rest.dto.InformacoesAlunoDTO;
-import com.personal.sistemaPersonal.rest.dto.InformacoesAvaliacaoFisicaDTO;
-import com.personal.sistemaPersonal.service.AlunoService;
+import com.personal.sistemaPersonal.rest.dto.response.AvaliacaoFisicaResponseDTO;
+import com.personal.sistemaPersonal.rest.dto.request.AvaliacaoFisicaRequestDTO;
 import com.personal.sistemaPersonal.service.AvaliacaoFisicaService;
-import jakarta.persistence.criteria.CriteriaBuilder;
 import jakarta.validation.Valid;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
@@ -26,27 +23,27 @@ public class AvaliacaoFisicaController {
 
     @PostMapping
     @ResponseStatus(HttpStatus.CREATED)
-    public InformacoesAvaliacaoFisicaDTO save(@RequestBody @Valid AvaliacaoFisicaDTO dto){
+    public AvaliacaoFisicaResponseDTO save(@RequestBody @Valid AvaliacaoFisicaRequestDTO dto){
         return avaliacaoFisicaService.save(dto);
     }
 
     @GetMapping("{id}")
-    public InformacoesAvaliacaoFisicaDTO getById(@PathVariable Integer id){
+    public AvaliacaoFisicaResponseDTO getById(@PathVariable Integer id){
         return avaliacaoFisicaService.getInformacoesAvaliacaoFisicaDTOById(id);
     }
 
     @GetMapping
-    public List<InformacoesAvaliacaoFisicaDTO> getAll(){
+    public List<AvaliacaoFisicaResponseDTO> getAll(){
         return avaliacaoFisicaService.getAll();
     }
 
     @GetMapping("/getAvaliacaoFisicaByIdAluno/{id}")
-    public List<InformacoesAvaliacaoFisicaDTO> getAllByIdAluno(@PathVariable Integer id){
+    public List<AvaliacaoFisicaResponseDTO> getAllByIdAluno(@PathVariable Integer id){
         return avaliacaoFisicaService.getAvaliacoesFisicasByIdAluno(id);
     }
 
     @PutMapping("{id}")
-    public InformacoesAvaliacaoFisicaDTO update(@PathVariable Integer id, @RequestBody @Valid AvaliacaoFisicaDTO dto){
+    public AvaliacaoFisicaResponseDTO update(@PathVariable Integer id, @RequestBody @Valid AvaliacaoFisicaRequestDTO dto){
         return avaliacaoFisicaService.update(id, dto);
     }
 

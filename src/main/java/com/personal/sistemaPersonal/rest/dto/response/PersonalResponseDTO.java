@@ -1,4 +1,4 @@
-package com.personal.sistemaPersonal.rest.dto;
+package com.personal.sistemaPersonal.rest.dto.response;
 
 import lombok.*;
 
@@ -9,10 +9,10 @@ import java.time.LocalDate;
 @AllArgsConstructor
 @NoArgsConstructor
 @Builder
-public class InformacoesAlunoDTO {
+public class PersonalResponseDTO {
     private Integer id;
     private String nome;
     private String email;
-    private LocalDate data_nascimento;
-    private InformacoesPersonalDTO personal;
+    private LocalDate dataNascimento;
+    private String CREF;
 }

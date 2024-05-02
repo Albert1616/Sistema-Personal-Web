@@ -5,8 +5,8 @@ import com.personal.sistemaPersonal.model.Aluno;
 import com.personal.sistemaPersonal.model.FichaTreino;
 import com.personal.sistemaPersonal.model.Personal;
 import com.personal.sistemaPersonal.repository.AlunoRepository;
-import com.personal.sistemaPersonal.rest.dto.AlunoDTO;
-import com.personal.sistemaPersonal.rest.dto.InformacoesAlunoDTO;
+import com.personal.sistemaPersonal.rest.dto.request.AlunoRequestDTO;
+import com.personal.sistemaPersonal.rest.dto.response.AlunoResponseDTO;
 import com.personal.sistemaPersonal.service.AlunoService;
 import com.personal.sistemaPersonal.service.FichaTreinoService;
 import com.personal.sistemaPersonal.service.PersonalService;
@@ -31,7 +31,7 @@ public class AlunoServiceImpl implements AlunoService {
     FichaTreinoService fichaTreinoService;
 
     @Override
-    public InformacoesAlunoDTO save(AlunoDTO dto) {
+    public AlunoResponseDTO save(AlunoRequestDTO dto) {
         Aluno aluno = convert(dto);
 
         FichaTreino fichaTreino = new FichaTreino();
@@ -39,7 +39,7 @@ public class AlunoServiceImpl implements AlunoService {
         fichaTreino.setAluno(aluno);
 
         aluno.setFicha_treino(fichaTreino);
-        return convertToInformacoesAlunoDTO(alunoRepository.save(aluno));
+        return convertToAlunoResponseDTO(alunoRepository.save(aluno));
     }
 
     @Override
@@ -48,8 +48,8 @@ public class AlunoServiceImpl implements AlunoService {
     }
 
     @Override
-    public void update(Integer id, AlunoDTO alunoDTO) {
-        Aluno alunoAtualizado = convert(alunoDTO);
+    public void update(Integer id, AlunoRequestDTO alunoRequestDTO) {
+        Aluno alunoAtualizado = convert(alunoRequestDTO);
         Aluno aluno = getById(id);
 
         aluno.setNome(alunoAtualizado.getNome());
@@ -61,8 +61,8 @@ public class AlunoServiceImpl implements AlunoService {
     }
 
     @Override
-    public List<InformacoesAlunoDTO> getAll() {
-        return convertToInformacoesAlunoDTO(alunoRepository.findAll());
+    public List<AlunoResponseDTO> getAll() {
+        return convertToAlunoResponseDTO(alunoRepository.findAll());
     }
 
     @Override
@@ -75,12 +75,12 @@ public class AlunoServiceImpl implements AlunoService {
     }
 
     @Override
-    public InformacoesAlunoDTO getAlunoInformacoesDTOById(Integer id) {
-        return convertToInformacoesAlunoDTO(getById(id));
+    public AlunoResponseDTO getAlunoInformacoesDTOById(Integer id) {
+        return convertToAlunoResponseDTO(getById(id));
     }
 
     @Override
-    public Aluno convert(AlunoDTO dto){
+    public Aluno convert(AlunoRequestDTO dto){
         Aluno aluno = new Aluno();
 
         aluno.setNome(dto.getNome());
@@ -93,30 +93,30 @@ public class AlunoServiceImpl implements AlunoService {
     }
 
     @Override
-    public InformacoesAlunoDTO convertToInformacoesAlunoDTO(Aluno aluno) {
-        return InformacoesAlunoDTO
+    public AlunoResponseDTO convertToAlunoResponseDTO(Aluno aluno) {
+        return AlunoResponseDTO
                 .builder()
                 .id(aluno.getId())
                 .nome(aluno.getNome())
                 .email(aluno.getEmail())
                 .data_nascimento(aluno.getData_nascimento())
-                .personal(personalService.convertToInformacoesPersonalDTO(aluno.getPersonal()))
+                .personal(personalService.convertToPersonalResponseDTO(aluno.getPersonal()))
                 .build();
     }
 
     @Override
-    public List<InformacoesAlunoDTO> convertToInformacoesAlunoDTO(List<Aluno> alunos) {
+    public List<AlunoResponseDTO> convertToAlunoResponseDTO(List<Aluno> alunos) {
         if (CollectionUtils.isEmpty(alunos)){
             return Collections.emptyList();
         }
         return alunos.stream().map(
-         aluno ->   InformacoesAlunoDTO
+         aluno ->   AlunoResponseDTO
                     .builder()
                     .id(aluno.getId())
                     .nome(aluno.getNome())
                     .email(aluno.getEmail())
                     .data_nascimento(aluno.getData_nascimento())
-                    .personal(personalService.convertToInformacoesPersonalDTO(aluno.getPersonal()))
+                    .personal(personalService.convertToPersonalResponseDTO(aluno.getPersonal()))
                     .build()
         ).collect(Collectors.toList());
     }

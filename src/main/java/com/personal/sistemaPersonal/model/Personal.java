@@ -1,12 +1,11 @@
 package com.personal.sistemaPersonal.model;
 
-import com.personal.sistemaPersonal.rest.dto.PersonalDTO;
+import com.personal.sistemaPersonal.rest.dto.request.PersonalRequestDTO;
 import jakarta.persistence.*;
 import lombok.AllArgsConstructor;
 import lombok.Getter;
 import lombok.NoArgsConstructor;
 import lombok.Setter;
-import org.springframework.format.annotation.DateTimeFormat;
 
 import java.time.LocalDate;
 import java.util.List;
@@ -36,13 +35,13 @@ public class Personal {
     @OneToMany(mappedBy = "personal", fetch = FetchType.LAZY)
     private List<Aluno> alunos;
 
-    public static Personal convert(PersonalDTO personalDTO){
+    public static Personal convert(PersonalRequestDTO personalRequestDTO){
         Personal personal = new Personal();
 
-        personal.setNome(personalDTO.getNome());
-        personal.setEmail(personalDTO.getEmail());
-        personal.setDataNascimento(personalDTO.getDataNascimento());
-        personal.setCREF(personalDTO.getCREF());
+        personal.setNome(personalRequestDTO.getNome());
+        personal.setEmail(personalRequestDTO.getEmail());
+        personal.setDataNascimento(personalRequestDTO.getDataNascimento());
+        personal.setCREF(personalRequestDTO.getCREF());
 
         return personal;
     }

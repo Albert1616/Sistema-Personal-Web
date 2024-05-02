@@ -1,12 +1,8 @@
 package com.personal.sistemaPersonal.rest.controller;
 
-import com.personal.sistemaPersonal.model.Aluno;
-import com.personal.sistemaPersonal.rest.dto.AlunoDTO;
-import com.personal.sistemaPersonal.rest.dto.InformacoesAlunoDTO;
+import com.personal.sistemaPersonal.rest.dto.request.AlunoRequestDTO;
+import com.personal.sistemaPersonal.rest.dto.response.AlunoResponseDTO;
 import com.personal.sistemaPersonal.service.AlunoService;
-import com.personal.sistemaPersonal.service.AvaliacaoFisicaService;
-import com.personal.sistemaPersonal.service.FichaTreinoService;
-import com.personal.sistemaPersonal.service.TreinoService;
 import jakarta.validation.Valid;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
@@ -36,26 +32,26 @@ public class AlunoController {
 
     @PostMapping
     @ResponseStatus(HttpStatus.CREATED)
-    public InformacoesAlunoDTO save(@RequestBody @Valid AlunoDTO dto){
+    public AlunoResponseDTO save(@RequestBody @Valid AlunoRequestDTO dto){
         return alunoService.save(dto);
     }
 
     @GetMapping("{id}")
     @ResponseStatus(HttpStatus.OK)
-    public InformacoesAlunoDTO getById(@PathVariable Integer id){
+    public AlunoResponseDTO getById(@PathVariable Integer id){
         return alunoService.getAlunoInformacoesDTOById(id);
     }
 
     @GetMapping
     @ResponseStatus(HttpStatus.OK)
-    public List<InformacoesAlunoDTO> getAll(){
+    public List<AlunoResponseDTO> getAll(){
         return alunoService.getAll();
     }
 
     @PutMapping("{id}")
     @ResponseStatus(HttpStatus.OK)
-    public void update(@PathVariable Integer id, @RequestBody @Valid AlunoDTO alunoDTO){
-        alunoService.update(id, alunoDTO);
+    public void update(@PathVariable Integer id, @RequestBody @Valid AlunoRequestDTO alunoRequestDTO){
+        alunoService.update(id, alunoRequestDTO);
     }
 
     @DeleteMapping("{id}")

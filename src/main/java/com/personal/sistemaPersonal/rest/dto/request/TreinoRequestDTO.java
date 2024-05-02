@@ -1,4 +1,4 @@
-package com.personal.sistemaPersonal.rest.dto;
+package com.personal.sistemaPersonal.rest.dto.request;
 
 import jakarta.validation.constraints.FutureOrPresent;
 import jakarta.validation.constraints.NotBlank;
@@ -13,17 +13,17 @@ import java.util.List;
 @Getter
 @Setter
 @Builder
-public class TreinoDTO {
+public class TreinoRequestDTO {
 
     @NotBlank(message = "Campo não informado.")
     private String titulo;
 
     @Positive(message = "O id da ficha de treino deve ser positivo.")
-    private Integer FichaTreino;
+    private Integer ficha_treino;
 
     @FutureOrPresent(message = "A data de vencimento não pode ser passada.")
     private LocalDate data_vencimento;
 
-    @Positive(message = "O id dos exercicios devem ser positivos.")
+//    @Positive(message = "O id dos exercicios devem ser positivos.")
     private List<Integer> exercicios;
 }

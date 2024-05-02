@@ -4,8 +4,8 @@ import com.personal.sistemaPersonal.exception.AvaliacaoFisicaNaoEncontradaExcept
 import com.personal.sistemaPersonal.model.Aluno;
 import com.personal.sistemaPersonal.model.AvaliacaoFisica;
 import com.personal.sistemaPersonal.repository.AvaliacaoRepository;
-import com.personal.sistemaPersonal.rest.dto.AvaliacaoFisicaDTO;
-import com.personal.sistemaPersonal.rest.dto.InformacoesAvaliacaoFisicaDTO;
+import com.personal.sistemaPersonal.rest.dto.request.AvaliacaoFisicaRequestDTO;
+import com.personal.sistemaPersonal.rest.dto.response.AvaliacaoFisicaResponseDTO;
 import com.personal.sistemaPersonal.service.AlunoService;
 import com.personal.sistemaPersonal.service.AvaliacaoFisicaService;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -27,9 +27,9 @@ public class AvaliacaoFisicaServiceImpl implements AvaliacaoFisicaService {
     AlunoService alunoService;
 
     @Override
-    public InformacoesAvaliacaoFisicaDTO save(AvaliacaoFisicaDTO dto){
+    public AvaliacaoFisicaResponseDTO save(AvaliacaoFisicaRequestDTO dto){
         AvaliacaoFisica avaliacaoFisica = convert(dto);
-        return convertToInformacoesAvaliacaoFisicaDTO(avaliacaoRepository.save(avaliacaoFisica));
+        return convertToAvaliacaoFisicaResponseDTO(avaliacaoRepository.save(avaliacaoFisica));
     }
 
     @Override
@@ -38,7 +38,7 @@ public class AvaliacaoFisicaServiceImpl implements AvaliacaoFisicaService {
     }
 
     @Override
-    public InformacoesAvaliacaoFisicaDTO update(Integer id, AvaliacaoFisicaDTO dto) {
+    public AvaliacaoFisicaResponseDTO update(Integer id, AvaliacaoFisicaRequestDTO dto) {
         AvaliacaoFisica avaliacaoFisica = getById(id);
 
         avaliacaoFisica.setTitulo(dto.getTitulo());
@@ -51,17 +51,17 @@ public class AvaliacaoFisicaServiceImpl implements AvaliacaoFisicaService {
         avaliacaoFisica.setMedidaCintura(dto.getMedidaCintura());
         avaliacaoFisica.setAluno(alunoService.getById(dto.getAluno()));
 
-        return convertToInformacoesAvaliacaoFisicaDTO(avaliacaoRepository.save(avaliacaoFisica));
+        return convertToAvaliacaoFisicaResponseDTO(avaliacaoRepository.save(avaliacaoFisica));
     }
 
-    public List<InformacoesAvaliacaoFisicaDTO> getAll(){
-        return convertToInformacoesAvaliacaoFisicaDTO(avaliacaoRepository.findAll());
+    public List<AvaliacaoFisicaResponseDTO> getAll(){
+        return convertToAvaliacaoFisicaResponseDTO(avaliacaoRepository.findAll());
     }
 
     @Override
-    public List<InformacoesAvaliacaoFisicaDTO> getAvaliacoesFisicasByIdAluno(Integer idAluno){
+    public List<AvaliacaoFisicaResponseDTO> getAvaliacoesFisicasByIdAluno(Integer idAluno){
         Aluno aluno = alunoService.getById(idAluno);
-        return convertToInformacoesAvaliacaoFisicaDTO(avaliacaoRepository.findAllAvaliacaoFisicaByIdAluno(aluno.getId()));
+        return convertToAvaliacaoFisicaResponseDTO(avaliacaoRepository.findAllAvaliacaoFisicaByIdAluno(aluno.getId()));
     }
 
     @Override
@@ -74,12 +74,12 @@ public class AvaliacaoFisicaServiceImpl implements AvaliacaoFisicaService {
     }
 
     @Override
-    public InformacoesAvaliacaoFisicaDTO getInformacoesAvaliacaoFisicaDTOById(Integer id) {
-        return convertToInformacoesAvaliacaoFisicaDTO(getById(id));
+    public AvaliacaoFisicaResponseDTO getInformacoesAvaliacaoFisicaDTOById(Integer id) {
+        return convertToAvaliacaoFisicaResponseDTO(getById(id));
     }
 
     @Override
-    public AvaliacaoFisica convert(AvaliacaoFisicaDTO dto){
+    public AvaliacaoFisica convert(AvaliacaoFisicaRequestDTO dto){
         AvaliacaoFisica avalicaoFisica = new AvaliacaoFisica();
 
         avalicaoFisica.setTitulo(dto.getTitulo());
@@ -96,8 +96,8 @@ public class AvaliacaoFisicaServiceImpl implements AvaliacaoFisicaService {
     }
 
     @Override
-    public InformacoesAvaliacaoFisicaDTO convertToInformacoesAvaliacaoFisicaDTO(AvaliacaoFisica avaliacaoFisica){
-        return InformacoesAvaliacaoFisicaDTO
+    public AvaliacaoFisicaResponseDTO convertToAvaliacaoFisicaResponseDTO(AvaliacaoFisica avaliacaoFisica){
+        return AvaliacaoFisicaResponseDTO
                 .builder()
                 .id(avaliacaoFisica.getId())
                 .titulo(avaliacaoFisica.getTitulo())
@@ -108,18 +108,18 @@ public class AvaliacaoFisicaServiceImpl implements AvaliacaoFisicaService {
                 .medidaCintura(avaliacaoFisica.getMedidaCintura())
                 .medidaBraco(avaliacaoFisica.getMedidaBraco())
                 .medidaPerna(avaliacaoFisica.getMedidaPerna())
-                .aluno(alunoService.convertToInformacoesAlunoDTO(avaliacaoFisica.getAluno()))
+                .aluno(alunoService.convertToAlunoResponseDTO(avaliacaoFisica.getAluno()))
                 .build();
     }
 
     @Override
-    public List<InformacoesAvaliacaoFisicaDTO> convertToInformacoesAvaliacaoFisicaDTO(List<AvaliacaoFisica> avaliacoesFisicas) {
+    public List<AvaliacaoFisicaResponseDTO> convertToAvaliacaoFisicaResponseDTO(List<AvaliacaoFisica> avaliacoesFisicas) {
         if (CollectionUtils.isEmpty(avaliacoesFisicas)){
             return Collections.emptyList();
         }
 
         return avaliacoesFisicas.stream().map(
-                this::convertToInformacoesAvaliacaoFisicaDTO
+                this::convertToAvaliacaoFisicaResponseDTO
         ).collect(Collectors.toList());
     }
 }

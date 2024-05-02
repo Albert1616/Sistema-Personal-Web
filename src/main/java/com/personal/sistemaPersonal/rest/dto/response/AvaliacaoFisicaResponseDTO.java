@@ -1,4 +1,4 @@
-package com.personal.sistemaPersonal.rest.dto;
+package com.personal.sistemaPersonal.rest.dto.response;
 
 import lombok.Builder;
 import lombok.Getter;
@@ -9,7 +9,7 @@ import java.time.LocalDate;
 @Getter
 @Setter
 @Builder
-public class InformacoesAvaliacaoFisicaDTO {
+public class AvaliacaoFisicaResponseDTO {
     private Integer id;
     private String titulo;
     private LocalDate data;
@@ -19,5 +19,5 @@ public class InformacoesAvaliacaoFisicaDTO {
     private Double medidaPeito;
     private Double medidaPerna;
     private Double medidaCintura;
-    private InformacoesAlunoDTO aluno;
+    private AlunoResponseDTO aluno;
 }

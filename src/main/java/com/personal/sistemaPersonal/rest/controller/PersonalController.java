@@ -1,8 +1,7 @@
 package com.personal.sistemaPersonal.rest.controller;
 
-import com.personal.sistemaPersonal.model.Personal;
-import com.personal.sistemaPersonal.rest.dto.InformacoesPersonalDTO;
-import com.personal.sistemaPersonal.rest.dto.PersonalDTO;
+import com.personal.sistemaPersonal.rest.dto.response.PersonalResponseDTO;
+import com.personal.sistemaPersonal.rest.dto.request.PersonalRequestDTO;
 import com.personal.sistemaPersonal.service.PersonalService;
 import jakarta.validation.Valid;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -25,22 +24,22 @@ public class PersonalController {
 
     @PostMapping
     @ResponseStatus(HttpStatus.CREATED)
-    public InformacoesPersonalDTO save(@RequestBody @Valid PersonalDTO dto){
+    public PersonalResponseDTO save(@RequestBody @Valid PersonalRequestDTO dto){
         return personalService.save(dto);
     }
 
     @GetMapping("{id}")
-    public InformacoesPersonalDTO getById(@PathVariable Integer id){
+    public PersonalResponseDTO getById(@PathVariable Integer id){
         return personalService.getInformacoesPersonalDTOById(id);
     }
 
     @GetMapping
-    public List<InformacoesPersonalDTO> getAll(){
+    public List<PersonalResponseDTO> getAll(){
         return personalService.getAll();
     }
 
     @PutMapping("{id}")
-    public void update(@PathVariable Integer id, @RequestBody @Valid PersonalDTO dto){
+    public void update(@PathVariable Integer id, @RequestBody @Valid PersonalRequestDTO dto){
         personalService.update(id, dto);
     }
 

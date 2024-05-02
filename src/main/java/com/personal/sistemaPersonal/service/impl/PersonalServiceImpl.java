@@ -3,8 +3,8 @@ package com.personal.sistemaPersonal.service.impl;
 import com.personal.sistemaPersonal.exception.PersonalNaoEncontradoException;
 import com.personal.sistemaPersonal.model.Personal;
 import com.personal.sistemaPersonal.repository.PersonalRepository;
-import com.personal.sistemaPersonal.rest.dto.InformacoesPersonalDTO;
-import com.personal.sistemaPersonal.rest.dto.PersonalDTO;
+import com.personal.sistemaPersonal.rest.dto.response.PersonalResponseDTO;
+import com.personal.sistemaPersonal.rest.dto.request.PersonalRequestDTO;
 import com.personal.sistemaPersonal.service.PersonalService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
@@ -22,8 +22,8 @@ public class PersonalServiceImpl implements PersonalService {
     PersonalRepository personalRepository;
 
     @Override
-    public InformacoesPersonalDTO save(PersonalDTO personal) {
-        return convertToInformacoesPersonalDTO(personalRepository.save(Personal.convert(personal)));
+    public PersonalResponseDTO save(PersonalRequestDTO personal) {
+        return convertToPersonalResponseDTO(personalRepository.save(Personal.convert(personal)));
     }
 
     @Override
@@ -45,7 +45,7 @@ public class PersonalServiceImpl implements PersonalService {
     }
 
     @Override
-    public void update(Integer id, PersonalDTO personalDTO) {
+    public void update(Integer id, PersonalRequestDTO personalDTO) {
         Optional<Personal> personalOptional = personalRepository.findById(id);
         if(personalOptional.isPresent()) {
             Personal personal = personalOptional.get();
@@ -59,13 +59,13 @@ public class PersonalServiceImpl implements PersonalService {
     }
 
     @Override
-    public List<InformacoesPersonalDTO> getAll() {
-        return convertToInformacoesPersonalDTO(personalRepository.findAll());
+    public List<PersonalResponseDTO> getAll() {
+        return convertToPersonalResponseDTO(personalRepository.findAll());
     }
 
     @Override
-    public InformacoesPersonalDTO convertToInformacoesPersonalDTO(Personal personal) {
-        return InformacoesPersonalDTO
+    public PersonalResponseDTO convertToPersonalResponseDTO(Personal personal) {
+        return PersonalResponseDTO
                 .builder()
                 .id(personal.getId())
                 .nome(personal.getNome())
@@ -76,18 +76,18 @@ public class PersonalServiceImpl implements PersonalService {
     }
 
     @Override
-    public InformacoesPersonalDTO getInformacoesPersonalDTOById(Integer id) {
-        return convertToInformacoesPersonalDTO(getById(id));
+    public PersonalResponseDTO getInformacoesPersonalDTOById(Integer id) {
+        return convertToPersonalResponseDTO(getById(id));
     }
 
     @Override
-    public List<InformacoesPersonalDTO> convertToInformacoesPersonalDTO(List<Personal> personais) {
+    public List<PersonalResponseDTO> convertToPersonalResponseDTO(List<Personal> personais) {
         if(CollectionUtils.isEmpty(personais)){
             return Collections.emptyList();
         }
 
         return personais.stream().map(
-                personal -> InformacoesPersonalDTO
+                personal -> PersonalResponseDTO
                         .builder()
                         .id(personal.getId())
                         .nome(personal.getNome())

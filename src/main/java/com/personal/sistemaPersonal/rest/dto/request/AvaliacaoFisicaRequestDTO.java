@@ -1,4 +1,4 @@
-package com.personal.sistemaPersonal.rest.dto;
+package com.personal.sistemaPersonal.rest.dto.request;
 
 import jakarta.validation.constraints.NotBlank;
 import jakarta.validation.constraints.PastOrPresent;
@@ -12,7 +12,7 @@ import java.time.LocalDate;
 @Getter
 @Setter
 @Builder
-public class AvaliacaoFisicaDTO {
+public class AvaliacaoFisicaRequestDTO {
 
     @NotBlank(message = "Campo não informado.")
     private String titulo;

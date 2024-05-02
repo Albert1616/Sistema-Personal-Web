@@ -1,11 +1,13 @@
 package com.personal.sistemaPersonal.service.impl;
 
 import com.personal.sistemaPersonal.exception.TreinoNaoEncontradoException;
+import com.personal.sistemaPersonal.model.Aluno;
 import com.personal.sistemaPersonal.model.Exercicio;
 import com.personal.sistemaPersonal.model.Treino;
 import com.personal.sistemaPersonal.repository.TreinoRepository;
-import com.personal.sistemaPersonal.rest.dto.InformacoesTreinoDTO;
-import com.personal.sistemaPersonal.rest.dto.TreinoDTO;
+import com.personal.sistemaPersonal.rest.dto.response.TreinoResponseDTO;
+import com.personal.sistemaPersonal.rest.dto.request.TreinoRequestDTO;
+import com.personal.sistemaPersonal.service.AlunoService;
 import com.personal.sistemaPersonal.service.ExercicioService;
 import com.personal.sistemaPersonal.service.FichaTreinoService;
 import com.personal.sistemaPersonal.service.TreinoService;
@@ -13,6 +15,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 import org.springframework.util.CollectionUtils;
 
+import java.time.LocalDate;
 import java.util.ArrayList;
 import java.util.Collections;
 import java.util.List;
@@ -31,9 +34,14 @@ public class TreinoServiceImpl implements TreinoService {
     @Autowired
     ExercicioService exercicioService;
 
+    @Autowired
+    AlunoService alunoService;
+
     @Override
-    public InformacoesTreinoDTO save(TreinoDTO treino) {
-        return convertToInformacoesTreinoDTO(treinoRepository.save(convert(treino)));
+    public TreinoResponseDTO save(TreinoRequestDTO dto) {
+        Treino treino = convert(dto);
+        treino.setData_criacao(LocalDate.now());
+        return convertToTreinoResponseDTO(treinoRepository.save(treino));
     }
 
     @Override
@@ -42,12 +50,12 @@ public class TreinoServiceImpl implements TreinoService {
     }
 
     @Override
-    public InformacoesTreinoDTO update(Integer id, TreinoDTO dto) {
+    public TreinoResponseDTO update(Integer id, TreinoRequestDTO dto) {
         Treino treino = getById(id);
 
         treino.setTitulo(dto.getTitulo());
         treino.setData_vencimento(dto.getData_vencimento());
-        treino.setFicha_treino(fichaTreinoService.getById(dto.getFichaTreino()));
+        treino.setFicha_treino(fichaTreinoService.getById(dto.getFicha_treino()));
 
         List<Exercicio> exercicios = new ArrayList<>();
 
@@ -57,12 +65,12 @@ public class TreinoServiceImpl implements TreinoService {
 
         treino.setExercicios(exercicios);
 
-        return convertToInformacoesTreinoDTO(treino);
+        return convertToTreinoResponseDTO(treinoRepository.save(treino));
     }
 
     @Override
-    public List<InformacoesTreinoDTO> getAll() {
-        return convertToInformacoesTreinoDTO(treinoRepository.findAll());
+    public List<TreinoResponseDTO> getAll() {
+        return convertToTreinoResponseDTO(treinoRepository.findAll());
     }
 
     @Override
@@ -75,21 +83,22 @@ public class TreinoServiceImpl implements TreinoService {
     }
 
     @Override
-    public InformacoesTreinoDTO getInformacoesTreinoDTO(Integer id) {
-        return convertToInformacoesTreinoDTO(getById(id));
+    public TreinoResponseDTO getInformacoesTreinoDTO(Integer id) {
+        return convertToTreinoResponseDTO(getById(id));
     }
 
     @Override
-    public List<InformacoesTreinoDTO> getByIdAluno(Integer idAluno) {
-        return convertToInformacoesTreinoDTO(treinoRepository.findByAlunoId(idAluno));
+    public List<TreinoResponseDTO> getByIdAluno(Integer idAluno) {
+        Aluno aluno = alunoService.getById(idAluno);
+        return convertToTreinoResponseDTO(treinoRepository.findByAlunoId(aluno.getId()));
     }
 
-    public Treino convert(TreinoDTO dto){
+    public Treino convert(TreinoRequestDTO dto){
         Treino treino = new Treino();
 
         treino.setTitulo(dto.getTitulo());
         treino.setData_vencimento(dto.getData_vencimento());
-        treino.setFicha_treino(fichaTreinoService.getById(dto.getFichaTreino()));
+        treino.setFicha_treino(fichaTreinoService.getById(dto.getFicha_treino()));
 
         List<Exercicio> exercicios = new ArrayList<>();
 
@@ -102,8 +111,8 @@ public class TreinoServiceImpl implements TreinoService {
         return treino;
     }
 
-    public InformacoesTreinoDTO convertToInformacoesTreinoDTO(Treino treino){
-        return InformacoesTreinoDTO
+    public TreinoResponseDTO convertToTreinoResponseDTO(Treino treino){
+        return TreinoResponseDTO
                 .builder()
                 .id(treino.getId())
                 .titulo(treino.getTitulo())
@@ -113,13 +122,13 @@ public class TreinoServiceImpl implements TreinoService {
                 .build();
     }
 
-    public List<InformacoesTreinoDTO> convertToInformacoesTreinoDTO(List<Treino> treinos){
+    public List<TreinoResponseDTO> convertToTreinoResponseDTO(List<Treino> treinos){
         if(CollectionUtils.isEmpty(treinos)){
             return Collections.emptyList();
         }
 
         return treinos.stream().map(
-                this::convertToInformacoesTreinoDTO
+                this::convertToTreinoResponseDTO
         ).collect(Collectors.toList());
     }
 }

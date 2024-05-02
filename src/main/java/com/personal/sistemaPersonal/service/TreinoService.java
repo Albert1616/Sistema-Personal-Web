@@ -1,19 +1,19 @@
 package com.personal.sistemaPersonal.service;
 
 import com.personal.sistemaPersonal.model.Treino;
-import com.personal.sistemaPersonal.rest.dto.InformacoesTreinoDTO;
-import com.personal.sistemaPersonal.rest.dto.TreinoDTO;
+import com.personal.sistemaPersonal.rest.dto.response.TreinoResponseDTO;
+import com.personal.sistemaPersonal.rest.dto.request.TreinoRequestDTO;
 import org.springframework.stereotype.Service;
 
 import java.util.List;
 
 @Service
 public interface TreinoService {
-    InformacoesTreinoDTO save(TreinoDTO treino);
+    TreinoResponseDTO save(TreinoRequestDTO treino);
     void delete(Integer id);
-    InformacoesTreinoDTO update(Integer id, TreinoDTO dto);
-    List<InformacoesTreinoDTO> getAll();
+    TreinoResponseDTO update(Integer id, TreinoRequestDTO dto);
+    List<TreinoResponseDTO> getAll();
     Treino getById(Integer id);
-    InformacoesTreinoDTO getInformacoesTreinoDTO(Integer id);
-    List<InformacoesTreinoDTO> getByIdAluno(Integer idAluno);
+    TreinoResponseDTO getInformacoesTreinoDTO(Integer id);
+    List<TreinoResponseDTO> getByIdAluno(Integer idAluno);
 }

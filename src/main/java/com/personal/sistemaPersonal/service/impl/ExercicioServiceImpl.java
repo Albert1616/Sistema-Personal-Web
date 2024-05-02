@@ -3,7 +3,7 @@ package com.personal.sistemaPersonal.service.impl;
 import com.personal.sistemaPersonal.exception.ExercicioNaoEncontradoException;
 import com.personal.sistemaPersonal.model.Exercicio;
 import com.personal.sistemaPersonal.repository.ExercicioRepository;
-import com.personal.sistemaPersonal.rest.dto.ExercicioDTO;
+import com.personal.sistemaPersonal.rest.dto.request.ExercicioRequestDTO;
 import com.personal.sistemaPersonal.service.ExercicioService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
@@ -18,12 +18,12 @@ public class ExercicioServiceImpl implements ExercicioService {
     ExercicioRepository exercicioRepository;
 
     @Override
-    public Exercicio save(ExercicioDTO exercicio) {
+    public Exercicio save(ExercicioRequestDTO exercicio) {
         return exercicioRepository.save(convert(exercicio));
     }
 
     @Override
-    public Exercicio update(Integer id, ExercicioDTO dto) {
+    public Exercicio update(Integer id, ExercicioRequestDTO dto) {
         Exercicio exercicio = getById(id);
 
         exercicio.setNome(dto.getNome());
@@ -53,7 +53,7 @@ public class ExercicioServiceImpl implements ExercicioService {
         else throw new ExercicioNaoEncontradoException();
     }
 
-    public Exercicio convert(ExercicioDTO dto){
+    public Exercicio convert(ExercicioRequestDTO dto){
         Exercicio exercicio = new Exercicio();
 
         exercicio.setNome(dto.getNome());
