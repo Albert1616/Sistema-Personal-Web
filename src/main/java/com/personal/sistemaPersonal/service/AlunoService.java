@@ -1,10 +1,8 @@
 package com.personal.sistemaPersonal.service;
 
 import com.personal.sistemaPersonal.model.Aluno;
-import com.personal.sistemaPersonal.model.AvalicaoFisica;
 import com.personal.sistemaPersonal.rest.dto.AlunoDTO;
 import com.personal.sistemaPersonal.rest.dto.InformacoesAlunoDTO;
-import org.springframework.stereotype.Service;
 
 import java.util.List;
 

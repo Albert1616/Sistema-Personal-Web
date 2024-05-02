@@ -1,66 +1,72 @@
 package com.personal.sistemaPersonal.rest.controller;
 
-import com.personal.sistemaPersonal.model.AvalicaoFisica;
+import com.personal.sistemaPersonal.rest.dto.AvaliacaoFisicaDTO;
+import com.personal.sistemaPersonal.rest.dto.InformacoesAlunoDTO;
+import com.personal.sistemaPersonal.rest.dto.InformacoesAvaliacaoFisicaDTO;
 import com.personal.sistemaPersonal.service.AlunoService;
 import com.personal.sistemaPersonal.service.AvaliacaoFisicaService;
+import jakarta.persistence.criteria.CriteriaBuilder;
+import jakarta.validation.Valid;
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.beans.factory.annotation.Qualifier;
-import org.springframework.stereotype.Controller;
-import org.springframework.ui.Model;
-import org.springframework.web.bind.annotation.ModelAttribute;
-import org.springframework.web.bind.annotation.PathVariable;
-import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.http.HttpStatus;
+import org.springframework.validation.FieldError;
+import org.springframework.web.bind.MethodArgumentNotValidException;
+import org.springframework.web.bind.annotation.*;
 
-import java.time.LocalDate;
+import java.util.HashMap;
+import java.util.List;
+import java.util.Map;
 
-@Controller
-@RequestMapping("/avaliacao_fisica")
+@RestController
+@RequestMapping("/api/avaliacao_fisica")
 public class AvaliacaoFisicaController {
 
     @Autowired
     AvaliacaoFisicaService avaliacaoFisicaService;
 
-    @Qualifier("alunoServiceImpl")
-    @Autowired
-    private AlunoService alunoService;
-
-    @RequestMapping("/showForm/{idAluno}")
-    public String showForm(@PathVariable("idAluno") Integer idAluno, Model model) {
-        AvalicaoFisica avalicaoFisica = new AvalicaoFisica();
-        avalicaoFisica.setData(LocalDate.now());
-        avalicaoFisica.setAluno(alunoService.getById(idAluno));
-
-        model.addAttribute("avaliacao_fisica", avalicaoFisica);
-
-        return "avaliacao_fisica/formAvaliacaoFisica";
+    @PostMapping
+    @ResponseStatus(HttpStatus.CREATED)
+    public InformacoesAvaliacaoFisicaDTO save(@RequestBody @Valid AvaliacaoFisicaDTO dto){
+        return avaliacaoFisicaService.save(dto);
     }
 
-    @RequestMapping("/showFormEdit/{idAvaliacaoFisica}")
-    public String showFormEdit(@PathVariable("idAvaliacaoFisica") Integer idAvaliacaoFisica, Model model) {
-        model.addAttribute("avaliacao_fisica", avaliacaoFisicaService.getAvaliacaoFisicaById(idAvaliacaoFisica));
-
-        return "avaliacao_fisica/formAvaliacaoFisica";
+    @GetMapping("{id}")
+    public InformacoesAvaliacaoFisicaDTO getById(@PathVariable Integer id){
+        return avaliacaoFisicaService.getInformacoesAvaliacaoFisicaDTOById(id);
     }
 
-    @RequestMapping("/addAvaliacaoFisica")
-    public String addAvaliacaoFisica(@ModelAttribute AvalicaoFisica avaliacaoFisica) {
-        avaliacaoFisicaService.save(avaliacaoFisica);
-
-        return "redirect:/aluno/detailsAluno/" + avaliacaoFisica.getAluno().getId();
+    @GetMapping
+    public List<InformacoesAvaliacaoFisicaDTO> getAll(){
+        return avaliacaoFisicaService.getAll();
     }
 
-    @RequestMapping("/deleteAvaliacaoFisica/{id}")
-    public String deleteAvaliacaoFisica(@PathVariable("id") Integer id) {
-        AvalicaoFisica avaliacaoFisica = avaliacaoFisicaService.getAvaliacaoFisicaById(id);
-        avaliacaoFisicaService.delete(avaliacaoFisica);
-
-        return "redirect:/aluno/detailsAluno/" + avaliacaoFisica.getAluno().getId();
+    @GetMapping("/getAvaliacaoFisicaByIdAluno/{id}")
+    public List<InformacoesAvaliacaoFisicaDTO> getAllByIdAluno(@PathVariable Integer id){
+        return avaliacaoFisicaService.getAvaliacoesFisicasByIdAluno(id);
     }
 
-    @RequestMapping("/showDetails/{id}")
-    public String getDetailsAvaliacaoFisica(@PathVariable("id") Integer id, Model model) {
-        model.addAttribute("avaliacao_fisica", avaliacaoFisicaService.getAvaliacaoFisicaById(id));
+    @PutMapping("{id}")
+    public InformacoesAvaliacaoFisicaDTO update(@PathVariable Integer id, @RequestBody @Valid AvaliacaoFisicaDTO dto){
+        return avaliacaoFisicaService.update(id, dto);
+    }
 
-        return "/avaliacao_fisica/detailsAvaliacaoFisica";
+    @DeleteMapping("{id}")
+    public void delete(@PathVariable Integer id){
+        avaliacaoFisicaService.delete(id);
+    }
+
+    @ResponseStatus(HttpStatus.BAD_REQUEST)
+    @ExceptionHandler(MethodArgumentNotValidException.class)
+    public Map<String, String> handleValidationException(MethodArgumentNotValidException ex){
+        Map<String, String> errors = new HashMap<>();
+
+        ex.getBindingResult().getAllErrors().forEach((error) -> {
+            String fieldName = ((FieldError) error).getField();
+            String errorMessage = error.getDefaultMessage();
+
+            errors.put(fieldName, errorMessage);
+        });
+
+        return errors;
     }
 }

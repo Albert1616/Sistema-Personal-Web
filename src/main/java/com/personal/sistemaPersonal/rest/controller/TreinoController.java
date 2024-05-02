@@ -34,7 +34,7 @@ public class TreinoController {
     @RequestMapping("/showForm/{idAluno}")
     public String showForm(@PathVariable("idAluno") Integer idAluno, Model model) {
         Treino treino = new Treino();
-        treino.setFicha_treino(alunoService.getAlunoById(idAluno).getFicha_treino());
+//        treino.setFicha_treino(alunoService.getById(idAluno).getFicha_treino());
         treino.setData_criacao(LocalDate.now());
 
         model.addAttribute("treino", treino);
@@ -54,7 +54,7 @@ public class TreinoController {
     @RequestMapping("/addTreino")
     public String addTreino(@ModelAttribute("treino") Treino treino) {
         treinoService.save(treino);
-        FichaTreino fichaTreino = fichaTreinoService.findById(treino.getFicha_treino().getId());
+        FichaTreino fichaTreino = fichaTreinoService.getById(treino.getFicha_treino().getId());
 
         return "redirect:/aluno/detailsAluno/" + fichaTreino.getAluno().getId();
     }

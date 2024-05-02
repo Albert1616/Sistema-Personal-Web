@@ -2,10 +2,12 @@ package com.personal.sistemaPersonal.service.impl;
 
 import com.personal.sistemaPersonal.exception.AlunoNaoEncontradoException;
 import com.personal.sistemaPersonal.model.Aluno;
+import com.personal.sistemaPersonal.model.FichaTreino;
 import com.personal.sistemaPersonal.model.Personal;
 import com.personal.sistemaPersonal.rest.dto.AlunoDTO;
 import com.personal.sistemaPersonal.rest.dto.InformacoesAlunoDTO;
 import com.personal.sistemaPersonal.service.AlunoService;
+import com.personal.sistemaPersonal.service.FichaTreinoService;
 import com.personal.sistemaPersonal.service.PersonalService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Component;
@@ -27,9 +29,18 @@ public class AlunoServiceImpl implements AlunoService {
     @Autowired
     PersonalService personalService;
 
+    @Autowired
+    FichaTreinoService fichaTreinoService;
+
     @Override
     public InformacoesAlunoDTO save(AlunoDTO dto) {
         Aluno aluno = convert(dto);
+
+        FichaTreino fichaTreino = new FichaTreino();
+        fichaTreino.setTitulo("Ficha de Treino");
+        fichaTreino.setAluno(aluno);
+
+        aluno.setFicha_treino(fichaTreino);
         return convertToInformacoesAlunoDTO(alunoRepository.save(aluno));
     }
 

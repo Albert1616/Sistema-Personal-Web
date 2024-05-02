@@ -5,7 +5,6 @@ import lombok.AllArgsConstructor;
 import lombok.Getter;
 import lombok.NoArgsConstructor;
 import lombok.Setter;
-import org.springframework.format.annotation.DateTimeFormat;
 
 import java.time.LocalDate;
 
@@ -15,7 +14,7 @@ import java.time.LocalDate;
 @NoArgsConstructor
 @Entity
 @Table(name = "avaliacao_fisica")
-public class AvalicaoFisica {
+public class AvaliacaoFisica {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Integer id;
