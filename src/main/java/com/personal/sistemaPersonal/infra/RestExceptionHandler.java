@@ -46,4 +46,9 @@ public class RestExceptionHandler extends ResponseEntityExceptionHandler {
         return ResponseEntity.status(HttpStatus.NOT_FOUND).body(response);
     }
 
+    @ExceptionHandler(NutricionistaNaoEncontradoException.class)
+    private ResponseEntity<RestErrorMessage> nutricionistaNaoEncontradoHandler(NutricionistaNaoEncontradoException ex){
+        RestErrorMessage response = new RestErrorMessage(HttpStatus.NOT_FOUND, ex.getMessage());
+        return ResponseEntity.status(HttpStatus.NOT_FOUND).body(response);
+    }
 }

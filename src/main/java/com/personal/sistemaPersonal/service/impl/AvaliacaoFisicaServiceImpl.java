@@ -14,6 +14,7 @@ import org.springframework.util.CollectionUtils;
 
 import java.util.Collections;
 import java.util.List;
+import java.util.Objects;
 import java.util.Optional;
 import java.util.stream.Collectors;
 
@@ -97,6 +98,7 @@ public class AvaliacaoFisicaServiceImpl implements AvaliacaoFisicaService {
 
     @Override
     public AvaliacaoFisicaResponseDTO convertToAvaliacaoFisicaResponseDTO(AvaliacaoFisica avaliacaoFisica){
+        if(Objects.isNull(avaliacaoFisica)) return null;
         return AvaliacaoFisicaResponseDTO
                 .builder()
                 .id(avaliacaoFisica.getId())

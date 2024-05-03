@@ -7,13 +7,13 @@ import com.personal.sistemaPersonal.rest.dto.response.AlunoResponseDTO;
 import java.util.List;
 
 public interface AlunoService {
-    public AlunoResponseDTO save(AlunoRequestDTO alunoRequestDTO);
-    public void delete(Integer id);
-    public void update(Integer id, AlunoRequestDTO alunoRequestDTO);
-    public List<AlunoResponseDTO> getAll();
-    public Aluno getById(Integer id);
-    public AlunoResponseDTO getAlunoInformacoesDTOById(Integer id);
-    public Aluno convert(AlunoRequestDTO alunoRequestDTO);
-    public AlunoResponseDTO convertToAlunoResponseDTO(Aluno aluno);
-    public List<AlunoResponseDTO> convertToAlunoResponseDTO(List<Aluno> alunos);
+    AlunoResponseDTO save(AlunoRequestDTO alunoRequestDTO);
+    void delete(Integer id);
+    void update(Integer id, AlunoRequestDTO alunoRequestDTO);
+    List<AlunoResponseDTO> getAll();
+    Aluno getById(Integer id);
+    AlunoResponseDTO getAlunoInformacoesDTOById(Integer id);
+    Aluno convert(AlunoRequestDTO alunoRequestDTO);
+    AlunoResponseDTO convertToAlunoResponseDTO(Aluno aluno);
+    List<AlunoResponseDTO> convertToAlunoResponseDTO(List<Aluno> alunos);
 }

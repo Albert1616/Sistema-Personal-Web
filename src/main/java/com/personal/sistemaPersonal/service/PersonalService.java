@@ -7,12 +7,12 @@ import com.personal.sistemaPersonal.rest.dto.request.PersonalRequestDTO;
 import java.util.List;
 
 public interface PersonalService {
-    public PersonalResponseDTO save(PersonalRequestDTO personal);
-    public Personal getById(Integer id);
-    public PersonalResponseDTO getInformacoesPersonalDTOById(Integer id);
-    public void delete(Integer id);
-    public void update(Integer id, PersonalRequestDTO personalRequestDTO);
-    public List<PersonalResponseDTO> getAll();
-    public PersonalResponseDTO convertToPersonalResponseDTO(Personal personal);
-    public List<PersonalResponseDTO> convertToPersonalResponseDTO(List<Personal> personais);
+    PersonalResponseDTO save(PersonalRequestDTO personal);
+    Personal getById(Integer id);
+    PersonalResponseDTO getInformacoesPersonalDTOById(Integer id);
+    void delete(Integer id);
+    void update(Integer id, PersonalRequestDTO personalRequestDTO);
+    List<PersonalResponseDTO> getAll();
+    PersonalResponseDTO convertToPersonalResponseDTO(Personal personal);
+    List<PersonalResponseDTO> convertToPersonalResponseDTO(List<Personal> personais);
 }

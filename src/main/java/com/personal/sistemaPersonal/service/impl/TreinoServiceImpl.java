@@ -19,6 +19,7 @@ import java.time.LocalDate;
 import java.util.ArrayList;
 import java.util.Collections;
 import java.util.List;
+import java.util.Objects;
 import java.util.Optional;
 import java.util.stream.Collectors;
 
@@ -94,6 +95,7 @@ public class TreinoServiceImpl implements TreinoService {
     }
 
     public Treino convert(TreinoRequestDTO dto){
+        if(Objects.isNull(dto)) return null;
         Treino treino = new Treino();
 
         treino.setTitulo(dto.getTitulo());
@@ -112,6 +114,7 @@ public class TreinoServiceImpl implements TreinoService {
     }
 
     public TreinoResponseDTO convertToTreinoResponseDTO(Treino treino){
+        if(Objects.isNull(treino)) return null;
         return TreinoResponseDTO
                 .builder()
                 .id(treino.getId())

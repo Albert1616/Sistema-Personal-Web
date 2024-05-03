@@ -1,19 +1,17 @@
 package com.personal.sistemaPersonal.rest.dto.response;
 
-import lombok.*;
+import lombok.Builder;
+import lombok.Getter;
+import lombok.Setter;
 
 import java.time.LocalDate;
 
 @Getter
 @Setter
-@AllArgsConstructor
-@NoArgsConstructor
 @Builder
-public class AlunoResponseDTO {
+public class NutricionistaResponseDTO {
     private Integer id;
     private String nome;
     private String email;
     private LocalDate data_nascimento;
-    private PersonalResponseDTO personal;
-    private NutricionistaResponseDTO nuticionista;
 }

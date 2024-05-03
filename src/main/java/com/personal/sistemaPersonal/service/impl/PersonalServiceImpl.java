@@ -12,6 +12,7 @@ import org.springframework.util.CollectionUtils;
 
 import java.util.Collections;
 import java.util.List;
+import java.util.Objects;
 import java.util.Optional;
 import java.util.stream.Collectors;
 
@@ -65,6 +66,7 @@ public class PersonalServiceImpl implements PersonalService {
 
     @Override
     public PersonalResponseDTO convertToPersonalResponseDTO(Personal personal) {
+        if(Objects.isNull(personal)) return null;
         return PersonalResponseDTO
                 .builder()
                 .id(personal.getId())
@@ -87,14 +89,7 @@ public class PersonalServiceImpl implements PersonalService {
         }
 
         return personais.stream().map(
-                personal -> PersonalResponseDTO
-                        .builder()
-                        .id(personal.getId())
-                        .nome(personal.getNome())
-                        .email(personal.getEmail())
-                        .dataNascimento(personal.getDataNascimento())
-                        .CREF(personal.getCREF())
-                        .build()
+                this::convertToPersonalResponseDTO
         ).collect(Collectors.toList());
     }
 }

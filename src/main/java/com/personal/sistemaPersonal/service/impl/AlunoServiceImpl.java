@@ -3,6 +3,7 @@ package com.personal.sistemaPersonal.service.impl;
 import com.personal.sistemaPersonal.exception.AlunoNaoEncontradoException;
 import com.personal.sistemaPersonal.model.Aluno;
 import com.personal.sistemaPersonal.model.FichaTreino;
+import com.personal.sistemaPersonal.model.Nutricionista;
 import com.personal.sistemaPersonal.model.Personal;
 import com.personal.sistemaPersonal.repository.AlunoRepository;
 import com.personal.sistemaPersonal.rest.dto.request.AlunoRequestDTO;
@@ -16,6 +17,7 @@ import org.springframework.util.CollectionUtils;
 
 import java.util.Collections;
 import java.util.List;
+import java.util.Objects;
 import java.util.Optional;
 import java.util.stream.Collectors;
 
@@ -26,6 +28,9 @@ public class AlunoServiceImpl implements AlunoService {
 
     @Autowired
     PersonalService personalService;
+
+    @Autowired
+    NutricionistaServiceImpl nutricionistaService;
 
     @Autowired
     FichaTreinoService fichaTreinoService;
@@ -88,12 +93,15 @@ public class AlunoServiceImpl implements AlunoService {
         aluno.setData_nascimento(dto.getData_nascimento());
         Personal personal = personalService.getById(dto.getPersonal());
         aluno.setPersonal(personal);
+        Nutricionista nutricionista = nutricionistaService.getById(dto.getNutricionista());
+        aluno.setNutricionista(nutricionista);
 
         return aluno;
     }
 
     @Override
     public AlunoResponseDTO convertToAlunoResponseDTO(Aluno aluno) {
+        if(Objects.isNull(aluno)) return null;
         return AlunoResponseDTO
                 .builder()
                 .id(aluno.getId())
@@ -101,6 +109,7 @@ public class AlunoServiceImpl implements AlunoService {
                 .email(aluno.getEmail())
                 .data_nascimento(aluno.getData_nascimento())
                 .personal(personalService.convertToPersonalResponseDTO(aluno.getPersonal()))
+                .nuticionista(nutricionistaService.convertToNutricionistaResponseDTO(aluno.getNutricionista()))
                 .build();
     }
 
@@ -110,14 +119,7 @@ public class AlunoServiceImpl implements AlunoService {
             return Collections.emptyList();
         }
         return alunos.stream().map(
-         aluno ->   AlunoResponseDTO
-                    .builder()
-                    .id(aluno.getId())
-                    .nome(aluno.getNome())
-                    .email(aluno.getEmail())
-                    .data_nascimento(aluno.getData_nascimento())
-                    .personal(personalService.convertToPersonalResponseDTO(aluno.getPersonal()))
-                    .build()
+            this::convertToAlunoResponseDTO
         ).collect(Collectors.toList());
     }
 }
