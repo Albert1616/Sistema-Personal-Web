@@ -8,26 +8,24 @@ import lombok.Setter;
 
 import java.util.List;
 
-@Getter
-@Setter
 @AllArgsConstructor
 @NoArgsConstructor
+@Setter
+@Getter
 @Entity
-@Table(name = "exercicio")
-public class Exercicio {
+public class Refeicao {
+
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Integer id;
 
-    @Column
-    private String nome;
+    @Column(length = 40)
+    private String descricao;
 
-    @Column
-    private Integer series;
+    @ManyToOne
+    @JoinColumn(name = "dieta_id")
+    private Dieta dieta;
 
-    @Column(length = 50)
-    private Integer repeticoes;
-
-    @Column(length = 100)
-    private String observacoes;
+    @OneToMany(mappedBy = "refeicao", fetch = FetchType.LAZY, cascade = CascadeType.REMOVE)
+    private List<Alimento> alimentos;
 }

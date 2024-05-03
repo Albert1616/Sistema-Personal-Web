@@ -1,9 +1,17 @@
 package com.personal.sistemaPersonal.model;
 
 import jakarta.persistence.*;
+import lombok.AllArgsConstructor;
+import lombok.Getter;
+import lombok.NoArgsConstructor;
+import lombok.Setter;
 
 import java.util.List;
 
+@Getter
+@Setter
+@AllArgsConstructor
+@NoArgsConstructor
 @Entity
 @Table(name = "ficha_treino")
 public class FichaTreino {
@@ -19,45 +27,4 @@ public class FichaTreino {
 
     @OneToOne(mappedBy = "ficha_treino")
     private Aluno aluno;
-
-    public FichaTreino(){}
-
-    public FichaTreino(String titulo){
-        this.titulo = titulo;
-    }
-
-    public Integer getIdFichaTreino() {
-        return id;
-    }
-
-    public List<Treino> getTreinos() {
-        return treinos;
-    }
-
-    public String getTitulo() {
-        return titulo;
-    }
-
-    public void setTitulo(String titulo) {
-        this.titulo = titulo;
-    }
-
-    public void setTreinos(List<Treino> treinos) {
-        this.treinos = treinos;
-    }
-    public void adicionarTreino(Treino treino){
-        this.treinos.add(treino);
-    }
-
-    public Aluno getAluno() {
-        return aluno;
-    }
-
-    public void setAluno(Aluno aluno) {
-        this.aluno = aluno;
-    }
-
-    public void setIdFichaTreino(Integer id) {
-        this.id = id;
-    }
 }

@@ -9,13 +9,13 @@ import lombok.Setter;
 import java.time.LocalDate;
 import java.util.List;
 
-@Getter
-@Setter
 @AllArgsConstructor
 @NoArgsConstructor
+@Getter
+@Setter
 @Entity
-@Table(name = "treino")
-public class Treino {
+public class Dieta {
+
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Integer id;
@@ -24,15 +24,15 @@ public class Treino {
     private String titulo;
 
     @ManyToOne
-    @JoinColumn(name = "ficha_treino_id")
-    private FichaTreino ficha_treino;
+    @JoinColumn(name = "aluno_id")
+    private Aluno aluno;
 
     private LocalDate data_criacao;
 
-    private LocalDate data_vencimento;
+    @ManyToOne
+    @JoinColumn(name = "nutricionista_id")
+    private Nutricionista nutricionista;
 
-    @ManyToMany(cascade = CascadeType.DETACH)
-    @JoinTable(name = "treino_exercicio", joinColumns = @JoinColumn(name = "treino_id"),
-    inverseJoinColumns = @JoinColumn(name = "exercicio_id"))
-    private List<Exercicio> exercicios;
+    @OneToMany(mappedBy = "dieta", fetch = FetchType.LAZY, cascade = CascadeType.REMOVE)
+    private List<Refeicao> refeicoes;
 }

@@ -1,33 +1,30 @@
 package com.personal.sistemaPersonal.model;
 
+
 import jakarta.persistence.*;
 import lombok.AllArgsConstructor;
 import lombok.Getter;
 import lombok.NoArgsConstructor;
 import lombok.Setter;
 
-import java.util.List;
-
 @Getter
 @Setter
-@AllArgsConstructor
 @NoArgsConstructor
+@AllArgsConstructor
 @Entity
-@Table(name = "exercicio")
-public class Exercicio {
+public class Alimento {
+
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Integer id;
 
-    @Column
-    private String nome;
-
-    @Column
-    private Integer series;
+    @Column(length = 50)
+    private String descricao;
 
     @Column(length = 50)
-    private Integer repeticoes;
+    private String medida;
 
-    @Column(length = 100)
-    private String observacoes;
+    @ManyToOne
+    @JoinColumn(name = "refeicao_id")
+    private Refeicao refeicao;
 }
