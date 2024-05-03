@@ -6,6 +6,7 @@ import lombok.Getter;
 import lombok.NoArgsConstructor;
 import lombok.Setter;
 
+import java.time.LocalDate;
 import java.util.List;
 
 @AllArgsConstructor
@@ -25,6 +26,8 @@ public class Dieta {
     @ManyToOne
     @JoinColumn(name = "aluno_id")
     private Aluno aluno;
+
+    private LocalDate data_criacao;
 
     @ManyToOne
     @JoinColumn(name = "nutricionista_id")

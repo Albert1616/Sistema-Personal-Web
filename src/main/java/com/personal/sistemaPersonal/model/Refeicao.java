@@ -20,7 +20,7 @@ public class Refeicao {
     private Integer id;
 
     @Column(length = 40)
-    private String titulo;
+    private String descricao;
 
     @ManyToOne
     @JoinColumn(name = "dieta_id")

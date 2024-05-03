@@ -19,7 +19,7 @@ public class Alimento {
     private Integer id;
 
     @Column(length = 50)
-    private String nome;
+    private String descricao;
 
     @Column(length = 50)
     private String medida;
