@@ -38,4 +38,7 @@ public class Nutricionista {
 
     @OneToMany(mappedBy = "nutricionista", fetch = FetchType.LAZY)
     private List<Aluno> alunos;
+
+    @OneToMany(mappedBy = "nutricionista", fetch = FetchType.LAZY)
+    private List<Dieta> dietas;
 }

@@ -45,4 +45,7 @@ public class Aluno {
     @ManyToOne
     @JoinColumn(name = "nutricionista_id")
     private Nutricionista nutricionista;
+
+    @OneToMany(mappedBy = "aluno", fetch = FetchType.LAZY)
+    private List<Dieta> dietas;
 }
