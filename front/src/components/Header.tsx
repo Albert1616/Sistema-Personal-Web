@@ -26,10 +26,10 @@ function Header() {
   <DropdownMenuContent>
     <DropdownMenuLabel>Conta</DropdownMenuLabel>
     <DropdownMenuSeparator />
-    <DropdownMenuItem>Detalhes
+    <DropdownMenuItem className='cursor-pointer'>Detalhes
     </DropdownMenuItem>
-    <DropdownMenuItem className='text-red-500'>Deletar</DropdownMenuItem>
-    <DropdownMenuItem>Sair</DropdownMenuItem>
+    <DropdownMenuItem className='text-red-500 cursor-pointer'>Deletar</DropdownMenuItem>
+    <DropdownMenuItem className='cursor-pointer'>Sair</DropdownMenuItem>
   </DropdownMenuContent>
 </DropdownMenu>
 
