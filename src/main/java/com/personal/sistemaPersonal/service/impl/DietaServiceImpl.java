@@ -34,9 +34,6 @@ public class DietaServiceImpl implements DietaService {
     @Autowired
     NutricionistaService nutricionistaService;
 
-    @Autowired
-    RefeicaoService refeicaoService;
-
     @Override
     public DietaResponseDTO save(DietaRequestDTO dto) {
         Dieta dieta = convert(dto);
@@ -106,7 +103,6 @@ public class DietaServiceImpl implements DietaService {
                 .id(dieta.getId())
                 .titulo(dieta.getTitulo())
                 .data_criacao(dieta.getData_criacao())
-                .refeicoes(refeicaoService.convertToRefeicaoResponseDTO(dieta.getRefeicoes()))
                 .build();
     }
 

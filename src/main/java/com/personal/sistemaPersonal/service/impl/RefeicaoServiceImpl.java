@@ -26,9 +26,6 @@ public class RefeicaoServiceImpl implements RefeicaoService {
     RefeicaoRepository refeicaoRepository;
 
     @Autowired
-    AlimentoService alimentoService;
-
-    @Autowired
     DietaService dietaService;
 
     @Override
@@ -92,7 +89,6 @@ public class RefeicaoServiceImpl implements RefeicaoService {
                 .builder()
                 .id(refeicao.getId())
                 .descricao(refeicao.getDescricao())
-                .alimentos(alimentoService.convertToAlimentoResponseDTO(refeicao.getAlimentos()))
                 .build();
     }
 
