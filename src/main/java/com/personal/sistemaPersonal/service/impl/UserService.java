@@ -42,12 +42,12 @@ public class UserService implements UserDetailsService {
         User user = repository.findByLogin(userLogin)
                 .orElseThrow(() -> new UsuarioNaoEncontrado());
 
-        UserTypes[] roles = new UserTypes[] {user.getPaper(), USER};
+        String[] roles = new String[] {user.getPaper().name(), "USER"};
 
         return org.springframework.security.core.userdetails.User.builder()
                 .username(user.getLogin())
                 .password(user.getPassword())
-                .roles(roles.toString())
+                .roles(roles)
                 .build();
 
     }

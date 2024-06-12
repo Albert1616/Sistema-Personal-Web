@@ -4,12 +4,14 @@ import com.personal.sistemaPersonal.enumerate.UserTypes;
 import jakarta.persistence.*;
 import jakarta.validation.constraints.NotEmpty;
 import lombok.AllArgsConstructor;
+import lombok.Builder;
 import lombok.Data;
 import lombok.NoArgsConstructor;
 
 @Data
 @NoArgsConstructor
 @AllArgsConstructor
+@Builder
 @Entity
 @Table(name = "user")
 
@@ -26,4 +28,16 @@ public class User {
     @Column
     @NotEmpty(message = "{campo.type.obrigatorio}")
     private UserTypes paper;
+
+    public String getPassword(){
+        return this.password;
+    }
+
+    public String getLogin(){
+        return this.login;
+    }
+
+    public void setPassword(String password){
+        this.password = password;
+    }
 }
