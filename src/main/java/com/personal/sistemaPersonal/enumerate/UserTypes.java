@@ -4,5 +4,7 @@ public enum UserTypes {
     ADMIN,
     PERSONAL,
     NUTRICIONISTA,
-    ALUNO
+    ALUNO,
+
+    USER
 }
