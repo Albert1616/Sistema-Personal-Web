@@ -26,7 +26,8 @@ function Header() {
   <DropdownMenuContent>
     <DropdownMenuLabel>Conta</DropdownMenuLabel>
     <DropdownMenuSeparator />
-    <DropdownMenuItem className='cursor-pointer'>Detalhes
+    <DropdownMenuItem className='cursor-pointer'>
+      <Link href="conta/detalhes">Detalhes</Link>
     </DropdownMenuItem>
     <DropdownMenuItem className='text-red-500 cursor-pointer'>Deletar</DropdownMenuItem>
     <DropdownMenuItem className='cursor-pointer'>Sair</DropdownMenuItem>

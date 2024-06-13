@@ -17,7 +17,8 @@ function cardAluno({icon, nome, email, data} : cardProps) {
     <div className='flex items-center justify-between bg-gray-300 rounded-md p-3'>
         <div className='flex gap-5'>
         {icon? (
-            <Image src={icon!} alt='Foto do aluno' className='rounded-full ring-2 ring-white'/>
+            <Image src={icon!} alt='Foto do aluno' className='rounded-full ring-2 ring-white'
+            width={100} height={120} />
         ) : (
             <FaUserCircle size={90}/>
         )}
@@ -27,8 +28,8 @@ function cardAluno({icon, nome, email, data} : cardProps) {
             <h3>{data}</h3>
         </div>
         </div>
-        <Link href='/'>
-            <FaSearch size={25}/>
+        <Link href='/aluno/detalhes'>
+            <FaSearch size={25} color='green'/>
         </Link>
     </div>
   )
