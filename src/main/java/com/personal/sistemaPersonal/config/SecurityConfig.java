@@ -9,7 +9,10 @@ import org.springframework.context.annotation.Configuration;
 import org.springframework.http.HttpMethod;
 import org.springframework.security.config.annotation.web.builders.HttpSecurity;
 import org.springframework.security.config.annotation.web.configuration.EnableWebSecurity;
+import org.springframework.security.config.annotation.web.configurers.AbstractHttpConfigurer;
+import org.springframework.security.config.http.SessionCreationPolicy;
 import org.springframework.security.web.SecurityFilterChain;
+import org.springframework.security.web.authentication.UsernamePasswordAuthenticationFilter;
 import org.springframework.web.filter.OncePerRequestFilter;
 
 @Configuration
@@ -41,8 +44,14 @@ public class SecurityConfig {
                             .hasAnyRole("ADMIN")
                         .requestMatchers("/api/nutricionista/**")
                             .hasAnyRole("ADMIN")
-                        .requestMatchers("/api/")
-                ))
+                        .anyRequest().permitAll()
+                ).sessionManagement((session) ->
+                    session.sessionCreationPolicy(SessionCreationPolicy.STATELESS))
+                .addFilterBefore(
+                        jwtFilter(),
+                        UsernamePasswordAuthenticationFilter.class)
+                .csrf(AbstractHttpConfigurer::disable);
+        return http.build();
         //continuar daqui aplicando o tipo de permisão de cada rota
     }
 }

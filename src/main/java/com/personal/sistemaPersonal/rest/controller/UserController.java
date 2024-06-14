@@ -35,9 +35,7 @@ public class UserController {
     @PostMapping("/auth")
     public TokenDTO auth(@RequestBody CredentialsDTO credentialsDTO){
         try{
-            User user = User.builder()
-                    .login(credentialsDTO.getLogin())
-                    .password(credentialsDTO.getPassword()).build();
+            User user = new User(credentialsDTO.getLogin(), credentialsDTO.getPassword());
             UserDetails userAuth = userService.auth(user);
             String token = jwtService.createToken(user);
             return new TokenDTO(user.getLogin(), token);

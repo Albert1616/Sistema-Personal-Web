@@ -49,6 +49,5 @@ public class UserService implements UserDetailsService {
                 .password(user.getPassword())
                 .roles(roles)
                 .build();
-
     }
 }

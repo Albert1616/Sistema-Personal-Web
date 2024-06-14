@@ -13,7 +13,7 @@ import lombok.NoArgsConstructor;
 @AllArgsConstructor
 @Builder
 @Entity
-@Table(name = "user")
+@Table(name = "usuario")
 
 public class User {
     @Id
@@ -29,6 +29,11 @@ public class User {
     @NotEmpty(message = "{campo.type.obrigatorio}")
     private UserTypes paper;
 
+    public User(String login, String password){
+        this.login = login;
+        this.password = password;
+    }
+
     public String getPassword(){
         return this.password;
     }
@@ -40,4 +45,9 @@ public class User {
     public void setPassword(String password){
         this.password = password;
     }
+
+    public UserTypes getPaper(){
+        return this.paper;
+    }
+
 }

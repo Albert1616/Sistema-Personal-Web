@@ -6,8 +6,8 @@ import lombok.NoArgsConstructor;
 import org.antlr.v4.runtime.Token;
 
 @Data
-@NoArgsConstructor
-@AllArgsConstructor
+//@NoArgsConstructor
+//@AllArgsConstructor
 public class TokenDTO {
     private String login;
     private String token;
