@@ -21,14 +21,14 @@ import java.util.Date;
 public class JwtService {
 
     @Value("${security.jwt.expiracao}")
-    private String exp;
+    private String expiracao;
 
-    @Value("${security.jwt.key")
-    private String key;
+    @Value("${security.jwt.chave-assinatura}")
+    private String chaveAssinatura;
 
     public String createToken(User user){
-        Date data = converter(exp);
-        SecretKey secretKey = Keys.hmacShaKeyFor(Decoders.BASE64.decode(key));
+        Date data = converter(expiracao);
+        SecretKey secretKey = Keys.hmacShaKeyFor(Decoders.BASE64.decode(chaveAssinatura));
 
         return Jwts.builder()
                 .subject(user.getLogin())
@@ -38,7 +38,7 @@ public class JwtService {
     }
 
     public Claims getClaims(String token) throws ExpiredJwtException {
-        SecretKey secretKey = Keys.hmacShaKeyFor(Decoders.BASE64URL.decode(key));
+        SecretKey secretKey = Keys.hmacShaKeyFor(Decoders.BASE64URL.decode(chaveAssinatura));
 
         return Jwts
                 .parser()

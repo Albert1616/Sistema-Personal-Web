@@ -3,6 +3,7 @@ package com.personal.sistemaPersonal.model;
 import com.personal.sistemaPersonal.enumerate.UserTypes;
 import jakarta.persistence.*;
 import jakarta.validation.constraints.NotEmpty;
+import jakarta.validation.constraints.NotNull;
 import lombok.AllArgsConstructor;
 import lombok.Builder;
 import lombok.Data;
@@ -26,7 +27,7 @@ public class User {
     @NotEmpty(message = "{campo.password.obrigatorio}")
     private String password;
     @Column
-    @NotEmpty(message = "{campo.type.obrigatorio}")
+    @NotNull
     private UserTypes paper;
 
     public User(String login, String password){

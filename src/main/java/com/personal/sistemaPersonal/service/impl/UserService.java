@@ -5,17 +5,18 @@ import com.personal.sistemaPersonal.exception.SenhaInvalidaException;
 import com.personal.sistemaPersonal.exception.UsuarioNaoEncontrado;
 import com.personal.sistemaPersonal.model.User;
 import com.personal.sistemaPersonal.repository.UserRepository;
+import com.personal.sistemaPersonal.rest.dto.request.UserRequestDTO;
 import jakarta.transaction.Transactional;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.security.core.userdetails.UserDetails;
 import org.springframework.security.core.userdetails.UserDetailsService;
 import org.springframework.security.crypto.password.PasswordEncoder;
 import org.springframework.stereotype.Component;
+import org.springframework.stereotype.Service;
 
 import static com.personal.sistemaPersonal.enumerate.UserTypes.*;
 
-@Component
-
+@Service
 public class UserService implements UserDetailsService {
     @Autowired
     private PasswordEncoder passwordEncoder;
@@ -23,7 +24,12 @@ public class UserService implements UserDetailsService {
     private UserRepository repository;
 
     @Transactional
-    public User save(User user){
+    public User save(UserRequestDTO dto){
+        User user = new User();
+        user.setLogin(dto.getLogin());
+        user.setPassword(dto.getPassword());
+        user.setPaper(dto.getPaper());
+
         return repository.save(user);
     }
 
