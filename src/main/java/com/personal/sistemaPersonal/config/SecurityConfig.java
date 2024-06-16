@@ -36,15 +36,29 @@ public class SecurityConfig {
                         "/swagger-resources/**",
                         "/swagger-ui/**")
                         .permitAll()
-                        .requestMatchers(HttpMethod.POST, "/api/user/**")
-                            .permitAll()
+                        .requestMatchers("/api/user/**")
+                            .anonymous()
                         .requestMatchers("/api/aluno/**")
-                            .hasAnyRole("ADMIN", "PERSONAL", "NUTRICIONISTA")
+                            .hasAnyRole("PERSONAL", "NUTRICIONISTA")
+                        .requestMatchers("/api/aluno/update")
+                            .hasAnyRole("ALUNO")
                         .requestMatchers("/api/personal/**")
-                            .hasAnyRole("ADMIN")
+                            .hasRole("ADMIN")
+                        .requestMatchers("/api/personal/update")
+                            .hasAnyRole("PERSONAL")
                         .requestMatchers("/api/nutricionista/**")
-                            .hasAnyRole("ADMIN")
-                        .anyRequest().permitAll()
+                            .hasRole("ADMIN")
+                        .requestMatchers("/api/nutricionista/update")
+                            .hasAnyRole("NUTRICIONISTA")
+                        //PERMISSÃO: NUTRICIONISTA
+                        .requestMatchers("/api/alimento/**","/api/dieta/**",
+                                "/api/refeicao/**")
+                            .hasRole("NUTRICIONISTA")
+                        //PERMISSÃO: PERSONAL
+                        .requestMatchers("/api/avalicao_fisica/**","/api/exercicio/**",
+                                "/api/ficha_treino/**","/api/treino/**")
+                            .hasRole("PERSONAL")
+                        .anyRequest().hasRole("ADMIN")
                 ).sessionManagement((session) ->
                     session.sessionCreationPolicy(SessionCreationPolicy.STATELESS))
                 .addFilterBefore(
@@ -52,6 +66,5 @@ public class SecurityConfig {
                         UsernamePasswordAuthenticationFilter.class)
                 .csrf(AbstractHttpConfigurer::disable);
         return http.build();
-        //continuar daqui aplicando o tipo de permisão de cada rota
     }
 }

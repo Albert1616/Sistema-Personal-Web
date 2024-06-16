@@ -5,6 +5,5 @@ public enum UserTypes {
     PERSONAL,
     NUTRICIONISTA,
     ALUNO,
-
     USER
 }
