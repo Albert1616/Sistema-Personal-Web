@@ -4,11 +4,10 @@
   box-sizing: border-box;
 }
 html,body{
-  height: 100%;
-  width: 100%;
+  min-width: 100vh;
   display: flex;
   flex-direction: column;
-  justify-content: space-between;
+  justify-content: space-between
 }
 
 @tailwind base;
@@ -45,7 +44,6 @@ html,body{
       --input: 214.3 31.8% 91.4%;
       --ring: 222.2 84% 4.9%;
 
-      --radius: 0.5rem;
     }
 
     .dark {

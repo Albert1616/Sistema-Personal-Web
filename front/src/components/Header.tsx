@@ -15,7 +15,8 @@ import {
 
 function Header() {
   return (
-    <div className='flex justify-between bg-primaryColor text-white  py-5 px-7'>
+    <div className='flex justify-between sticky z-[100] inset-x-0 top-0 w-full h-25
+     bg-primaryColor text-white  py-5 px-7 backdrop-blur-lg transition-all'>
       <Link href='/'>
         <MdFitnessCenter size={50}/>
       </Link>

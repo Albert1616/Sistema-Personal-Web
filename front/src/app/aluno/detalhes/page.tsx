@@ -6,7 +6,8 @@ import Link from 'next/link'
 
 function page() {
   return (
-    <Tabs defaultValue="account" className="w-[400px]">
+    <div className='h-[80vh] w-screen'>
+ <Tabs defaultValue="account" className="w-[400px]">
         <TabsList>
             <TabsTrigger value="ficha">Ficha de treino</TabsTrigger>
             <TabsTrigger value="avaliacao">Avaliação física</TabsTrigger>
@@ -25,6 +26,8 @@ function page() {
             <h1>Dados do aluno</h1>
         </TabsContent>
 </Tabs>
+    </div>
+   
 
   )
 }

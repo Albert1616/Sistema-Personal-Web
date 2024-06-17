@@ -3,7 +3,7 @@ import React from 'react'
 
 function page() {
   return (
-    <div className='flex flex-col items-center justify-center '>
+    <div className='h-[80vh] w-screen flex flex-col items-center justify-center '>
         <FormAluno />
     </div>
   )

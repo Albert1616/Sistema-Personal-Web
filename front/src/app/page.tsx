@@ -7,7 +7,7 @@ import CardAluno from "@/components/cardAluno";
 
 export default function Home() {
   return (
-    <main className="h-full py-5 px-7 bg-background">
+    <main className="h-[80vh] w-full py-5 px-7 bg-background">
       <div>
         <section className="grid grid-cols-2 gap-5 mb-8">
           <CardAluno nome="Matheus Albert" email="teste@gmail.com" data="10/11/2002"

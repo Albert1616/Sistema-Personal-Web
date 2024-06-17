@@ -20,7 +20,7 @@ function page() {
     //         <p>{data}</p>
     //     </div>
     // </div>
-    <div className='flex gap-24 p-5'>
+    <div className='flex gap-24 p-5 h-[80vh] w-screen'>
         <Image src='/img/avatar-1.jpg' width={200} height={200} alt='Imagem de perfil da conta'/>
         <div className='flex flex-col justify-center gap-12'>
             <h1 className='text-3xl'>Matheus Albert</h1>

@@ -13,7 +13,7 @@ const [exercicios, setExercicios] = useState([]);
         <h1 className='text-3xl'>Exercícios</h1>
         {exercicios.length > 0 ? (
             exercicios.map(exercicio => {
-                return <p>exercicio</p>
+                return <p key={exercicio}>{exercicio}</p>
             })
         ) : (
             <p>Não Há exercícios cadastrados!</p>
