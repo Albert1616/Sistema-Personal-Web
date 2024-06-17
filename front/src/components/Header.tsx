@@ -24,7 +24,7 @@ function Header() {
   <DropdownMenuTrigger>
     <FaUserCircle size={50}/>
   </DropdownMenuTrigger>
-  <DropdownMenuContent>
+  <DropdownMenuContent className='mt-4 z-[100]'>
     <DropdownMenuLabel>Conta</DropdownMenuLabel>
     <DropdownMenuSeparator />
     <DropdownMenuItem className='cursor-pointer'>

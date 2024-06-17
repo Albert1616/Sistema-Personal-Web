@@ -1,29 +1,32 @@
-import type { Metadata } from "next";
+'use client'
+
 import { Inter } from "next/font/google";
 import "./globals.css";
 import Header from "@/components/Header";
 import Footer from "@/components/Footer";
-import React from "react";
+import React, { useEffect } from "react";
+import { useGenerationStore } from "@/lib/state/stateManagament";
+import Login from "@/components/login/login";
+import { useRouter } from "next/router";
 
 const inter = Inter({ subsets: ["latin"] });
-
-export const metadata: Metadata = {
-  title: "Persona App",
-  description: "System to management to students to personal",
-};
 
 export default function RootLayout({
   children,
 }: Readonly<{
   children: React.ReactNode;
 }>) {
+
+  const {user} = useGenerationStore();
+  const {login, paper} = user;
+
   return (
     <html lang="en">
       <body className={inter.className}>
-        <Header />
-        {children}
-        <Footer />
-      </body>
+        {paper!= 'anonimo' &&<Header />}
+          {children}
+        {paper!= 'anonimo' &&<Footer />}
+        </body>
     </html>
   );
 }
