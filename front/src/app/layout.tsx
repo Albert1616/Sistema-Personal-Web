@@ -26,7 +26,7 @@ export default function RootLayout({
         {paper!= 'anonimo' &&<Header />}
           {children}
         {paper!= 'anonimo' &&<Footer />}
-        </body>
+      </body>
     </html>
   );
 }

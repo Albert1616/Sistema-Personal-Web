@@ -22,7 +22,7 @@ import {
   
 import { Input } from '../ui/input'
 import { Label } from '../ui/label'
-import { Button } from '../ui/button'
+import { buttonVariants } from '../ui/button'
 import Link from 'next/link'
 import { AiOutlineUser } from 'react-icons/ai'
 import { useGenerationStore } from '@/lib/state/stateManagament'
@@ -61,7 +61,7 @@ function register({changePaper} : PropsRegister) {
                         <Input type='password' id='password_redgit' className='border-gray-400 rounded-sm'/>    
                         </div>
                         <div className='flex flex-col items-center mt-6 '>
-                            <Button onClick={()=>changePaper("albert", "aluno")}>Criar conta</Button>
+                            <Link href="/" className={buttonVariants({variant:'default'})} onClick={()=>changePaper("albert", "personal")}>Criar conta</Link>
                         </div>
                     </DialogDescription>
                 </DialogHeader>

@@ -14,7 +14,6 @@ function page() {
 
     function changePaper(login:string, paper:string){
         setUser(login, paper);
-        router.push("/");
     }
     
   return <Register changePaper={changePaper}/>

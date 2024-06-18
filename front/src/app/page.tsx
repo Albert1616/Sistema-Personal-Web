@@ -3,24 +3,26 @@
 import { useGenerationStore } from "@/lib/state/stateManagament";
 import Login from "@/components/login/login";
 import Personal from "@/components/home/personal";
-
+import { useRouter } from "next/navigation";
 
 export default function Home() {
   const {user} = useGenerationStore();
   const {login, paper} = user;
+
+  const router = useRouter();
   
     switch (paper) {
-      case 'aluno':
+      case 'personal':
         return <Personal />
         break;
-      case 'personal':
-        return <div>Personal</div>
+      case 'aluno':
+        return <div>Aluno</div>
         break;
       case 'nutricionista':
         return <div>Nutricionista</div>
         break; 
       default:
-        return <Login />
+        router.push("/login");
         break;
     }
 }
