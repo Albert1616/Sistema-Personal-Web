@@ -25,7 +25,7 @@ public class UserController {
     private final PasswordEncoder passwordEncoder;
     private final JwtService jwtService;
 
-    @PostMapping
+    @PostMapping("/create")
     @ResponseStatus(HttpStatus.CREATED)
     public User save(@RequestBody @Valid UserRequestDTO user){
         String passwordAfter = passwordEncoder.encode(user.getPassword());
