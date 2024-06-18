@@ -23,6 +23,11 @@ public class SecurityConfig {
     @Autowired
     private UserService userService;
 
+    public static final String [] ENDPOINTS_WITH_AUTHENTICATION_NOT_REQUIRED = {
+        "/api/create",
+        "/api/auth"
+    };
+
     @Bean
     public OncePerRequestFilter jwtFilter(){
         return new JwtAuthFilter(jwt, userService);
