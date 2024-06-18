@@ -24,8 +24,8 @@ public class SecurityConfig {
     private UserService userService;
 
     public static final String [] ENDPOINTS_WITH_AUTHENTICATION_NOT_REQUIRED = {
-        "/api/create",
-        "/api/auth"
+        "/api/user/create",
+        "/api/user/auth"
     };
 
     @Bean
