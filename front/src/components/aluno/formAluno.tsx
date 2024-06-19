@@ -1,13 +1,14 @@
 'use client'
 
 import Link from "next/link";
-import { buttonVariants } from "./ui/button";
-import { Input } from "./ui/input";
-import { Label } from "./ui/label";
+
 
 import { SiReacthookform } from "react-icons/si";
 import { useState } from "react";
 import { useGenerationStore } from "@/lib/state/stateManagament";
+import { Label } from "../ui/label";
+import { Input } from "../ui/input";
+import { buttonVariants } from "../ui/button";
 
 interface formValues{
   nome:string,

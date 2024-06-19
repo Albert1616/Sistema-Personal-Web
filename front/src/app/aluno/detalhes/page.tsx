@@ -7,6 +7,7 @@ import { Button } from '@/components/ui/button'
 import Link from 'next/link'
 import CardFicha from '@/components/fichaTreino/cardFicha'
 import AvaliacaoFisica from '@/components/avaliacaoFisica/avaliacaoFisica'
+import DetalhesAluno from '@/components/aluno/detalhesAluno'
 
 const medidasFicticias = {
     peso: 75,
@@ -62,7 +63,8 @@ function page() {
             
         </TabsContent>
         <TabsContent value="dados">
-            <h1>Dados do aluno</h1>
+            <DetalhesAluno nome='Matheus Albert da Silva Araujo' email='matheus@gmail.com' 
+            dataNascimento='16/11/2002' professor='Albert'/>
         </TabsContent>
 </Tabs>
     </div>

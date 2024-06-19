@@ -2,7 +2,7 @@
 import React from 'react'
 import { buttonVariants } from '../ui/button'
 import Link from 'next/link'
-import CardAluno from '../cardAluno'
+import CardAluno from '../aluno/cardAluno'
 import { useGenerationStore } from '@/lib/state/stateManagament'
 
 function personal() {
