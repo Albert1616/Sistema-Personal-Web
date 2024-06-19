@@ -25,6 +25,7 @@ const config = {
         background: "#EDF5FC",
         ButtonColor: "#16C25D",
         ButtonHoverColor: "#21D66C",
+        tabsColor: "#3745DB",
         input: "hsl(var(--input))",
         ring: "hsl(var(--ring))",
         foreground: "hsl(var(--foreground))",
