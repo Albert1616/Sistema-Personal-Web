@@ -37,7 +37,7 @@ function avaliacaoFisica({...props}:medidas) {
         </div>
         <div>
         <Table>
-                    <TableCaption>Avaliação física</TableCaption>
+                    <TableCaption className='text-xl font-bold'>Avaliação física</TableCaption>
                     <TableHeader>
                         <TableRow>
                             <TableHead>Músculo</TableHead>

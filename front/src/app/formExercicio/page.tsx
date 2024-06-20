@@ -1,4 +1,4 @@
-import FormExercicio from '@/components/formExercicio'
+import FormExercicio from '@/components/exercicio/formExercicio';
 import React from 'react'
 
 function page() {

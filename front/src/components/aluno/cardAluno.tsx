@@ -1,7 +1,7 @@
 import React from 'react'
 import Image from 'next/image'
 import { FaUserCircle,FaSearch } from "react-icons/fa";
-import { Button } from './ui/button';
+import { Button } from '../ui/button';
 import Link from 'next/link';
 
 

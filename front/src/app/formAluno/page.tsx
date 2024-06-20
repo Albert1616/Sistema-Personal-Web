@@ -1,4 +1,4 @@
-import FormAluno from '@/components/formAluno'
+import FormAluno from '@/components/aluno/formAluno'
 import React from 'react'
 
 function page() {
