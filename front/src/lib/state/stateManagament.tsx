@@ -21,7 +21,7 @@ interface GenerationState{
 export const useGenerationStore = create<GenerationState>()((set) =>({
     user:{
         login:'albert',
-        paper:'personal'
+        paper:'aluno'
     },
     setUser: (login: string,paper: string) => set({user: {login, paper}}),
     lst_aluno:[

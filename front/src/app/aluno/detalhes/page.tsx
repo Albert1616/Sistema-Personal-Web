@@ -30,7 +30,7 @@ function page() {
     const [isAvaliacao, setIsAvaliacao] = useState(true);
 
   return (
-    <div className='h-[80vh] w-screen'>
+    <div className='h-screen w-screen'>
  <Tabs defaultValue="ficha" className="w-full py-5 px-7">
         <TabsList className='text-white bg-tabsColor rounded-xl p-2'>
             <TabsTrigger value="ficha" className='bg-tabsColor rounded-xl'>Ficha de treino</TabsTrigger>
@@ -56,7 +56,7 @@ function page() {
                 />
             ):(
                 <>
-                    <h1>Nenhum treino cadastrado</h1>
+                    <h1>Nenhuma avaliação física cadastrada</h1>
                     <Button><Link href='/formTreino'>Adicionar treino</Link></Button>
                 </>
             )}

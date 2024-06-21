@@ -14,10 +14,10 @@ function cardExercicio({gift, nome, musculo} : propsCard) {
     const route = `exercicios/detalhes?nome=${encodeURIComponent(nome)}&descricao=${encodeURIComponent(musculo)}&gift=${encodeURIComponent(gift)}`
   return (
     <div className='flex items-center justify-between bg-gray-300 rounded-xl p-5'>
-        <div className='flex items-center gap-16'>
+        <div className='flex items-center gap-[5%]'>
             <Image src={gift} alt='Execução do exercício' width={130} height={130}/>
             <div>
-            <h1 className='text-2xl'>{nome}</h1>
+            <h1 className='text-xl'>{nome}</h1>
             <h3 className='text-lg'>{musculo}</h3>
             </div>
         </div>

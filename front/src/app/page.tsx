@@ -4,6 +4,7 @@ import { useGenerationStore } from "@/lib/state/stateManagament";
 import Login from "@/components/login/login";
 import Personal from "@/components/home/personal";
 import { useRouter } from "next/navigation";
+import Aluno from "@/components/home/aluno";
 
 export default function Home() {
   const {user} = useGenerationStore();
@@ -16,7 +17,7 @@ export default function Home() {
         return <Personal />
         break;
       case 'aluno':
-        return <div>Aluno</div>
+        return <Aluno />
         break;
       case 'nutricionista':
         return <div>Nutricionista</div>

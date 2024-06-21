@@ -19,7 +19,7 @@ interface propsAluno{
 
 function detalhesAluno({nome,email,dataNascimento,professor,nutricionista} : propsAluno) {
   return (
-    <div className='flex gap-[12rem] bg-gray-300 p-5 border rounded-xl w-[50%]'>
+    <div className='flex gap-[15%] bg-gray-300 p-5 border rounded-xl w-[70%]'>
       <div className='flex flex-col gap-2'>
         <Avatar className='w-[10rem] h-[10rem]'>
           <AvatarImage sizes='xl' src='/img/avatar-1.jpg'/>
