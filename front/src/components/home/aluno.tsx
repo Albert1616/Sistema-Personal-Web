@@ -8,6 +8,8 @@ import { Button } from '../ui/button';
 import Link from 'next/link';
 import AvaliacaoFisica from '../avaliacaoFisica/avaliacaoFisica';
 import DetalhesAluno from '../aluno/detalhesAluno';
+import Dieta from '../dieta/dieta';
+import { FaExternalLinkAlt } from 'react-icons/fa';
 
 function aluno() {
 
@@ -40,16 +42,16 @@ function aluno() {
         </Avatar>
         <h1 className='text-2xl'>Matheus Albert da Silva Araújo</h1>
         <h1 className='text-xl'>Email: matheus@email.com</h1>
-      <h3 className='text-xl'>Professor:
+      <h3 className='text-xl flex items-center gap-2'>Professor:
         {isPersonal?(
-          <span className='text-lg'>Albert</span>
+          <Link href='/profissional' className='text-lg flex items-center gap-2'>Albert <FaExternalLinkAlt size={15}/></Link>
         ) :(
           <span className='text-lg'>você ainda não tem um personal!</span>
         )}
       </h3>
-      <h3 className='text-xl'>Nutricionista:
+      <h3 className='text-xl flex items-center gap-2'>Nutricionista:
         {isNutri?(
-          <span className='text-lg'>Albert</span>
+          <Link href='/profissional' className='text-lg flex items-center gap-2'>Albert <FaExternalLinkAlt size={15}/></Link>
         ) :(
           <span className='text-lg'>você ainda não tem uma nutricionista!</span>
         )}
@@ -60,6 +62,7 @@ function aluno() {
         <TabsList className='text-white bg-tabsColor rounded-xl p-2'>
             <TabsTrigger value="ficha" className='bg-tabsColor rounded-xl'>Ficha de treino</TabsTrigger>
             <TabsTrigger value="avaliacao" className='bg-tabsColor rounded-xl'>Avaliação física</TabsTrigger>
+            <TabsTrigger value="dieta" className='bg-tabsColor rounded-xl'>Dieta</TabsTrigger>
         </TabsList>
 
         <TabsContent value="ficha" className='grid grid-cols-2'>
@@ -80,6 +83,16 @@ function aluno() {
             ):(
                 <>
                     <h1>Nenhum treino cadastrado</h1>
+                </>
+            )}
+            
+        </TabsContent>
+        <TabsContent value="dieta">
+            {isNutri?(
+                <Dieta />
+            ):(
+                <>
+                    <h1>Nenhuma dieta cadastrada</h1>
                 </>
             )}
             

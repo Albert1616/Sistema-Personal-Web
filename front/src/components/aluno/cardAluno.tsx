@@ -14,7 +14,7 @@ interface cardProps{
 
 function cardAluno({icon, nome, email, data} : cardProps) {
   return (
-    <div className='flex items-center justify-between bg-gray-300 rounded-md p-3'>
+    <div className='flex items-center justify-between bg-gray-300 rounded-xl p-3'>
         <div className='flex gap-5'>
         {icon? (
             <Image src={icon!} alt='Foto do aluno' className='rounded-full ring-2 ring-white'
