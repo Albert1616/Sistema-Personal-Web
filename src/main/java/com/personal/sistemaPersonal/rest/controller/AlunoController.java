@@ -4,8 +4,10 @@ import com.personal.sistemaPersonal.rest.dto.request.AlunoRequestDTO;
 import com.personal.sistemaPersonal.rest.dto.response.AlunoResponseDTO;
 import com.personal.sistemaPersonal.service.AlunoService;
 import jakarta.validation.Valid;
+import lombok.AllArgsConstructor;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
+import org.springframework.security.crypto.password.PasswordEncoder;
 import org.springframework.validation.FieldError;
 import org.springframework.web.bind.MethodArgumentNotValidException;
 import org.springframework.web.bind.annotation.*;
@@ -16,23 +18,19 @@ import java.util.Map;
 
 @RestController
 @RequestMapping("/api/aluno")
+@AllArgsConstructor
 public class AlunoController {
 
     @Autowired
     AlunoService alunoService;
 
-//    @Autowired
-//    AvaliacaoFisicaService avaliacaoFisicaService;
-//
-//    @Autowired
-//    FichaTreinoService fichaTreinoService;
-//
-//    @Autowired
-//    TreinoService treinoService;
+    private final PasswordEncoder passwordEncoder;
 
-    @PostMapping
+    @PostMapping("/cadaster")
     @ResponseStatus(HttpStatus.CREATED)
     public AlunoResponseDTO save(@RequestBody @Valid AlunoRequestDTO dto){
+        String passwordAfter = passwordEncoder.encode(dto.getPassword());
+        dto.setPassword(passwordAfter);
         return alunoService.save(dto);
     }
 

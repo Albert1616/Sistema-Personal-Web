@@ -69,6 +69,9 @@ public class NutricionistaServiceImpl implements NutricionistaService {
         nutricionista.setNome(dto.getNome());
         nutricionista.setEmail(dto.getEmail());
         nutricionista.setDataNascimento(dto.getData_nascimento());
+        nutricionista.setLogin(dto.getLogin());
+        nutricionista.setPassword(dto.getPassword());
+        nutricionista.setPaper(dto.getPaper());
 
         return nutricionista;
     }

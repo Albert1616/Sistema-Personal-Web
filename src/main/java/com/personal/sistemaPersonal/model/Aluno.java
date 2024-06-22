@@ -16,12 +16,8 @@ import java.util.List;
 @NoArgsConstructor
 @Entity
 @Table(name = "aluno")
-public class Aluno {
-
-    @Id
-    @GeneratedValue(strategy = GenerationType.IDENTITY)
-    private Integer id;
-
+@PrimaryKeyJoinColumn(name = "id")
+public class Aluno extends User{
     @Column(length = 50)
     private String nome;
 

@@ -25,7 +25,10 @@ public class SecurityConfig {
 
     public static final String [] ENDPOINTS_WITH_AUTHENTICATION_NOT_REQUIRED = {
         "/api/user/create",
-        "/api/user/auth"
+        "/api/user/auth",
+        "/api/personal/cadaster",
+        "/api/nutricionista/cadaster",
+        "/api/aluno/cadaster"
     };
 
     @Bean
@@ -43,14 +46,20 @@ public class SecurityConfig {
                         .permitAll()
                         .requestMatchers("/api/user/**")
                             .anonymous()
+                        .requestMatchers("/api/aluno/cadaster")
+                            .permitAll()
                         .requestMatchers("/api/aluno/**")
                             .hasAnyRole("PERSONAL", "NUTRICIONISTA")
                         .requestMatchers("/api/aluno/update")
                             .hasAnyRole("ALUNO")
+                        .requestMatchers("api/personal/cadaster")
+                            .permitAll()
                         .requestMatchers("/api/personal/**")
                             .hasRole("ADMIN")
                         .requestMatchers("/api/personal/update")
                             .hasAnyRole("PERSONAL")
+                        .requestMatchers("api/nutricionista/cadaster")
+                            .permitAll()
                         .requestMatchers("/api/nutricionista/**")
                             .hasRole("ADMIN")
                         .requestMatchers("/api/nutricionista/update")

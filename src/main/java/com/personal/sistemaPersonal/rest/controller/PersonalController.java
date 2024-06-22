@@ -4,8 +4,10 @@ import com.personal.sistemaPersonal.rest.dto.response.PersonalResponseDTO;
 import com.personal.sistemaPersonal.rest.dto.request.PersonalRequestDTO;
 import com.personal.sistemaPersonal.service.PersonalService;
 import jakarta.validation.Valid;
+import lombok.AllArgsConstructor;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
+import org.springframework.security.crypto.password.PasswordEncoder;
 import org.springframework.validation.FieldError;
 import org.springframework.web.bind.MethodArgumentNotValidException;
 import org.springframework.web.bind.annotation.*;
@@ -17,14 +19,18 @@ import java.util.Map;
 
 @RequestMapping("/api/personal")
 @RestController
+@AllArgsConstructor
 public class PersonalController {
-
     @Autowired
     PersonalService personalService;
 
-    @PostMapping
+    private final PasswordEncoder passwordEncoder;
+
+    @PostMapping("/cadaster")
     @ResponseStatus(HttpStatus.CREATED)
     public PersonalResponseDTO save(@RequestBody @Valid PersonalRequestDTO dto){
+        String passwordAfter = passwordEncoder.encode(dto.getPassword());
+        dto.setPassword(passwordAfter);
         return personalService.save(dto);
     }
 

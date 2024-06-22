@@ -1,13 +1,6 @@
 package com.personal.sistemaPersonal.model;
 
-import jakarta.persistence.Column;
-import jakarta.persistence.Entity;
-import jakarta.persistence.FetchType;
-import jakarta.persistence.GeneratedValue;
-import jakarta.persistence.GenerationType;
-import jakarta.persistence.Id;
-import jakarta.persistence.OneToMany;
-import jakarta.persistence.Table;
+import jakarta.persistence.*;
 import lombok.AllArgsConstructor;
 import lombok.Getter;
 import lombok.NoArgsConstructor;
@@ -22,12 +15,8 @@ import java.util.List;
 @AllArgsConstructor
 @Entity
 @Table(name = "nutricionista")
-public class Nutricionista {
-
-    @Id
-    @GeneratedValue(strategy = GenerationType.IDENTITY)
-    private Integer id;
-
+@PrimaryKeyJoinColumn(name = "id")
+public class Nutricionista extends User{
     @Column(length = 50)
     private String nome;
 

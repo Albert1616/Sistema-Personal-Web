@@ -16,11 +16,8 @@ import java.util.List;
 @NoArgsConstructor
 @Entity
 @Table(name = "personal")
-public class Personal {
-    @Id
-    @GeneratedValue(strategy = GenerationType.IDENTITY)
-    private Integer id;
-
+@PrimaryKeyJoinColumn(name = "id")
+public class Personal extends User{
     @Column(length = 50)
     private String nome;
 
@@ -42,6 +39,9 @@ public class Personal {
         personal.setEmail(personalRequestDTO.getEmail());
         personal.setDataNascimento(personalRequestDTO.getDataNascimento());
         personal.setCREF(personalRequestDTO.getCREF());
+        personal.setLogin( personalRequestDTO.getLogin());
+        personal.setPassword(personalRequestDTO.getPassword());
+        personal.setPaper(personalRequestDTO.getPaper());
 
         return personal;
     }

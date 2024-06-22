@@ -4,8 +4,10 @@ import com.personal.sistemaPersonal.rest.dto.request.NutricionistaRequestDTO;
 import com.personal.sistemaPersonal.rest.dto.response.NutricionistaResponseDTO;
 import com.personal.sistemaPersonal.service.NutricionistaService;
 import jakarta.validation.Valid;
+import lombok.AllArgsConstructor;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
+import org.springframework.security.crypto.password.PasswordEncoder;
 import org.springframework.validation.FieldError;
 import org.springframework.web.bind.MethodArgumentNotValidException;
 import org.springframework.web.bind.annotation.*;
@@ -16,14 +18,19 @@ import java.util.Map;
 
 @RestController
 @RequestMapping("/api/nutricionista")
+@AllArgsConstructor
 public class NutricionistaController {
 
     @Autowired
     NutricionistaService nutricionistaService;
 
-    @PostMapping
+    private final PasswordEncoder  passwordEncoder;
+
+    @PostMapping("/cadaster")
     @ResponseStatus(HttpStatus.CREATED)
     public NutricionistaResponseDTO save(@RequestBody @Valid NutricionistaRequestDTO nutricionistaRequestDTO){
+        String passwordAfter = passwordEncoder.encode(nutricionistaRequestDTO.getPassword());
+        nutricionistaRequestDTO.setPassword(passwordAfter);
         return nutricionistaService.save(nutricionistaRequestDTO);
     }
 

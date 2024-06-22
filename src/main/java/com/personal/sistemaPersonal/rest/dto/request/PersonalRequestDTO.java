@@ -10,7 +10,7 @@ import java.time.LocalDate;
 
 @Getter
 @Setter
-public class PersonalRequestDTO {
+public class PersonalRequestDTO extends UserRequestDTO{
     @NotBlank(message = "Campo não informado.")
     private String nome;
 

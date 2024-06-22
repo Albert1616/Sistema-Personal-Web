@@ -91,6 +91,9 @@ public class AlunoServiceImpl implements AlunoService {
         aluno.setNome(dto.getNome());
         aluno.setEmail(dto.getEmail());
         aluno.setData_nascimento(dto.getData_nascimento());
+        aluno.setLogin(dto.getLogin());
+        aluno.setPassword(dto.getPassword());
+        aluno.setPaper(dto.getPaper());
         Personal personal = personalService.getById(dto.getPersonal());
         aluno.setPersonal(personal);
         Nutricionista nutricionista = nutricionistaService.getById(dto.getNutricionista());
