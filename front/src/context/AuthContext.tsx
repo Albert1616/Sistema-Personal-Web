@@ -1,43 +1,33 @@
-import React, { createContext, PropsWithChildren, useContext, useState } from 'react';
+// context/AuthContext.tsx
+import { createContext, useContext } from 'react';
+import { useTokenStore } from '../store/tokenStore';
+import { useEffect } from 'react';
 
-interface User {
-  token: string;
-}
+const AuthContext = createContext<TokenState | undefined>(undefined);
 
-interface AuthContextType {
-  user: User | null;
-  login: (userData: User) => void;
-  logout: () => void;
-}
+export const AuthProvider = ({ children }) => {
+  const tokenState = useTokenStore();
+  const { tokenPayload, clearToken } = tokenState;
 
-const AuthContext = createContext<AuthContextType>({
-  user: null,
-  login: () => {},
-  logout: () => {},
-});
+  useEffect(() => {
+    const checkTokenExpiration = () => {
+      if (tokenPayload && tokenPayload.exp < Date.now() / 1000) {
+        clearToken();
+      }
+    };
 
-export const AuthProvider: React.FC<PropsWithChildren> = ({ children }) => {
-  const [user, setUser] = useState<User | null>(null);
+    checkTokenExpiration();
+    const intervalId = setInterval(checkTokenExpiration, 5 * 60 * 1000); // Verifica a cada 5 minutos
+    return () => clearInterval(intervalId);
+  }, [tokenPayload, clearToken]);
 
-  const login = (userData: User) => {
-    setUser(userData);
-    // (Opcional) Armazenar o ID e o papel no localStorage
-    localStorage.setItem('user', JSON.stringify(userData));
-  };
-
-  const logout = () => {
-    setUser(null);
-    localStorage.removeItem('user');
-    document.cookie = 'token=; expires=Thu, 01 Jan 1970 00:00:00 UTC; path=/;';
-  };
-
-  return (
-    <AuthContext.Provider value={{ user, login, logout }}>
-      {children}
-    </AuthContext.Provider>
-  );
+  return <AuthContext.Provider value={tokenState}>{children}</AuthContext.Provider>;
 };
 
 export const useAuth = () => {
-  return useContext(AuthContext);
+  const context = useContext(AuthContext);
+  if (context === undefined) {
+    throw new Error('useAuth must be used within an AuthProvider');
+  }
+  return context;
 };
