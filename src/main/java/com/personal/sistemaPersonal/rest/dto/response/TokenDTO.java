@@ -9,11 +9,13 @@ import org.antlr.v4.runtime.Token;
 //@NoArgsConstructor
 //@AllArgsConstructor
 public class TokenDTO {
-    private String login;
+    private Integer id;
+    private String paper;
     private String token;
 
-    public TokenDTO(String login, String token){
-        this.login = login;
+    public TokenDTO(Integer id, String paper, String token){
+        this.id = id;
+        this.paper = paper;
         this.token = token;
     }
 }

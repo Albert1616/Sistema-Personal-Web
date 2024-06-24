@@ -13,7 +13,7 @@ public class AlunoResponseDTO {
     private Integer id;
     private String nome;
     private String email;
-    private LocalDate data_nascimento;
+    private LocalDate dataNascimento;
     private PersonalResponseDTO personal;
     private NutricionistaResponseDTO nuticionista;
 }

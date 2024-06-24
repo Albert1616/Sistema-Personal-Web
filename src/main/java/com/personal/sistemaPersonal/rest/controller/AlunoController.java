@@ -40,6 +40,12 @@ public class AlunoController {
         return alunoService.getAlunoInformacoesDTOById(id);
     }
 
+//    @GetMapping("/getAllInformationsById/{id}")
+//    @ResponseStatus(HttpStatus.OK)
+//    public List<AlunoResponseDTO> getAllInformationsById(@PathVariable Integer id){
+//
+//    }
+
     @GetMapping
     @ResponseStatus(HttpStatus.OK)
     public List<AlunoResponseDTO> getAll(){
@@ -56,6 +62,12 @@ public class AlunoController {
     @ResponseStatus(HttpStatus.OK)
     public void delete(@PathVariable Integer id){
         alunoService.delete(id);
+    }
+
+    @PatchMapping("{id}/vinculate/{login}")
+    @ResponseStatus(HttpStatus.OK)
+    public void vinculate(@PathVariable Integer id, @PathVariable String login){
+        alunoService.vinculate(id, login);
     }
 
     @ResponseStatus(HttpStatus.BAD_REQUEST)

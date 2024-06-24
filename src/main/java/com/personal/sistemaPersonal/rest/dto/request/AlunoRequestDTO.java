@@ -17,11 +17,5 @@ public class AlunoRequestDTO extends UserRequestDTO{
     private String email;
 
     @Past(message = "Data de nascimento inválida.")
-    private LocalDate data_nascimento;
-
-    @Min(value = 1, message = "O id do personal não pode ser negativo ou zero.")
-    private Integer personal;
-
-    @Min(value = 1, message = "O id do nutricionista não pode ser negativo ou zero.")
-    private Integer nutricionista;
+    private LocalDate dataNascimento;
 }

@@ -1,6 +1,5 @@
 package com.personal.sistemaPersonal.service.impl;
 
-import com.personal.sistemaPersonal.enumerate.UserTypes;
 import com.personal.sistemaPersonal.exception.SenhaInvalidaException;
 import com.personal.sistemaPersonal.exception.UsuarioNaoEncontrado;
 import com.personal.sistemaPersonal.model.User;
@@ -11,10 +10,9 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.security.core.userdetails.UserDetails;
 import org.springframework.security.core.userdetails.UserDetailsService;
 import org.springframework.security.crypto.password.PasswordEncoder;
-import org.springframework.stereotype.Component;
 import org.springframework.stereotype.Service;
 
-import static com.personal.sistemaPersonal.enumerate.UserTypes.*;
+import java.util.Optional;
 
 @Service
 public class UserService implements UserDetailsService {
@@ -44,6 +42,14 @@ public class UserService implements UserDetailsService {
         throw new SenhaInvalidaException();
     }
 
+    public User getByLogin(String login){
+        Optional<User> user = repository.findByLogin(login);
+        if(user.isPresent()){
+            return repository.findByLogin(login).get();
+        }
+        throw new UsuarioNaoEncontrado();
+    }
+
     public UserDetails loadUserByUsername(String userLogin){
         User user = repository.findByLogin(userLogin)
                 .orElseThrow(() -> new UsuarioNaoEncontrado());
@@ -55,5 +61,10 @@ public class UserService implements UserDetailsService {
                 .password(user.getPassword())
                 .roles(roles)
                 .build();
+    }
+
+    public User getUserByLogin(String login){
+        Optional<User> user = repository.findByLogin(login);
+        return user.orElseThrow(UsuarioNaoEncontrado::new);
     }
 }

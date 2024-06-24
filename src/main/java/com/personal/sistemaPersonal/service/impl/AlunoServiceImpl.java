@@ -1,10 +1,9 @@
 package com.personal.sistemaPersonal.service.impl;
 
+import com.personal.sistemaPersonal.enumerate.UserTypes;
 import com.personal.sistemaPersonal.exception.AlunoNaoEncontradoException;
-import com.personal.sistemaPersonal.model.Aluno;
-import com.personal.sistemaPersonal.model.FichaTreino;
-import com.personal.sistemaPersonal.model.Nutricionista;
-import com.personal.sistemaPersonal.model.Personal;
+import com.personal.sistemaPersonal.exception.UsuarioNaoEncontrado;
+import com.personal.sistemaPersonal.model.*;
 import com.personal.sistemaPersonal.repository.AlunoRepository;
 import com.personal.sistemaPersonal.rest.dto.request.AlunoRequestDTO;
 import com.personal.sistemaPersonal.rest.dto.response.AlunoResponseDTO;
@@ -31,6 +30,9 @@ public class AlunoServiceImpl implements AlunoService {
 
     @Autowired
     NutricionistaServiceImpl nutricionistaService;
+
+    @Autowired
+    UserService userService;
 
     @Autowired
     FichaTreinoService fichaTreinoService;
@@ -70,6 +72,7 @@ public class AlunoServiceImpl implements AlunoService {
         return convertToAlunoResponseDTO(alunoRepository.findAll());
     }
 
+
     @Override
     public Aluno getById(Integer id) {
         Optional<Aluno> aluno = alunoRepository.findById(id);
@@ -77,6 +80,27 @@ public class AlunoServiceImpl implements AlunoService {
             return aluno.get();
         }
         else throw new AlunoNaoEncontradoException();
+    }
+
+    public void vinculate(Integer id, String login){
+        User user = userService.getByLogin(login);
+        Aluno aluno = getById(id);
+
+        if(user.getPaper() == UserTypes.NUTRICIONISTA){
+            Nutricionista nutricionista = nutricionistaService.getById(user.getId());
+            aluno.setNutricionista(nutricionista);
+            alunoRepository.save(aluno);
+            return;
+        }
+
+        if(user.getPaper() == UserTypes.PERSONAL){
+            Personal personal = personalService.getById(user.getId());
+            aluno.setPersonal(personal);
+            alunoRepository.save(aluno);
+            return;
+        }
+
+        throw new UsuarioNaoEncontrado("Usuário não é nutricionista ou personal");
     }
 
     @Override
@@ -90,14 +114,10 @@ public class AlunoServiceImpl implements AlunoService {
 
         aluno.setNome(dto.getNome());
         aluno.setEmail(dto.getEmail());
-        aluno.setData_nascimento(dto.getData_nascimento());
+        aluno.setData_nascimento(dto.getDataNascimento());
         aluno.setLogin(dto.getLogin());
         aluno.setPassword(dto.getPassword());
         aluno.setPaper(dto.getPaper());
-        Personal personal = personalService.getById(dto.getPersonal());
-        aluno.setPersonal(personal);
-        Nutricionista nutricionista = nutricionistaService.getById(dto.getNutricionista());
-        aluno.setNutricionista(nutricionista);
 
         return aluno;
     }
@@ -110,7 +130,7 @@ public class AlunoServiceImpl implements AlunoService {
                 .id(aluno.getId())
                 .nome(aluno.getNome())
                 .email(aluno.getEmail())
-                .data_nascimento(aluno.getData_nascimento())
+                .dataNascimento(aluno.getData_nascimento())
                 .personal(personalService.convertToPersonalResponseDTO(aluno.getPersonal()))
                 .nuticionista(nutricionistaService.convertToNutricionistaResponseDTO(aluno.getNutricionista()))
                 .build();

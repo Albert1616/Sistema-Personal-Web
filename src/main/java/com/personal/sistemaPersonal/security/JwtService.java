@@ -32,6 +32,8 @@ public class JwtService {
 
         return Jwts.builder()
                 .subject(user.getLogin())
+                .claim("userId", user.getId())
+                .claim("userPaper", user.getPaper())
                 .expiration(data)
                 .signWith(secretKey)
                 .compact();

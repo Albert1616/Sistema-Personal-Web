@@ -20,7 +20,4 @@ public class PersonalRequestDTO extends UserRequestDTO{
 
     @Past(message = "Data de nascimento inválida.")
     private LocalDate dataNascimento;
-
-    @NotBlank(message = "Campo não informado")
-    private String CREF;
 }

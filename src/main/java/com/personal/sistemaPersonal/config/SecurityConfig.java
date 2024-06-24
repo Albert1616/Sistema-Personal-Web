@@ -48,6 +48,8 @@ public class SecurityConfig {
                             .anonymous()
                         .requestMatchers("/api/aluno/cadaster")
                             .permitAll()
+                        .requestMatchers("/api/aluno/{id}/vinculate/{login}")
+                            .hasAnyRole("ADMIN", "ALUNO")
                         .requestMatchers("/api/aluno/**")
                             .hasAnyRole("PERSONAL", "NUTRICIONISTA")
                         .requestMatchers("/api/aluno/update")

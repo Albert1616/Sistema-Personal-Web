@@ -26,9 +26,6 @@ public class Personal extends User{
 
     private LocalDate dataNascimento;
 
-    @Column(length = 10)
-    private String CREF;
-
     @OneToMany(mappedBy = "personal", fetch = FetchType.LAZY)
     private List<Aluno> alunos;
 
@@ -38,7 +35,6 @@ public class Personal extends User{
         personal.setNome(personalRequestDTO.getNome());
         personal.setEmail(personalRequestDTO.getEmail());
         personal.setDataNascimento(personalRequestDTO.getDataNascimento());
-        personal.setCREF(personalRequestDTO.getCREF());
         personal.setLogin( personalRequestDTO.getLogin());
         personal.setPassword(personalRequestDTO.getPassword());
         personal.setPaper(personalRequestDTO.getPaper());

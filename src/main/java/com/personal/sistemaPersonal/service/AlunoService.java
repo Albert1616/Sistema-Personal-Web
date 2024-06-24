@@ -16,4 +16,5 @@ public interface AlunoService {
     Aluno convert(AlunoRequestDTO alunoRequestDTO);
     AlunoResponseDTO convertToAlunoResponseDTO(Aluno aluno);
     List<AlunoResponseDTO> convertToAlunoResponseDTO(List<Aluno> alunos);
+    void vinculate(Integer id, String login);
 }

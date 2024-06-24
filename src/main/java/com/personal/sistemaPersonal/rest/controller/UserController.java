@@ -34,12 +34,13 @@ public class UserController {
     }
 
     @PostMapping("/auth")
-    public TokenDTO auth(@RequestBody CredentialsDTO credentialsDTO){
+    public String auth(@RequestBody CredentialsDTO credentialsDTO){
         try{
             User user = new User(credentialsDTO.getLogin(), credentialsDTO.getPassword());
             UserDetails userAuth = userService.auth(user);
+            user = userService.getUserByLogin(user.getLogin());
             String token = jwtService.createToken(user);
-            return new TokenDTO(user.getLogin(), token);
+            return token;
         }catch (UsernameNotFoundException | SenhaInvalidaException e){
             throw new ResponseStatusException(HttpStatus.UNAUTHORIZED, e.getMessage());
         }

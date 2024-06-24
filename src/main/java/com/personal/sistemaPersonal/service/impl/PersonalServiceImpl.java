@@ -7,7 +7,6 @@ import com.personal.sistemaPersonal.rest.dto.response.PersonalResponseDTO;
 import com.personal.sistemaPersonal.rest.dto.request.PersonalRequestDTO;
 import com.personal.sistemaPersonal.service.PersonalService;
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.security.crypto.password.PasswordEncoder;
 import org.springframework.stereotype.Service;
 import org.springframework.util.CollectionUtils;
 
@@ -50,11 +49,12 @@ public class PersonalServiceImpl implements PersonalService {
     public void update(Integer id, PersonalRequestDTO personalDTO) {
         Optional<Personal> personalOptional = personalRepository.findById(id);
         if(personalOptional.isPresent()) {
+
             Personal personal = personalOptional.get();
             personal.setNome(personalDTO.getNome());
             personal.setEmail(personalDTO.getEmail());
             personal.setDataNascimento(personalDTO.getDataNascimento());
-            personal.setCREF(personalDTO.getCREF());
+
             personalRepository.save(personal);
         }
         else throw new PersonalNaoEncontradoException();
@@ -74,7 +74,6 @@ public class PersonalServiceImpl implements PersonalService {
                 .nome(personal.getNome())
                 .email(personal.getEmail())
                 .dataNascimento(personal.getDataNascimento())
-                .CREF(personal.getCREF())
                 .build();
     }
 

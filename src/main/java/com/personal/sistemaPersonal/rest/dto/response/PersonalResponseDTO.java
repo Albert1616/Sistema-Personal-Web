@@ -14,5 +14,4 @@ public class PersonalResponseDTO {
     private String nome;
     private String email;
     private LocalDate dataNascimento;
-    private String CREF;
 }
