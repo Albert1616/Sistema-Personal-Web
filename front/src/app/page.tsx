@@ -1,7 +1,6 @@
 'use client';
 
 import { useGenerationStore } from "@/lib/state/stateManagament";
-import Login from "@/components/login/login";
 import Personal from "@/components/home/personal";
 import { useRouter } from "next/navigation";
 import Aluno from "@/components/home/aluno";
@@ -9,6 +8,8 @@ import Aluno from "@/components/home/aluno";
 export default function Home() {
   const {user} = useGenerationStore();
   const {login, paper} = user;
+
+  console.log(user)
 
   const router = useRouter();
   

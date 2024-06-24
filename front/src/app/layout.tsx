@@ -9,7 +9,6 @@ import { useGenerationStore } from "@/lib/state/stateManagament";
 import Login from "@/components/login/login";
 import { useRouter } from "next/router";
 
-const inter = Inter({ subsets: ["latin"] });
 
 export default function RootLayout({
   children,
@@ -22,10 +21,10 @@ export default function RootLayout({
 
   return (
     <html lang="en">
-      <body className={inter.className}>
-        {paper!= 'anonimo' &&<Header />}
-          {children}
-        {paper!= 'anonimo' &&<Footer />}
+      <body>
+        {!(paper == '') && <Header/>}
+        {children}
+        {!(paper == '') && <Footer/>}
       </body>
     </html>
   );
