@@ -43,7 +43,7 @@ public class SecurityConfig {
                         "/v3/api-docs/***",
                         "/swagger-resources/**",
                         "/swagger-ui/**")
-                        .permitAll()
+                            .permitAll()
                         .requestMatchers("/api/user/**")
                             .anonymous()
                         .requestMatchers("/api/aluno/cadaster")
@@ -51,15 +51,17 @@ public class SecurityConfig {
                         .requestMatchers("/api/aluno/{id}/vinculate/{login}")
                             .hasAnyRole("ADMIN", "ALUNO")
                         .requestMatchers("/api/aluno/**")
-                            .hasAnyRole("PERSONAL", "NUTRICIONISTA")
+                            .hasAnyRole("PERSONAL", "NUTRICIONISTA", "ALUNO")
                         .requestMatchers("/api/aluno/update")
                             .hasAnyRole("ALUNO")
                         .requestMatchers("api/personal/cadaster")
                             .permitAll()
                         .requestMatchers("/api/personal/**")
-                            .hasRole("ADMIN")
+                            .hasAnyRole("ADMIN", "PERSONAL")
                         .requestMatchers("/api/personal/update")
                             .hasAnyRole("PERSONAL")
+                        .requestMatchers("/api/treino/**")
+                            .hasAnyRole("ADMIN", "PERSONAL", "ALUNO")
                         .requestMatchers("api/nutricionista/cadaster")
                             .permitAll()
                         .requestMatchers("/api/nutricionista/**")
@@ -71,10 +73,11 @@ public class SecurityConfig {
                                 "/api/refeicao/**")
                             .hasRole("NUTRICIONISTA")
                         //PERMISSÃO: PERSONAL
-                        .requestMatchers("/api/avalicao_fisica/**","/api/exercicio/**",
+                        .requestMatchers("/api/avaliacao_fisica/**","/api/exercicio/**",
                                 "/api/ficha_treino/**","/api/treino/**")
                             .hasRole("PERSONAL")
-                        .anyRequest().hasRole("ADMIN")
+                        .anyRequest()
+                            .hasRole("ADMIN")
                 ).sessionManagement((session) ->
                     session.sessionCreationPolicy(SessionCreationPolicy.STATELESS))
                 .addFilterBefore(

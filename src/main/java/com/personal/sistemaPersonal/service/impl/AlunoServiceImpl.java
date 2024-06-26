@@ -6,10 +6,9 @@ import com.personal.sistemaPersonal.exception.UsuarioNaoEncontrado;
 import com.personal.sistemaPersonal.model.*;
 import com.personal.sistemaPersonal.repository.AlunoRepository;
 import com.personal.sistemaPersonal.rest.dto.request.AlunoRequestDTO;
+import com.personal.sistemaPersonal.rest.dto.response.AlunoCompletoResponseDTO;
 import com.personal.sistemaPersonal.rest.dto.response.AlunoResponseDTO;
-import com.personal.sistemaPersonal.service.AlunoService;
-import com.personal.sistemaPersonal.service.FichaTreinoService;
-import com.personal.sistemaPersonal.service.PersonalService;
+import com.personal.sistemaPersonal.service.*;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 import org.springframework.util.CollectionUtils;
@@ -35,7 +34,10 @@ public class AlunoServiceImpl implements AlunoService {
     UserService userService;
 
     @Autowired
-    FichaTreinoService fichaTreinoService;
+    TreinoService treinoService;
+
+    @Autowired
+    AvaliacaoFisicaService avaliacaoFisicaService;
 
     @Override
     public AlunoResponseDTO save(AlunoRequestDTO dto) {
@@ -82,6 +84,14 @@ public class AlunoServiceImpl implements AlunoService {
         else throw new AlunoNaoEncontradoException();
     }
 
+    @Override
+    public AlunoCompletoResponseDTO getAllInformartionsById(Integer id){
+        Optional<Aluno> aluno = alunoRepository.findById(id);
+        if (aluno.isPresent()){
+            return convertToAlunoCompletoResponseDTO(aluno.get());
+        }else throw new AlunoNaoEncontradoException();
+    }
+
     public void vinculate(Integer id, String login){
         User user = userService.getByLogin(login);
         Aluno aluno = getById(id);
@@ -120,6 +130,23 @@ public class AlunoServiceImpl implements AlunoService {
         aluno.setPaper(dto.getPaper());
 
         return aluno;
+    }
+
+    @Override
+    public AlunoCompletoResponseDTO convertToAlunoCompletoResponseDTO(Aluno aluno) {
+        if(Objects.isNull(aluno)) return null;
+        return AlunoCompletoResponseDTO
+                .builder()
+                .id(aluno.getId())
+                .login(aluno.getLogin())
+                .nome(aluno.getNome())
+                .email(aluno.getEmail())
+                .dataNascimento(aluno.getData_nascimento())
+                .personal(personalService.convertToPersonalResponseDTO(aluno.getPersonal()))
+                .nuticionista(nutricionistaService.convertToNutricionistaResponseDTO(aluno.getNutricionista()))
+                .treinos(treinoService.getByIdAluno(aluno.getId()))
+                .avaliacoes(avaliacaoFisicaService.getAvaliacoesFisicasByIdAluno(aluno.getId()))
+                .build();
     }
 
     @Override

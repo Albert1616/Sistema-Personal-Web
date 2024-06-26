@@ -1,6 +1,7 @@
 package com.personal.sistemaPersonal.rest.controller;
 
 import com.personal.sistemaPersonal.rest.dto.request.AlunoRequestDTO;
+import com.personal.sistemaPersonal.rest.dto.response.AlunoCompletoResponseDTO;
 import com.personal.sistemaPersonal.rest.dto.response.AlunoResponseDTO;
 import com.personal.sistemaPersonal.service.AlunoService;
 import jakarta.validation.Valid;
@@ -40,11 +41,11 @@ public class AlunoController {
         return alunoService.getAlunoInformacoesDTOById(id);
     }
 
-//    @GetMapping("/getAllInformationsById/{id}")
-//    @ResponseStatus(HttpStatus.OK)
-//    public List<AlunoResponseDTO> getAllInformationsById(@PathVariable Integer id){
-//
-//    }
+    @GetMapping("/getAllInformationsById/{id}")
+    @ResponseStatus(HttpStatus.OK)
+    public AlunoCompletoResponseDTO getAllInformationsById(@PathVariable Integer id){
+        return alunoService.getAllInformartionsById(id);
+    }
 
     @GetMapping
     @ResponseStatus(HttpStatus.OK)
