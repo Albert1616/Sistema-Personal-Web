@@ -65,6 +65,6 @@ public class JwtAuthFilter extends OncePerRequestFilter {
 
     private boolean checkIfEndpointIsNotPublic(HttpServletRequest request){
         String requestURI = request.getRequestURI();
-        return !Arrays.asList(SecurityConfig.ENDPOINTS_WITH_AUTHENTICATION_NOT_REQUIRED).contains(requestURI);
+        return !(Arrays.asList(SecurityConfig.ENDPOINTS_WITH_AUTHENTICATION_NOT_REQUIRED).contains(requestURI) || requestURI.startsWith("/swagger-ui") || requestURI.startsWith("/swagger-resources") || requestURI.startsWith("/api-docs"));
     }
 }

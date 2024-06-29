@@ -61,6 +61,7 @@ public class AlimentoServiceImpl implements AlimentoService {
 
         Refeicao refeicao = refeicaoService.getById(dto.getRefeicao());
         alimento.setRefeicao(refeicao);
+        alimentoRepository.save(alimento);
     }
 
     @Override

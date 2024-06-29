@@ -28,7 +28,10 @@ public class SecurityConfig {
         "/api/user/auth",
         "/api/personal/cadaster",
         "/api/nutricionista/cadaster",
-        "/api/aluno/cadaster"
+        "/api/aluno/cadaster",
+        "/v3/api-docs/***",
+        "/swagger-resources",
+        "/swagger-ui/index.html"
     };
 
     @Bean
@@ -40,10 +43,11 @@ public class SecurityConfig {
     public SecurityFilterChain filterChain(HttpSecurity http) throws Exception{
         http.authorizeHttpRequests((authz)->
                 authz.requestMatchers(
-                        "/v3/api-docs/***",
+                        "/api-docs/**",
+                        "/v3/api-docs/**",
                         "/swagger-resources/**",
                         "/swagger-ui/**")
-                            .permitAll()
+                            .anonymous()
                         .requestMatchers("/api/user/**")
                             .anonymous()
                         .requestMatchers("/api/aluno/cadaster")
@@ -65,10 +69,11 @@ public class SecurityConfig {
                         .requestMatchers("api/nutricionista/cadaster")
                             .permitAll()
                         .requestMatchers("/api/nutricionista/**")
-                            .hasRole("ADMIN")
+                            .hasAnyRole("ADMIN", "NUTRICIONISTA")
                         .requestMatchers("/api/nutricionista/update")
                             .hasAnyRole("NUTRICIONISTA")
-                        //PERMISSÃO: NUTRICIONISTA
+                        .requestMatchers(HttpMethod.GET,"/api/dieta/**", "/api/refeicao/**", "/api/alimento/**")
+                            .hasAnyRole("ALUNO", "NUTRICIONISTA")
                         .requestMatchers("/api/alimento/**","/api/dieta/**",
                                 "/api/refeicao/**")
                             .hasRole("NUTRICIONISTA")
