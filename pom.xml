@@ -67,7 +67,6 @@
 			<artifactId>spring-security-test</artifactId>
 			<scope>test</scope>
 		</dependency>
-
 		<dependency>
 			<groupId>io.jsonwebtoken</groupId>
 			<artifactId>jjwt-api</artifactId>
@@ -80,7 +79,7 @@
 			<version>0.12.3</version>
 			<scope>runtime</scope>
 		</dependency>
-		<!--<https://mvnrepository.com/artifact/io.jsonwebtoken/jjwt-jackson-->
+
 		<dependency>
 			<groupId>io.jsonwebtoken</groupId>
 			<artifactId>jjwt-jackson</artifactId>
@@ -91,7 +90,7 @@
 		<dependency>
 			<groupId>org.springdoc</groupId>
 			<artifactId>springdoc-openapi-starter-webmvc-ui</artifactId>
-			<version>2.2.0</version>
+			<version>2.5.0</version>
 		</dependency>
 	</dependencies>
 
