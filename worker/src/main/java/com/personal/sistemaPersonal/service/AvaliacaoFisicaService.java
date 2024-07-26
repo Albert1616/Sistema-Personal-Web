@@ -1,6 +1,6 @@
 package com.personal.sistemaPersonal.service;
 
-import com.personal.sistemaPersonal.model.AvaliacaoFisica;
+import AvaliacaoFisica;
 import com.personal.sistemaPersonal.rest.dto.response.AvaliacaoFisicaResponseDTO;
 import com.personal.sistemaPersonal.rest.dto.request.AvaliacaoFisicaRequestDTO;
 

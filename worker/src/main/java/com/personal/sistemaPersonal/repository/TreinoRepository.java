@@ -1,6 +1,6 @@
 package com.personal.sistemaPersonal.repository;
 
-import com.personal.sistemaPersonal.model.Treino;
+import Treino;
 import org.springframework.data.jpa.repository.JpaRepository;
 import org.springframework.data.jpa.repository.Query;
 

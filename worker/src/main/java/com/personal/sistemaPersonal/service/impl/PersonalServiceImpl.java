@@ -1,7 +1,7 @@
 package com.personal.sistemaPersonal.service.impl;
 
 import com.personal.sistemaPersonal.exception.PersonalNaoEncontradoException;
-import com.personal.sistemaPersonal.model.Personal;
+import com.personal.sistemaPersonal.model.Personal.Personal;
 import com.personal.sistemaPersonal.repository.PersonalRepository;
 import com.personal.sistemaPersonal.rest.dto.response.PersonalResponseDTO;
 import com.personal.sistemaPersonal.rest.dto.request.PersonalRequestDTO;

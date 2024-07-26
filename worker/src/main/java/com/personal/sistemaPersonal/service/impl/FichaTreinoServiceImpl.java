@@ -1,7 +1,7 @@
 package com.personal.sistemaPersonal.service.impl;
 
 import com.personal.sistemaPersonal.exception.FichaTreinoNaoEncontradaException;
-import com.personal.sistemaPersonal.model.FichaTreino;
+import FichaTreino;
 import com.personal.sistemaPersonal.repository.FichaTreinoRepository;
 import com.personal.sistemaPersonal.service.FichaTreinoService;
 import org.springframework.beans.factory.annotation.Autowired;

@@ -2,8 +2,8 @@ package com.personal.sistemaPersonal.service.impl;
 
 import com.personal.sistemaPersonal.exception.TreinoNaoEncontradoException;
 import com.personal.sistemaPersonal.model.Aluno;
-import com.personal.sistemaPersonal.model.Exercicio;
-import com.personal.sistemaPersonal.model.Treino;
+import Exercicio;
+import Treino;
 import com.personal.sistemaPersonal.repository.TreinoRepository;
 import com.personal.sistemaPersonal.rest.dto.response.TreinoResponseDTO;
 import com.personal.sistemaPersonal.rest.dto.request.TreinoRequestDTO;

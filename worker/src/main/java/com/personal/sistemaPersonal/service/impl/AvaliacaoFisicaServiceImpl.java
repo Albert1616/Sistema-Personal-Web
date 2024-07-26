@@ -2,7 +2,7 @@ package com.personal.sistemaPersonal.service.impl;
 
 import com.personal.sistemaPersonal.exception.AvaliacaoFisicaNaoEncontradaException;
 import com.personal.sistemaPersonal.model.Aluno;
-import com.personal.sistemaPersonal.model.AvaliacaoFisica;
+import AvaliacaoFisica;
 import com.personal.sistemaPersonal.repository.AvaliacaoRepository;
 import com.personal.sistemaPersonal.rest.dto.request.AvaliacaoFisicaRequestDTO;
 import com.personal.sistemaPersonal.rest.dto.response.AvaliacaoFisicaResponseDTO;

@@ -1,6 +1,6 @@
 package com.personal.sistemaPersonal.rest.controller;
 
-import com.personal.sistemaPersonal.model.Exercicio;
+import Exercicio;
 import com.personal.sistemaPersonal.rest.dto.request.ExercicioRequestDTO;
 import com.personal.sistemaPersonal.service.ExercicioService;
 import jakarta.validation.Valid;

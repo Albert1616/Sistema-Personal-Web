@@ -1,6 +1,6 @@
 package com.personal.sistemaPersonal.service;
 
-import com.personal.sistemaPersonal.model.FichaTreino;
+import FichaTreino;
 
 public interface FichaTreinoService {
     public Integer save(FichaTreino fichaTreino);

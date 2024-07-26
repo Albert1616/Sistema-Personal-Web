@@ -1,6 +1,6 @@
 package com.personal.sistemaPersonal.service;
 
-import com.personal.sistemaPersonal.model.Exercicio;
+import Exercicio;
 import com.personal.sistemaPersonal.rest.dto.request.ExercicioRequestDTO;
 
 import java.util.List;

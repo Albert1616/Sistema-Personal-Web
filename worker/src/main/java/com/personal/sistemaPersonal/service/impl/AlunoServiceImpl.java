@@ -4,6 +4,8 @@ import com.personal.sistemaPersonal.enumerate.UserTypes;
 import com.personal.sistemaPersonal.exception.AlunoNaoEncontradoException;
 import com.personal.sistemaPersonal.exception.UsuarioNaoEncontrado;
 import com.personal.sistemaPersonal.model.*;
+import com.personal.sistemaPersonal.model.Nutricionista.Nutricionista;
+import com.personal.sistemaPersonal.model.Personal.Personal;
 import com.personal.sistemaPersonal.repository.AlunoRepository;
 import com.personal.sistemaPersonal.rest.dto.request.AlunoRequestDTO;
 import com.personal.sistemaPersonal.rest.dto.response.AlunoCompletoResponseDTO;

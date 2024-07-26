@@ -1,6 +1,6 @@
 package com.personal.sistemaPersonal.rest.dto.response;
 
-import com.personal.sistemaPersonal.model.Exercicio;
+import Exercicio;
 import lombok.Builder;
 import lombok.Getter;
 import lombok.Setter;

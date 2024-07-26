@@ -1,7 +1,7 @@
 package com.personal.sistemaPersonal.service.impl;
 
 import com.personal.sistemaPersonal.exception.ExercicioNaoEncontradoException;
-import com.personal.sistemaPersonal.model.Exercicio;
+import Exercicio;
 import com.personal.sistemaPersonal.repository.ExercicioRepository;
 import com.personal.sistemaPersonal.rest.dto.request.ExercicioRequestDTO;
 import com.personal.sistemaPersonal.service.ExercicioService;

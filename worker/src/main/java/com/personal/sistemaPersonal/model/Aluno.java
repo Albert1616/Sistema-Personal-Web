@@ -1,5 +1,8 @@
 package com.personal.sistemaPersonal.model;
 
+import com.personal.sistemaPersonal.model.Nutricionista.Dieta;
+import com.personal.sistemaPersonal.model.Nutricionista.Nutricionista;
+import com.personal.sistemaPersonal.model.Personal.Personal;
 import jakarta.persistence.*;
 import lombok.AllArgsConstructor;
 import lombok.Getter;
