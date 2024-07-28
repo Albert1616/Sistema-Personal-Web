@@ -7,23 +7,25 @@
         <sourceOutputDir name="target/generated-sources/annotations" />
         <sourceTestOutputDir name="target/generated-test-sources/test-annotations" />
         <outputRelativeToContentRoot value="true" />
-        <module name="apigatewayzuul" />
-        <module name="worker" />
-        <module name="eureka-server" />
+        <module name="nutri" />
+        <module name="aluno" />
         <module name="auth" />
-        <module name="auth (1)" />
         <module name="sistemaPersonal" />
+        <module name="personal" />
+        <module name="apigatewayzuul" />
+        <module name="eureka-server" />
       </profile>
     </annotationProcessing>
   </component>
   <component name="JavacSettings">
     <option name="ADDITIONAL_OPTIONS_OVERRIDE">
+      <module name="aluno" options="-parameters" />
       <module name="apigatewayzuul" options="-parameters" />
       <module name="auth" options="-parameters" />
-      <module name="auth (1)" options="-parameters" />
       <module name="eureka-server" options="-parameters" />
+      <module name="nutri" options="-parameters" />
+      <module name="personal" options="-parameters" />
       <module name="sistemaPersonal" options="-parameters" />
-      <module name="worker" options="-parameters" />
     </option>
   </component>
 </project>

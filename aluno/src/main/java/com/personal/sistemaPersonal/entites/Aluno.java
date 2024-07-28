@@ -1,0 +1,51 @@
+package com.personal.sistemaPersonal.entites;
+
+
+import com.auth.sistemaPersonal.entites.User;
+import com.nutri.sistemaPersonal.entites.Dieta;
+import com.nutri.sistemaPersonal.entites.Nutricionista;
+import jakarta.persistence.*;
+import lombok.AllArgsConstructor;
+import lombok.Getter;
+import lombok.NoArgsConstructor;
+import lombok.Setter;
+
+import java.time.LocalDate;
+import java.util.ArrayList;
+import java.util.List;
+
+@Getter
+@Setter
+@AllArgsConstructor
+@NoArgsConstructor
+@Entity
+@Table(name = "aluno")
+@PrimaryKeyJoinColumn(name = "id")
+public class Aluno extends User {
+    @Column(length = 50)
+    private String nome;
+
+    @Column(length = 50)
+    private String email;
+
+    private LocalDate data_nascimento;
+
+    @OneToMany(mappedBy = "aluno", fetch = FetchType.LAZY, cascade = CascadeType.REMOVE)
+    @OrderBy("data desc")
+    private List<AvaliacaoFisica> avalicoes_fisicas = new ArrayList<>();
+
+    @OneToOne(cascade = CascadeType.ALL)
+    @JoinColumn(name = "ficha_treino_id", referencedColumnName = "id")
+    private FichaTreino ficha_treino;
+
+    @ManyToOne
+    @JoinColumn(name = "personal_id")
+    private Personal personal;
+
+    @ManyToOne
+    @JoinColumn(name = "nutricionista_id")
+    private Nutricionista nutricionista;
+
+    @OneToMany(mappedBy = "aluno", fetch = FetchType.LAZY)
+    private List<Dieta> dietas;
+}

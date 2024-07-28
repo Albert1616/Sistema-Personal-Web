@@ -1,0 +1,94 @@
+package com.auth.sistemaPersonal.config;
+
+import com.auth.sistemaPersonal.security.JwtAuthFilter;
+import com.auth.sistemaPersonal.security.JwtService;
+import com.auth.sistemaPersonal.service.UserService;
+import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.context.annotation.Bean;
+import org.springframework.context.annotation.Configuration;
+import org.springframework.http.HttpMethod;
+import org.springframework.security.config.annotation.web.builders.HttpSecurity;
+import org.springframework.security.config.annotation.web.configuration.EnableWebSecurity;
+import org.springframework.security.config.annotation.web.configurers.AbstractHttpConfigurer;
+import org.springframework.security.config.http.SessionCreationPolicy;
+import org.springframework.security.web.SecurityFilterChain;
+import org.springframework.security.web.authentication.UsernamePasswordAuthenticationFilter;
+import org.springframework.web.filter.OncePerRequestFilter;
+
+@Configuration
+@EnableWebSecurity
+public class SecurityConfig {
+    @Autowired
+    private JwtService jwt;
+    @Autowired
+    private UserService userService;
+
+    public static final String [] ENDPOINTS_WITH_AUTHENTICATION_NOT_REQUIRED = {
+        "/api/user/create",
+        "/api/user/auth",
+        "/api/personal/cadaster",
+        "/api/nutricionista/cadaster",
+        "/api/aluno/cadaster",
+        "/v3/api-docs/***",
+        "/swagger-resources",
+        "/swagger-ui/index.html"
+    };
+
+    @Bean
+    public OncePerRequestFilter jwtFilter(){
+        return new JwtAuthFilter(jwt, userService);
+    }
+
+    @Bean
+    public SecurityFilterChain filterChain(HttpSecurity http) throws Exception{
+        http.authorizeHttpRequests((authz)->
+                authz.requestMatchers(
+                        "/api-docs/**",
+                        "/v3/api-docs/**",
+                        "/swagger-resources/**",
+                        "/swagger-ui/**")
+                            .anonymous()
+                        .requestMatchers("/api/user/**")
+                            .anonymous()
+                        .requestMatchers("/api/aluno/cadaster")
+                            .permitAll()
+                        .requestMatchers("/api/aluno/{id}/vinculate/{login}")
+                            .hasAnyRole("ADMIN", "ALUNO")
+                        .requestMatchers("/api/aluno/**")
+                            .hasAnyRole("PERSONAL", "NUTRICIONISTA", "ALUNO")
+                        .requestMatchers("/api/aluno/update")
+                            .hasAnyRole("ALUNO")
+                        .requestMatchers("api/personal/cadaster")
+                            .permitAll()
+                        .requestMatchers("/api/personal/**")
+                            .hasAnyRole("ADMIN", "PERSONAL")
+                        .requestMatchers("/api/personal/update")
+                            .hasAnyRole("PERSONAL")
+                        .requestMatchers("/api/treino/**")
+                            .hasAnyRole("ADMIN", "PERSONAL", "ALUNO")
+                        .requestMatchers("api/nutricionista/cadaster")
+                            .permitAll()
+                        .requestMatchers("/api/nutricionista/**")
+                            .hasAnyRole("ADMIN", "NUTRICIONISTA")
+                        .requestMatchers("/api/nutricionista/update")
+                            .hasAnyRole("NUTRICIONISTA")
+                        .requestMatchers(HttpMethod.GET,"/api/dieta/**", "/api/refeicao/**", "/api/alimento/**")
+                            .hasAnyRole("ALUNO", "NUTRICIONISTA")
+                        .requestMatchers("/api/alimento/**","/api/dieta/**",
+                                "/api/refeicao/**")
+                            .hasRole("NUTRICIONISTA")
+                        //PERMISSÃO: PERSONAL
+                        .requestMatchers("/api/avaliacao_fisica/**","/api/exercicio/**",
+                                "/api/ficha_treino/**","/api/treino/**")
+                            .hasRole("PERSONAL")
+                        .anyRequest()
+                            .hasRole("ADMIN")
+                ).sessionManagement((session) ->
+                    session.sessionCreationPolicy(SessionCreationPolicy.STATELESS))
+                .addFilterBefore(
+                        jwtFilter(),
+                        UsernamePasswordAuthenticationFilter.class)
+                .csrf(AbstractHttpConfigurer::disable);
+        return http.build();
+    }
+}

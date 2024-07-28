@@ -1,0 +1,25 @@
+spring:
+  application:
+    name: aluno
+  datasource:
+    url: jdbc:postgresql://localhost:5432/Projeto-I-Web-II
+    username: postgres
+    password: 123
+    driver-class-name: org.postgresql.Driver
+
+server:
+  port: 8765
+
+eureka:
+  client:
+    fetch-register: true
+    register-with-eureka: true
+    service-url:
+      defaultZone: http://localhost/8761/eureka
+
+springdoc:
+  api-docs:
+    path: /v3/api-docs
+  swagger-ui:
+    disable-swagger-default-url: true
+    url:
