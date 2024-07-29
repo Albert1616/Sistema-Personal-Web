@@ -1,5 +1,8 @@
-package com.personal.sistemaPersonal.rest.dto.response;
+package com.aluno.sistemaPersonal.rest.dto.response;
 
+import com.personal.sistemaPersonal.rest.dto.response.AvaliacaoFisicaResponseDTO;
+import com.personal.sistemaPersonal.rest.dto.response.PersonalResponseDTO;
+import com.personal.sistemaPersonal.rest.dto.response.TreinoResponseDTO;
 import lombok.*;
 import com.nutri.sistemaPersonal.rest.dto.response.NutricionistaResponseDTO;
 

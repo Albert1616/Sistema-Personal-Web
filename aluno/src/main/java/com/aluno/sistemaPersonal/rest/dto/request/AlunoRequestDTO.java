@@ -1,4 +1,4 @@
-package com.personal.sistemaPersonal.rest.dto.request;
+package com.aluno.sistemaPersonal.rest.dto.request;
 
 import com.auth.sistemaPersonal.rest.dto.UserRequestDTO;
 import jakarta.validation.constraints.*;

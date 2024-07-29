@@ -1,4 +1,4 @@
-package com.personal.sistemaPersonal.exception;
+package com.aluno.sistemaPersonal.exception;
 
 public class AlunoNaoEncontradoException extends RuntimeException{
     public AlunoNaoEncontradoException() {

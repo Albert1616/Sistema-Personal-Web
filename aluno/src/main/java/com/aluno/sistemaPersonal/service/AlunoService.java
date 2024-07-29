@@ -1,4 +1,4 @@
-package com.personal.sistemaPersonal.service;
+package com.aluno.sistemaPersonal.service;
 
 import com.personal.sistemaPersonal.entites.Aluno;
 import com.personal.sistemaPersonal.rest.dto.request.AlunoRequestDTO;

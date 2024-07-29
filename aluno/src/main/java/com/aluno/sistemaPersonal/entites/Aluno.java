@@ -1,9 +1,10 @@
-package com.personal.sistemaPersonal.entites;
+package com.aluno.sistemaPersonal.entites;
 
 
 import com.auth.sistemaPersonal.entites.User;
 import com.nutri.sistemaPersonal.entites.Dieta;
-import com.nutri.sistemaPersonal.entites.Nutricionista;
+import com.personal.sistemaPersonal.entites.AvaliacaoFisica;
+import com.personal.sistemaPersonal.entites.FichaTreino;
 import jakarta.persistence.*;
 import lombok.AllArgsConstructor;
 import lombok.Getter;

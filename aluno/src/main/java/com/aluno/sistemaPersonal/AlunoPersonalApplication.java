@@ -1,4 +1,4 @@
-package com.personal.sistemaPersonal;
+package com.aluno.sistemaPersonal;
 
 import org.springframework.boot.SpringApplication;
 import org.springframework.boot.autoconfigure.SpringBootApplication;

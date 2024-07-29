@@ -1,6 +1,7 @@
-package com.personal.sistemaPersonal.rest.dto.response;
+package com.aluno.sistemaPersonal.rest.dto.response;
 
 import com.nutri.sistemaPersonal.rest.dto.response.NutricionistaResponseDTO;
+import com.personal.sistemaPersonal.rest.dto.response.PersonalResponseDTO;
 import lombok.AllArgsConstructor;
 import lombok.Builder;
 import lombok.Getter;

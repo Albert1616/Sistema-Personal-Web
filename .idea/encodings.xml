@@ -6,6 +6,8 @@
     <file url="file://$PROJECT_DIR$/auth/src/main/java" charset="UTF-8" />
     <file url="file://$PROJECT_DIR$/eureka-server/src/main/java" charset="UTF-8" />
     <file url="file://$PROJECT_DIR$/nutri/src/main/java" charset="UTF-8" />
+    <file url="file://$PROJECT_DIR$/nutricionista/src/main/java" charset="UTF-8" />
     <file url="file://$PROJECT_DIR$/personal/src/main/java" charset="UTF-8" />
+    <file url="file://$PROJECT_DIR$/worker/src/main/java" charset="UTF-8" />
   </component>
 </project>
