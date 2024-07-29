@@ -26,5 +26,6 @@ public class FichaTreino {
     private List<Treino> treinos;
 
     @OneToOne(mappedBy = "ficha_treino")
+    @JoinColumn(name = "aluno_id")
     private Aluno aluno;
 }

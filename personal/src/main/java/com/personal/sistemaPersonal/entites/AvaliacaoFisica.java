@@ -1,6 +1,5 @@
 package com.personal.sistemaPersonal.entites;
 
-import com.personal.sistemaPersonal.entites.Aluno;
 import jakarta.persistence.Column;
 import jakarta.persistence.Entity;
 import jakarta.persistence.GeneratedValue;

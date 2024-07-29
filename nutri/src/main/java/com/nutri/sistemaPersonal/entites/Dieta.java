@@ -1,6 +1,5 @@
 package com.nutri.sistemaPersonal.entites;
 
-import com.personal.sistemaPersonal.entites.Aluno;
 import jakarta.persistence.*;
 import lombok.AllArgsConstructor;
 import lombok.Getter;

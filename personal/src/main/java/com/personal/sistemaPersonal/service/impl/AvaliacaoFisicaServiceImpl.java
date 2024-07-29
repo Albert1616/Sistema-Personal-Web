@@ -4,10 +4,11 @@ import com.personal.sistemaPersonal.entites.Aluno;
 
 import com.personal.sistemaPersonal.entites.AvaliacaoFisica;
 import com.personal.sistemaPersonal.exception.AvaliacaoFisicaNaoEncontradaException;
+import com.personal.sistemaPersonal.feingClients.AlunoClient;
 import com.personal.sistemaPersonal.repository.AvaliacaoRepository;
 import com.personal.sistemaPersonal.rest.dto.request.AvaliacaoFisicaRequestDTO;
 import com.personal.sistemaPersonal.rest.dto.response.AvaliacaoFisicaResponseDTO;
-import com.personal.sistemaPersonal.service.AlunoService;
+
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
@@ -27,7 +28,7 @@ public class AvaliacaoFisicaServiceImpl implements AvaliacaoFisicaService {
     AvaliacaoRepository avaliacaoRepository;
 
     @Autowired
-    AlunoService alunoService;
+    AlunoClient alunoClient;
 
     @Override
     public AvaliacaoFisicaResponseDTO save(AvaliacaoFisicaRequestDTO dto){
@@ -52,7 +53,7 @@ public class AvaliacaoFisicaServiceImpl implements AvaliacaoFisicaService {
         avaliacaoFisica.setMedidaPerna(dto.getMedidaPerna());
         avaliacaoFisica.setMedidaPeito(dto.getMedidaPeito());
         avaliacaoFisica.setMedidaCintura(dto.getMedidaCintura());
-        avaliacaoFisica.setAluno(alunoService.getById(dto.getAluno()));
+        avaliacaoFisica.setAluno(alunoClient.getAlunoById(dto.getAluno()));
 
         return convertToAvaliacaoFisicaResponseDTO(avaliacaoRepository.save(avaliacaoFisica));
     }
@@ -63,7 +64,7 @@ public class AvaliacaoFisicaServiceImpl implements AvaliacaoFisicaService {
 
     @Override
     public List<AvaliacaoFisicaResponseDTO> getAvaliacoesFisicasByIdAluno(Integer idAluno){
-        Aluno aluno = alunoService.getById(idAluno);
+        Aluno aluno = alunoClient.getAlunoById(idAluno);
         return convertToAvaliacaoFisicaResponseDTO(avaliacaoRepository.findAllAvaliacaoFisicaByIdAluno(aluno.getId()));
     }
 
@@ -93,7 +94,7 @@ public class AvaliacaoFisicaServiceImpl implements AvaliacaoFisicaService {
         avalicaoFisica.setMedidaPerna(dto.getMedidaPerna());
         avalicaoFisica.setMedidaPeito(dto.getMedidaPeito());
         avalicaoFisica.setMedidaCintura(dto.getMedidaCintura());
-        avalicaoFisica.setAluno(alunoService.getById(dto.getAluno()));
+        avalicaoFisica.setAluno(alunoClient.getAlunoById(dto.getAluno()));
 
         return avalicaoFisica;
     }
@@ -112,7 +113,7 @@ public class AvaliacaoFisicaServiceImpl implements AvaliacaoFisicaService {
                 .medidaCintura(avaliacaoFisica.getMedidaCintura())
                 .medidaBraco(avaliacaoFisica.getMedidaBraco())
                 .medidaPerna(avaliacaoFisica.getMedidaPerna())
-                .aluno(alunoService.convertToAlunoResponseDTO(avaliacaoFisica.getAluno()))
+                .aluno(alunoClient.getAlunoById(avaliacaoFisica.getAluno().getId()))
                 .build();
     }
 

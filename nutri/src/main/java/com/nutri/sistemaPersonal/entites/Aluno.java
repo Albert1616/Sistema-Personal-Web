@@ -1,5 +1,6 @@
 package com.nutri.sistemaPersonal.entites;
 
+
 import com.auth.sistemaPersonal.entites.User;
 import jakarta.persistence.*;
 import lombok.AllArgsConstructor;
@@ -8,27 +9,29 @@ import lombok.NoArgsConstructor;
 import lombok.Setter;
 
 import java.time.LocalDate;
+import java.util.ArrayList;
 import java.util.List;
 
 @Getter
 @Setter
-@NoArgsConstructor
 @AllArgsConstructor
+@NoArgsConstructor
 @Entity
-@Table(name = "nutricionista")
+@Table(name = "aluno")
 @PrimaryKeyJoinColumn(name = "id")
-public class Nutricionista extends User {
+public class Aluno extends User {
     @Column(length = 50)
     private String nome;
 
     @Column(length = 50)
     private String email;
 
-    private LocalDate dataNascimento;
+    private LocalDate data_nascimento;
 
-    @OneToMany(mappedBy = "nutricionista", fetch = FetchType.LAZY)
-    private List<Aluno> alunos;
+    @ManyToOne
+    @JoinColumn(name = "nutricionista_id")
+    private Nutricionista nutricionista;
 
-    @OneToMany(mappedBy = "nutricionista", fetch = FetchType.LAZY)
+    @OneToMany(mappedBy = "aluno", fetch = FetchType.LAZY)
     private List<Dieta> dietas;
 }

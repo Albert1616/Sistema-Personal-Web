@@ -1,6 +1,6 @@
 package com.personal.sistemaPersonal.rest.dto.response;
 
-import com.personal.sistemaPersonal.rest.dto.response.AlunoResponseDTO;
+import com.personal.sistemaPersonal.entites.Aluno;
 import lombok.Builder;
 import lombok.Getter;
 import lombok.Setter;
@@ -20,5 +20,5 @@ public class AvaliacaoFisicaResponseDTO {
     private Double medidaPeito;
     private Double medidaPerna;
     private Double medidaCintura;
-    private AlunoResponseDTO aluno;
+    private Aluno aluno;
 }

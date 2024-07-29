@@ -5,10 +5,10 @@ import com.personal.sistemaPersonal.entites.Aluno;
 import com.personal.sistemaPersonal.entites.Exercicio;
 import com.personal.sistemaPersonal.entites.Treino;
 import com.personal.sistemaPersonal.exception.TreinoNaoEncontradoException;
+import com.personal.sistemaPersonal.feingClients.AlunoClient;
 import com.personal.sistemaPersonal.repository.TreinoRepository;
 import com.personal.sistemaPersonal.rest.dto.response.TreinoResponseDTO;
 import com.personal.sistemaPersonal.rest.dto.request.TreinoRequestDTO;
-import com.personal.sistemaPersonal.service.AlunoService;
 import com.personal.sistemaPersonal.service.ExercicioService;
 import com.personal.sistemaPersonal.service.FichaTreinoService;
 import com.personal.sistemaPersonal.service.TreinoService;
@@ -37,7 +37,7 @@ public class TreinoServiceImpl implements TreinoService {
     ExercicioService exercicioService;
 
     @Autowired
-    AlunoService alunoService;
+    AlunoClient alunoClient;
 
     @Override
     public TreinoResponseDTO save(TreinoRequestDTO dto) {
@@ -91,7 +91,7 @@ public class TreinoServiceImpl implements TreinoService {
 
     @Override
     public List<TreinoResponseDTO> getByIdAluno(Integer idAluno) {
-        Aluno aluno = alunoService.getById(idAluno);
+        Aluno aluno = alunoClient.getAlunoById(idAluno);
         return convertToTreinoResponseDTO(treinoRepository.findByAlunoId(aluno.getId()));
     }
 

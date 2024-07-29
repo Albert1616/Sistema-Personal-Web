@@ -4,13 +4,13 @@ package com.nutri.sistemaPersonal.service.impl;
 import com.nutri.sistemaPersonal.entites.Dieta;
 import com.nutri.sistemaPersonal.entites.Nutricionista;
 import com.nutri.sistemaPersonal.exception.DietaNaoEncontradaException;
+import com.nutri.sistemaPersonal.feingClients.AlunoClient;
 import com.nutri.sistemaPersonal.repository.DietaRepository;
 import com.nutri.sistemaPersonal.rest.dto.request.DietaRequestDTO;
 import com.nutri.sistemaPersonal.rest.dto.response.DietaResponseDTO;
 import com.nutri.sistemaPersonal.service.DietaService;
 import com.nutri.sistemaPersonal.service.NutricionistaService;
-import com.personal.sistemaPersonal.entites.Aluno;
-import com.personal.sistemaPersonal.service.AlunoService;
+import com.nutri.sistemaPersonal.entites.Aluno;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 import org.springframework.util.CollectionUtils;
@@ -29,7 +29,7 @@ public class DietaServiceImpl implements DietaService {
     DietaRepository dietaRepository;
 
     @Autowired
-    AlunoService alunoService;
+    AlunoClient alunoClient;
 
     @Autowired
     NutricionistaService nutricionistaService;
@@ -66,7 +66,7 @@ public class DietaServiceImpl implements DietaService {
 
         dieta.setTitulo(dto.getTitulo());
 
-        Aluno aluno = alunoService.getById(dto.getAluno());
+        Aluno aluno = alunoClient.getAlunoById(dto.getAluno());
         dieta.setAluno(aluno);
 
         Nutricionista nutricionista = nutricionistaService.getById(dto.getNutricionista());
@@ -86,7 +86,7 @@ public class DietaServiceImpl implements DietaService {
 
         dieta.setTitulo(dto.getTitulo());
 
-        Aluno aluno = alunoService.getById(dto.getAluno());
+        Aluno aluno = alunoClient.getAlunoById(dto.getAluno());
         dieta.setAluno(aluno);
 
         Nutricionista nutricionista = nutricionistaService.getById(dto.getNutricionista());
