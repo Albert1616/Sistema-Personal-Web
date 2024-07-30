@@ -1,4 +1,4 @@
-package com.personal.sistemaPersonal.infra;
+package com.aluno.sistemaPersonal.infra;
 
 import lombok.AllArgsConstructor;
 import lombok.Getter;

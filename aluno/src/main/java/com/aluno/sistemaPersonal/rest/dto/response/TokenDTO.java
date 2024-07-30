@@ -1,4 +1,4 @@
-package com.personal.sistemaPersonal.rest.dto.response;
+package com.aluno.sistemaPersonal.rest.dto.response;
 
 import lombok.AllArgsConstructor;
 import lombok.Data;

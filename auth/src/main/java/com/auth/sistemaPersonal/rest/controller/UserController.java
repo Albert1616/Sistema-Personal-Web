@@ -32,6 +32,11 @@ public class UserController {
         return userService.save(user);
     }
 
+    @GetMapping("/{login}")
+    public User getByLogin(@PathVariable String login){
+        return userService.getByLogin(login);
+    }
+
     @PostMapping("/auth")
     public String auth(@RequestBody CredentialsDTO credentialsDTO){
         try{

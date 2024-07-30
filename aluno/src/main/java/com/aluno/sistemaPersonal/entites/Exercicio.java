@@ -1,0 +1,31 @@
+package com.aluno.sistemaPersonal.entites;
+
+import jakarta.persistence.*;
+import lombok.AllArgsConstructor;
+import lombok.Getter;
+import lombok.NoArgsConstructor;
+import lombok.Setter;
+
+@Getter
+@Setter
+@AllArgsConstructor
+@NoArgsConstructor
+@Entity
+@Table(name = "exercicio")
+public class Exercicio {
+    @Id
+    @GeneratedValue(strategy = GenerationType.IDENTITY)
+    private Integer id;
+
+    @Column
+    private String nome;
+
+    @Column
+    private Integer series;
+
+    @Column(length = 50)
+    private Integer repeticoes;
+
+    @Column(length = 100)
+    private String observacoes;
+}

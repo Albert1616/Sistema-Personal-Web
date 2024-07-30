@@ -2,9 +2,6 @@ package com.aluno.sistemaPersonal.entites;
 
 
 import com.auth.sistemaPersonal.entites.User;
-import com.nutri.sistemaPersonal.entites.Dieta;
-import com.personal.sistemaPersonal.entites.AvaliacaoFisica;
-import com.personal.sistemaPersonal.entites.FichaTreino;
 import jakarta.persistence.*;
 import lombok.AllArgsConstructor;
 import lombok.Getter;
@@ -22,6 +19,7 @@ import java.util.List;
 @Entity
 @Table(name = "aluno")
 @PrimaryKeyJoinColumn(name = "id")
+@PersistenceContext(unitName = "aluno-personal")
 public class Aluno extends User {
     @Column(length = 50)
     private String nome;

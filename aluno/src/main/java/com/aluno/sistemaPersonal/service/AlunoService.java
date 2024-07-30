@@ -1,9 +1,9 @@
 package com.aluno.sistemaPersonal.service;
 
-import com.personal.sistemaPersonal.entites.Aluno;
-import com.personal.sistemaPersonal.rest.dto.request.AlunoRequestDTO;
-import com.personal.sistemaPersonal.rest.dto.response.AlunoCompletoResponseDTO;
-import com.personal.sistemaPersonal.rest.dto.response.AlunoResponseDTO;
+import com.aluno.sistemaPersonal.rest.dto.request.AlunoRequestDTO;
+import com.aluno.sistemaPersonal.rest.dto.response.AlunoCompletoResponseDTO;
+import com.aluno.sistemaPersonal.rest.dto.response.AlunoResponseDTO;
+import com.aluno.sistemaPersonal.entites.Aluno;
 
 import java.util.List;
 

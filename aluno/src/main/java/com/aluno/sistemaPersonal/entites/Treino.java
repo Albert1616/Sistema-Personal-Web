@@ -1,4 +1,5 @@
-package com.personal.sistemaPersonal.entites;
+package com.aluno.sistemaPersonal.entites;
+
 
 import jakarta.persistence.*;
 import lombok.AllArgsConstructor;

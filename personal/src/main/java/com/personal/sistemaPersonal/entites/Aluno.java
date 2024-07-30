@@ -39,11 +39,4 @@ public class Aluno extends User {
     @ManyToOne
     @JoinColumn(name = "personal_id")
     private Personal personal;
-
-    @ManyToOne
-    @JoinColumn(name = "nutricionista_id")
-    private Nutricionista nutricionista;
-
-    @OneToMany(mappedBy = "aluno", fetch = FetchType.LAZY)
-    private List<Dieta> dietas;
 }

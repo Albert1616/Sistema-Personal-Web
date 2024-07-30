@@ -1,6 +1,8 @@
 package com.aluno.sistemaPersonal.service.impl;
 
+import com.aluno.sistemaPersonal.entites.Aluno;
 import com.aluno.sistemaPersonal.exception.AlunoNaoEncontradoException;
+import com.aluno.sistemaPersonal.feingClients.*;
 import com.aluno.sistemaPersonal.repository.AlunoRepository;
 import com.aluno.sistemaPersonal.rest.dto.request.AlunoRequestDTO;
 import com.aluno.sistemaPersonal.rest.dto.response.AlunoCompletoResponseDTO;
@@ -9,12 +11,9 @@ import com.aluno.sistemaPersonal.service.AlunoService;
 import com.auth.sistemaPersonal.entites.User;
 import com.auth.sistemaPersonal.enumerate.UserTypes;
 import com.auth.sistemaPersonal.exception.UsuarioNaoEncontrado;
-import com.auth.sistemaPersonal.service.UserService;
 import com.aluno.sistemaPersonal.entites.Nutricionista;
-import com.nutri.sistemaPersonal.service.impl.NutricionistaServiceImpl;
-import com.personal.sistemaPersonal.entites.Personal;
-import com.personal.sistemaPersonal.entites.*;
-import com.personal.sistemaPersonal.service.*;
+import com.aluno.sistemaPersonal.entites.FichaTreino;
+import com.aluno.sistemaPersonal.entites.Personal;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 import org.springframework.util.CollectionUtils;
@@ -31,19 +30,19 @@ public class AlunoServiceImpl implements AlunoService {
     AlunoRepository alunoRepository;
 
     @Autowired
-    PersonalService personalService;
+    PersonalClient personalClient;
 
     @Autowired
-    NutricionistaServiceImpl nutricionistaService;
+    NutriClient nutriClient;
 
     @Autowired
-    UserService userService;
+    UserClient userClient;
 
     @Autowired
-    TreinoService treinoService;
+    TreinoClient treinoClient;
 
     @Autowired
-    AvaliacaoFisicaService avaliacaoFisicaService;
+    AvaliacaoClient avaliacaoClient;
 
     @Override
     public AlunoResponseDTO save(AlunoRequestDTO dto) {
@@ -99,18 +98,18 @@ public class AlunoServiceImpl implements AlunoService {
     }
 
     public void vinculate(Integer id, String login){
-        User user = userService.getByLogin(login);
+        User user = userClient.getByLogin(login);
         Aluno aluno = getById(id);
 
         if(user.getPaper() == UserTypes.NUTRICIONISTA){
-            Nutricionista nutricionista = nutricionistaService.getById(user.getId());
+            Nutricionista nutricionista = nutriClient.getById(user.getId());
             aluno.setNutricionista(nutricionista);
             alunoRepository.save(aluno);
             return;
         }
 
         if(user.getPaper() == UserTypes.PERSONAL){
-            Personal personal = personalService.getById(user.getId());
+            Personal personal = personalClient.getPersonalById(id);
             aluno.setPersonal(personal);
             alunoRepository.save(aluno);
             return;
@@ -148,10 +147,10 @@ public class AlunoServiceImpl implements AlunoService {
                 .nome(aluno.getNome())
                 .email(aluno.getEmail())
                 .dataNascimento(aluno.getData_nascimento())
-                .personal(personalService.convertToPersonalResponseDTO(aluno.getPersonal()))
-                .nuticionista(nutricionistaService.convertToNutricionistaResponseDTO(aluno.getNutricionista()))
-                .treinos(treinoService.getByIdAluno(aluno.getId()))
-                .avaliacoes(avaliacaoFisicaService.getAvaliacoesFisicasByIdAluno(aluno.getId()))
+                .personal(aluno.getPersonal())
+                .nuticionista(aluno.getNutricionista())
+                .treinos(treinoClient.getAllByIdAluno(aluno.getId()))
+                .avaliacoes(avaliacaoClient.getAllByIdAluno(aluno.getId()))
                 .build();
     }
 
@@ -164,8 +163,8 @@ public class AlunoServiceImpl implements AlunoService {
                 .nome(aluno.getNome())
                 .email(aluno.getEmail())
                 .dataNascimento(aluno.getData_nascimento())
-                .personal(personalService.convertToPersonalResponseDTO(aluno.getPersonal()))
-                .nuticionista(nutricionistaService.convertToNutricionistaResponseDTO(aluno.getNutricionista()))
+                .personal(aluno.getPersonal())
+                .nutricionista(aluno.getNutricionista())
                 .build();
     }
 

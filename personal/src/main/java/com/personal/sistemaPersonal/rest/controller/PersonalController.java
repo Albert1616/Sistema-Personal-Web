@@ -1,5 +1,6 @@
 package com.personal.sistemaPersonal.rest.controller;
 
+import com.personal.sistemaPersonal.entites.Personal;
 import com.personal.sistemaPersonal.rest.dto.response.PersonalResponseDTO;
 import com.personal.sistemaPersonal.rest.dto.request.PersonalRequestDTO;
 import com.personal.sistemaPersonal.service.PersonalService;
@@ -36,6 +37,11 @@ public class PersonalController {
     @GetMapping("{id}")
     public PersonalResponseDTO getById(@PathVariable Integer id){
         return personalService.getInformacoesPersonalDTOById(id);
+    }
+
+    @GetMapping("/complete/{id}")
+    public Personal getPersonalById(@PathVariable Integer id){
+        return personalService.getById(id);
     }
 
     @GetMapping

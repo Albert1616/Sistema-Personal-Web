@@ -1,7 +1,7 @@
 package com.aluno.sistemaPersonal.rest.dto.response;
 
-import com.nutri.sistemaPersonal.rest.dto.response.NutricionistaResponseDTO;
-import com.personal.sistemaPersonal.rest.dto.response.PersonalResponseDTO;
+import com.aluno.sistemaPersonal.entites.Personal;
+import com.aluno.sistemaPersonal.entites.Nutricionista;
 import lombok.AllArgsConstructor;
 import lombok.Builder;
 import lombok.Getter;
@@ -20,7 +20,10 @@ public class AlunoResponseDTO {
     private String nome;
     private String email;
     private LocalDate dataNascimento;
-    private PersonalResponseDTO personal;
-    private NutricionistaResponseDTO nuticionista;
+//    private PersonalResponseDTO personal;
+//    private NutricionistaResponseDTO nuticionista;
+    private Personal personal;
+    private Nutricionista nutricionista;
+
 }
 

@@ -1,5 +1,6 @@
-package com.personal.sistemaPersonal;
+package com.aluno.sistemaPersonal;
 
+import com.aluno.sistemaPersonal.AlunoApplication;
 import org.springframework.boot.builder.SpringApplicationBuilder;
 import org.springframework.boot.web.servlet.support.SpringBootServletInitializer;
 
@@ -7,7 +8,7 @@ public class ServletInitializer extends SpringBootServletInitializer {
 
 	@Override
 	protected SpringApplicationBuilder configure(SpringApplicationBuilder application) {
-		return application.sources(AlunoPersonalApplication.class);
+		return application.sources(AlunoApplication.class);
 	}
 
 }

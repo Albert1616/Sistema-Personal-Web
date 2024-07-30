@@ -1,5 +1,6 @@
 package com.nutri.sistemaPersonal.rest.controller;
 
+import com.nutri.sistemaPersonal.entites.Nutricionista;
 import com.nutri.sistemaPersonal.rest.dto.request.NutricionistaRequestDTO;
 import com.nutri.sistemaPersonal.rest.dto.response.NutricionistaResponseDTO;
 import com.nutri.sistemaPersonal.service.NutricionistaService;
@@ -37,6 +38,11 @@ public class NutricionistaController {
     @GetMapping("{id}")
     public NutricionistaResponseDTO getByID(@PathVariable Integer id){
         return nutricionistaService.getNutricionistaResponseDTOById(id);
+    }
+
+    @GetMapping("/complete/{id}")
+    public Nutricionista getById(@PathVariable Integer id){
+        return nutricionistaService.getById(id);
     }
 
     @GetMapping

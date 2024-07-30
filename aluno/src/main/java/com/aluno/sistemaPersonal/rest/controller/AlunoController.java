@@ -1,9 +1,9 @@
 package com.aluno.sistemaPersonal.rest.controller;
 
+import com.aluno.sistemaPersonal.rest.dto.request.AlunoRequestDTO;
+import com.aluno.sistemaPersonal.rest.dto.response.AlunoCompletoResponseDTO;
+import com.aluno.sistemaPersonal.rest.dto.response.AlunoResponseDTO;
 import com.aluno.sistemaPersonal.service.AlunoService;
-import com.personal.sistemaPersonal.rest.dto.request.AlunoRequestDTO;
-import com.personal.sistemaPersonal.rest.dto.response.AlunoCompletoResponseDTO;
-import com.personal.sistemaPersonal.rest.dto.response.AlunoResponseDTO;
 import jakarta.validation.Valid;
 import lombok.AllArgsConstructor;
 import org.springframework.beans.factory.annotation.Autowired;

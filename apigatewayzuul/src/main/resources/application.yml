@@ -14,7 +14,7 @@ eureka:
 zuul:
   routes:
     auth:
-      path: /auth/**
+      path: /auth/api/user
       service-id: auth
     nutri:
       path: /api/nutricionista/**

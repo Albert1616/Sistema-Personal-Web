@@ -1,10 +1,10 @@
 package com.aluno.sistemaPersonal.rest.dto.response;
 
+import com.aluno.sistemaPersonal.entites.Nutricionista;
+import com.aluno.sistemaPersonal.entites.Personal;
 import com.personal.sistemaPersonal.rest.dto.response.AvaliacaoFisicaResponseDTO;
-import com.personal.sistemaPersonal.rest.dto.response.PersonalResponseDTO;
 import com.personal.sistemaPersonal.rest.dto.response.TreinoResponseDTO;
 import lombok.*;
-import com.nutri.sistemaPersonal.rest.dto.response.NutricionistaResponseDTO;
 
 import java.time.LocalDate;
 import java.util.List;
@@ -20,8 +20,8 @@ public class AlunoCompletoResponseDTO {
     private String nome;
     private String email;
     private LocalDate dataNascimento;
-    private PersonalResponseDTO personal;
-    private NutricionistaResponseDTO nuticionista;
+    private Personal personal;
+    private Nutricionista nuticionista;
     private List<TreinoResponseDTO> treinos;
     private List<AvaliacaoFisicaResponseDTO> avaliacoes;
 }
