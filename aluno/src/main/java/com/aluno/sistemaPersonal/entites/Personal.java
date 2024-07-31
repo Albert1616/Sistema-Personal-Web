@@ -16,19 +16,14 @@ import java.util.List;
 @Setter
 @AllArgsConstructor
 @NoArgsConstructor
-@Entity
-@Table(name = "personal")
-@PrimaryKeyJoinColumn(name = "id")
+
 public class Personal extends User {
-    @Column(length = 50)
     private String nome;
 
-    @Column(length = 50)
     private String email;
 
     private LocalDate dataNascimento;
 
-    @OneToMany(mappedBy = "personal", fetch = FetchType.LAZY)
     private List<Aluno> alunos;
 
     public static Personal convert(PersonalRequestDTO personalRequestDTO){

@@ -22,8 +22,8 @@ public class AlunoResponseDTO {
     private LocalDate dataNascimento;
 //    private PersonalResponseDTO personal;
 //    private NutricionistaResponseDTO nuticionista;
-    private Personal personal;
-    private Nutricionista nutricionista;
+    private Integer personal;
+    private Integer nutricionista;
 
 }
 

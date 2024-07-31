@@ -67,7 +67,7 @@ public class DietaServiceImpl implements DietaService {
         dieta.setTitulo(dto.getTitulo());
 
         Aluno aluno = alunoClient.getAlunoById(dto.getAluno());
-        dieta.setAluno(aluno);
+        dieta.setAluno(aluno.getId());
 
         Nutricionista nutricionista = nutricionistaService.getById(dto.getNutricionista());
         dieta.setNutricionista(nutricionista);
@@ -87,7 +87,7 @@ public class DietaServiceImpl implements DietaService {
         dieta.setTitulo(dto.getTitulo());
 
         Aluno aluno = alunoClient.getAlunoById(dto.getAluno());
-        dieta.setAluno(aluno);
+        dieta.setAluno(aluno.getId());
 
         Nutricionista nutricionista = nutricionistaService.getById(dto.getNutricionista());
         dieta.setNutricionista(nutricionista);

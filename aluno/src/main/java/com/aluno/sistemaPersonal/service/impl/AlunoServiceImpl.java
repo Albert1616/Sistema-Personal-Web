@@ -50,9 +50,9 @@ public class AlunoServiceImpl implements AlunoService {
 
         FichaTreino fichaTreino = new FichaTreino();
         fichaTreino.setTitulo("Ficha de Treino");
-        fichaTreino.setAluno(aluno);
+        fichaTreino.setAluno(aluno.getId());
 
-        aluno.setFicha_treino(fichaTreino);
+        aluno.setFicha_treino(fichaTreino.getId());
         return convertToAlunoResponseDTO(alunoRepository.save(aluno));
     }
 
@@ -103,14 +103,14 @@ public class AlunoServiceImpl implements AlunoService {
 
         if(user.getPaper() == UserTypes.NUTRICIONISTA){
             Nutricionista nutricionista = nutriClient.getById(user.getId());
-            aluno.setNutricionista(nutricionista);
+            aluno.setNutricionista(nutricionista.getId());
             alunoRepository.save(aluno);
             return;
         }
 
         if(user.getPaper() == UserTypes.PERSONAL){
             Personal personal = personalClient.getPersonalById(id);
-            aluno.setPersonal(personal);
+            aluno.setPersonal(personal.getId());
             alunoRepository.save(aluno);
             return;
         }

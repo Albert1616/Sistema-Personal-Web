@@ -29,22 +29,18 @@ public class Aluno extends User {
 
     private LocalDate data_nascimento;
 
-    @OneToMany(mappedBy = "aluno", fetch = FetchType.LAZY, cascade = CascadeType.REMOVE)
-    @OrderBy("data desc")
-    private List<AvaliacaoFisica> avalicoes_fisicas = new ArrayList<>();
+    @JoinColumn(name = "avaliacao_id")
+    private List<Integer> avalicoes_fisicas = new ArrayList<>();
 
-    @OneToOne(cascade = CascadeType.ALL)
     @JoinColumn(name = "ficha_treino_id", referencedColumnName = "id")
-    private FichaTreino ficha_treino;
+    private Integer ficha_treino;
 
-    @ManyToOne
     @JoinColumn(name = "personal_id")
-    private Personal personal;
+    private Integer personal;
 
-    @ManyToOne
     @JoinColumn(name = "nutricionista_id")
-    private Nutricionista nutricionista;
+    private Integer nutricionista;
 
-    @OneToMany(mappedBy = "aluno", fetch = FetchType.LAZY)
-    private List<Dieta> dietas;
+    @JoinColumn(name = "Dietas_id")
+    private List<Integer> dietas;
 }

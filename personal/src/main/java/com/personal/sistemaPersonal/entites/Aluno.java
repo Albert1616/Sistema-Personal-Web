@@ -16,27 +16,27 @@ import java.util.List;
 @Setter
 @AllArgsConstructor
 @NoArgsConstructor
-@Entity
-@Table(name = "aluno")
-@PrimaryKeyJoinColumn(name = "id")
+//@Entity
+//@Table(name = "aluno")
+//@PrimaryKeyJoinColumn(name = "id")
 public class Aluno extends User {
-    @Column(length = 50)
+    //@Column(length = 50)
     private String nome;
 
-    @Column(length = 50)
+    //@Column(length = 50)
     private String email;
 
     private LocalDate data_nascimento;
 
-    @OneToMany(mappedBy = "aluno", fetch = FetchType.LAZY, cascade = CascadeType.REMOVE)
-    @OrderBy("data desc")
+//    @OneToMany(mappedBy = "aluno", fetch = FetchType.LAZY, cascade = CascadeType.REMOVE)
+//    @OrderBy("data desc")
     private List<AvaliacaoFisica> avalicoes_fisicas = new ArrayList<>();
 
-    @OneToOne(cascade = CascadeType.ALL)
-    @JoinColumn(name = "ficha_treino_id", referencedColumnName = "id")
+//    @OneToOne(cascade = CascadeType.ALL)
+//    @JoinColumn(name = "ficha_treino_id", referencedColumnName = "id")
     private FichaTreino ficha_treino;
 
-    @ManyToOne
-    @JoinColumn(name = "personal_id")
+//    @ManyToOne
+//    @JoinColumn(name = "personal_id")
     private Personal personal;
 }

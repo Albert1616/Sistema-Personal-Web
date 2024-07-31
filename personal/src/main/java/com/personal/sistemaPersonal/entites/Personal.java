@@ -28,8 +28,7 @@ public class Personal extends User {
 
     private LocalDate dataNascimento;
 
-    @OneToMany(mappedBy = "personal", fetch = FetchType.LAZY)
-    private List<Aluno> alunos;
+    private List<Integer> alunos;
 
     public static Personal convert(PersonalRequestDTO personalRequestDTO){
         Personal personal = new Personal();

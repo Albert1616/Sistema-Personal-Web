@@ -12,20 +12,14 @@ import java.util.List;
 @NoArgsConstructor
 @Setter
 @Getter
-@Entity
+
 public class Refeicao {
 
-    @Id
-    @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Integer id;
 
-    @Column(length = 40)
     private String descricao;
 
-    @ManyToOne
-    @JoinColumn(name = "dieta_id")
     private Dieta dieta;
 
-    @OneToMany(mappedBy = "refeicao", fetch = FetchType.LAZY, cascade = CascadeType.REMOVE)
     private List<Alimento> alimentos;
 }

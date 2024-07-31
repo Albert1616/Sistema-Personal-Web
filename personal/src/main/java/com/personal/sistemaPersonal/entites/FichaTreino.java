@@ -25,7 +25,5 @@ public class FichaTreino {
     @OneToMany(mappedBy = "ficha_treino", fetch = FetchType.LAZY, cascade = CascadeType.REMOVE)
     private List<Treino> treinos;
 
-    @OneToOne(mappedBy = "ficha_treino")
-    @JoinColumn(name = "aluno_id")
-    private Aluno aluno;
+    private Integer aluno;
 }

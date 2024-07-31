@@ -22,9 +22,7 @@ public class Dieta {
     @Column(length = 40)
     private String titulo;
 
-    @ManyToOne
-    @JoinColumn(name = "aluno_id")
-    private Aluno aluno;
+    private Integer aluno;
 
     private LocalDate data_criacao;
 

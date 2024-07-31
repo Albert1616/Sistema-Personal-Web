@@ -26,8 +26,7 @@ public class Nutricionista extends User {
 
     private LocalDate dataNascimento;
 
-    @OneToMany(mappedBy = "nutricionista", fetch = FetchType.LAZY)
-    private List<Aluno> alunos;
+    private List<Integer> alunos;
 
     @OneToMany(mappedBy = "nutricionista", fetch = FetchType.LAZY)
     private List<Dieta> dietas;

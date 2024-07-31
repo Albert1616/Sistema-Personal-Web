@@ -20,8 +20,8 @@ public class AlunoCompletoResponseDTO {
     private String nome;
     private String email;
     private LocalDate dataNascimento;
-    private Personal personal;
-    private Nutricionista nuticionista;
+    private Integer personal;
+    private Integer nuticionista;
     private List<TreinoResponseDTO> treinos;
     private List<AvaliacaoFisicaResponseDTO> avaliacoes;
 }

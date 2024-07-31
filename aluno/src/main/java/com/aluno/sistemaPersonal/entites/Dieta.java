@@ -13,25 +13,18 @@ import java.util.List;
 @NoArgsConstructor
 @Getter
 @Setter
-@Entity
+
 public class Dieta {
-    @Id
-    @GeneratedValue(strategy = GenerationType.IDENTITY)
+
     private Integer id;
 
-    @Column(length = 40)
     private String titulo;
 
-    @ManyToOne
-    @JoinColumn(name = "aluno_id")
-    private Aluno aluno;
+    private Integer aluno;
 
     private LocalDate data_criacao;
 
-    @ManyToOne
-    @JoinColumn(name = "nutricionista_id")
     private Nutricionista nutricionista;
 
-    @OneToMany(mappedBy = "dieta", fetch = FetchType.LAZY, cascade = CascadeType.REMOVE)
     private List<Refeicao> refeicoes;
 }

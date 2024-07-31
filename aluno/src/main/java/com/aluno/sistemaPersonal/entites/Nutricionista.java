@@ -1,7 +1,6 @@
 package com.aluno.sistemaPersonal.entites;
 
 import com.auth.sistemaPersonal.entites.User;
-import jakarta.persistence.*;
 import lombok.AllArgsConstructor;
 import lombok.Getter;
 import lombok.NoArgsConstructor;
@@ -14,21 +13,15 @@ import java.util.List;
 @Setter
 @NoArgsConstructor
 @AllArgsConstructor
-@Entity
-@Table(name = "nutricionista")
-@PrimaryKeyJoinColumn(name = "id")
+
 public class Nutricionista extends User {
-    @Column(length = 50)
     private String nome;
 
-    @Column(length = 50)
     private String email;
 
     private LocalDate dataNascimento;
 
-    @OneToMany(mappedBy = "nutricionista", fetch = FetchType.LAZY)
-    private List<Aluno> alunos;
+    private List<Integer> alunos;
 
-    @OneToMany(mappedBy = "nutricionista", fetch = FetchType.LAZY)
     private List<Dieta> dietas;
 }

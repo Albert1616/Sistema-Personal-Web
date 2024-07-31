@@ -31,9 +31,7 @@ public class AvaliacaoFisica {
 
     private LocalDate data;
 
-    @ManyToOne
-    @JoinColumn(name = "aluno_id")
-    private Aluno aluno;
+    private Integer aluno;
 
     private Double alunoPeso;
 

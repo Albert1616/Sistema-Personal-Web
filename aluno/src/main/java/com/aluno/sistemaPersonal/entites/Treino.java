@@ -14,27 +14,18 @@ import java.util.List;
 @Setter
 @AllArgsConstructor
 @NoArgsConstructor
-@Entity
-@Table(name = "treino")
-@PersistenceContext(unitName = "aluno-personal")
+
 public class Treino {
-    @Id
-    @GeneratedValue(strategy = GenerationType.IDENTITY)
+
     private Integer id;
 
-    @Column(length = 40)
     private String titulo;
 
-    @ManyToOne
-    @JoinColumn(name = "ficha_treino_id")
     private FichaTreino ficha_treino;
 
     private LocalDate data_criacao;
 
     private LocalDate data_vencimento;
 
-    @ManyToMany(cascade = CascadeType.DETACH)
-    @JoinTable(name = "treino_exercicio", joinColumns = @JoinColumn(name = "treino_id"),
-    inverseJoinColumns = @JoinColumn(name = "exercicio_id"))
     private List<Exercicio> exercicios;
 }

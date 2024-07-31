@@ -11,20 +11,14 @@ import lombok.Setter;
 @Setter
 @NoArgsConstructor
 @AllArgsConstructor
-@Entity
+
 public class Alimento {
 
-    @Id
-    @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Integer id;
 
-    @Column(length = 50)
     private String descricao;
 
-    @Column(length = 50)
     private String medida;
 
-    @ManyToOne
-    @JoinColumn(name = "refeicao_id")
     private Refeicao refeicao;
 }
