@@ -26,8 +26,10 @@ public class Personal extends User {
     @Column(length = 50)
     private String email;
 
+    @JoinColumn(name="dataNascimento")
     private LocalDate dataNascimento;
 
+    @JoinColumn(name = "Alunos_id")
     private List<Integer> alunos;
 
     public static Personal convert(PersonalRequestDTO personalRequestDTO){

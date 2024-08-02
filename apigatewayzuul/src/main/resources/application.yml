@@ -1,38 +1,51 @@
 spring:
   application:
-    name: gateway-zuul
+    name: spring-cloud
+  cloud:
+    gateway:
+      discovery:
+        locator:
+          enable: true
+          lower-case-service-id: true
 
 server:
-  port: 8762
-
+  port: 8080
 eureka:
   client:
     fetch-register: true
     register-with-eureka: true
     service-url:
       defaultZone: http://localhost:8761/eureka
-zuul:
-  routes:
-    auth:
-      path: /auth/api/user
-      service-id: auth
-    nutri:
-      path: /api/nutricionista/**
-      service-id: nutri
-    personal:
-      path: /api/personal/**
-      service-id: personal
-    aluno:
-      path: /api/aluno/**
-      service-id: aluno
 
-hystrix:
-  command:
-    default:
-      execution:
-        isolation:
-          thread:
-            timeoutInMilliseconds: 60000
+#zuul:
+#  add-proxy-headers: true
+#  routes:
+#    auth:
+#      service-id: auth
+#      path: /auth/**
+#    nutri:
+#      service-id: nutri
+#      path: /nutri/**
+#    personal:
+#      service-id: personal
+#      path: /personal/**
+#    aluno:
+#      service-id: aluno
+#      path: /aluno/**
+#
+management:
+  endpoints:
+    web:
+      exposure:
+        include: 'gateway'
+#
+#hystrix:
+#  command:
+#    default:
+#      execution:
+#        isolation:
+#          thread:
+#            timeoutInMilliseconds: 60000
 
 ##configura��es de timeout do Zuul
 #hystrix.command.default.execution.isolation.thread.timeoutInMilliseconds: 60000
