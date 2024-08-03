@@ -1,6 +1,5 @@
 package com.nutri.sistemaPersonal.entites;
 
-import com.auth.sistemaPersonal.entites.User;
 import jakarta.persistence.*;
 import lombok.AllArgsConstructor;
 import lombok.Getter;
@@ -16,8 +15,12 @@ import java.util.List;
 @AllArgsConstructor
 @Entity
 @Table(name = "nutricionista")
-@PrimaryKeyJoinColumn(name = "id")
+
 public class Nutricionista extends User {
+
+    @Id
+    @GeneratedValue(strategy = GenerationType.IDENTITY)
+    private Integer id;
     @Column(length = 50)
     private String nome;
 

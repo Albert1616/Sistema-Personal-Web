@@ -15,7 +15,7 @@ import java.util.List;
 import java.util.Map;
 
 @RestController
-@RequestMapping("/api/personal/treino")
+@RequestMapping("/api/treino")
 public class TreinoController {
 
     @Autowired

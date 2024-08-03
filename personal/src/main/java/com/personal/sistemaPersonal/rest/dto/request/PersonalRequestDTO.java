@@ -1,6 +1,5 @@
 package com.personal.sistemaPersonal.rest.dto.request;
 
-import com.auth.sistemaPersonal.rest.dto.UserRequestDTO;
 import jakarta.validation.constraints.Email;
 import jakarta.validation.constraints.NotBlank;
 import jakarta.validation.constraints.Past;

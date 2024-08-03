@@ -1,7 +1,6 @@
 package com.aluno.sistemaPersonal.entites;
 
 
-import com.auth.sistemaPersonal.entites.User;
 import jakarta.persistence.*;
 import lombok.AllArgsConstructor;
 import lombok.Getter;

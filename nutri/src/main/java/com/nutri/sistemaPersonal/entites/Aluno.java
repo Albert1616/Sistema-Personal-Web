@@ -1,7 +1,9 @@
 package com.nutri.sistemaPersonal.entites;
 
 
-import com.auth.sistemaPersonal.entites.User;
+import jakarta.persistence.GeneratedValue;
+import jakarta.persistence.GenerationType;
+import jakarta.persistence.Id;
 import lombok.AllArgsConstructor;
 import lombok.Getter;
 import lombok.NoArgsConstructor;
@@ -16,6 +18,7 @@ import java.util.List;
 @NoArgsConstructor
 
 public class Aluno extends User {
+    private Integer id;
     private String nome;
 
     private String email;

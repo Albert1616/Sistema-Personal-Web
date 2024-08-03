@@ -6,7 +6,7 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 
 @RestController
-@RequestMapping("/api/personal/ficha_treino")
+@RequestMapping("/api/ficha_treino")
 public class FichaTreinoController {
 
     @Autowired

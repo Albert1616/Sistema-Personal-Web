@@ -1,8 +1,9 @@
 package com.personal.sistemaPersonal.entites;
 
 
-import com.auth.sistemaPersonal.entites.User;
-import jakarta.persistence.*;
+import jakarta.persistence.GeneratedValue;
+import jakarta.persistence.GenerationType;
+import jakarta.persistence.Id;
 import lombok.AllArgsConstructor;
 import lombok.Getter;
 import lombok.NoArgsConstructor;
@@ -20,6 +21,9 @@ import java.util.List;
 //@Table(name = "aluno")
 //@PrimaryKeyJoinColumn(name = "id")
 public class Aluno extends User {
+    @Id
+    @GeneratedValue(strategy = GenerationType.IDENTITY)
+    private Integer id;
     //@Column(length = 50)
     private String nome;
 

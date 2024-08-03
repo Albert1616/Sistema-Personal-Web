@@ -1,6 +1,5 @@
 package com.aluno.sistemaPersonal.entites;
 
-import com.auth.sistemaPersonal.entites.User;
 import lombok.AllArgsConstructor;
 import lombok.Getter;
 import lombok.NoArgsConstructor;

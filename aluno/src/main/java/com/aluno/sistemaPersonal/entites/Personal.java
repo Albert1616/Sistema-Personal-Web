@@ -1,9 +1,7 @@
 package com.aluno.sistemaPersonal.entites;
 
-import com.auth.sistemaPersonal.entites.User;
 
 import com.personal.sistemaPersonal.rest.dto.request.PersonalRequestDTO;
-import jakarta.persistence.*;
 import lombok.AllArgsConstructor;
 import lombok.Getter;
 import lombok.NoArgsConstructor;

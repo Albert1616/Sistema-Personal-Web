@@ -15,7 +15,7 @@ import java.util.List;
 import java.util.Map;
 
 @RestController
-@RequestMapping("/api/personal/avaliacao_fisica")
+@RequestMapping("/api/avaliacao_fisica")
 public class AvaliacaoFisicaController {
 
     @Autowired

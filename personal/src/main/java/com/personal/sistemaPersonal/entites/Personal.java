@@ -1,7 +1,5 @@
 package com.personal.sistemaPersonal.entites;
 
-import com.auth.sistemaPersonal.entites.User;
-
 import com.personal.sistemaPersonal.rest.dto.request.PersonalRequestDTO;
 import jakarta.persistence.*;
 import lombok.AllArgsConstructor;
@@ -18,8 +16,12 @@ import java.util.List;
 @NoArgsConstructor
 @Entity
 @Table(name = "personal")
-@PrimaryKeyJoinColumn(name = "id")
+
 public class Personal extends User {
+    @Id
+    @GeneratedValue(strategy = GenerationType.IDENTITY)
+    private Integer id;
+
     @Column(length = 50)
     private String nome;
 

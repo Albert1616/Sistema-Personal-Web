@@ -17,7 +17,7 @@ import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
 
-@RequestMapping("/api/personal/personal")
+@RequestMapping("/api/personal")
 @RestController
 @AllArgsConstructor
 public class PersonalController {
