@@ -22,15 +22,15 @@ public class AlunoToPersonal {
 
     private LocalDate data_nascimento;
 
-    private List<AvaliacaoFisica> avalicoes_fisicas = new ArrayList<>();
+    private List<Integer> avalicoes_fisicas = new ArrayList<>();
 
-    private FichaTreino ficha_treino;
+    private Integer ficha_treino;
 
-    private Personal personal;
+    private Integer personal;
 
     public AlunoToPersonal(Integer id, String nome, String email, LocalDate data_nascimento,
-                           List<AvaliacaoFisica> avalicoes_fisicas, FichaTreino ficha_treino,
-                           Personal personal) {
+                           List<Integer> avalicoes_fisicas, Integer ficha_treino,
+                           Integer personal) {
         this.id = id;
         this.nome = nome;
         this.email = email;

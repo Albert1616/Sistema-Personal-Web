@@ -53,7 +53,7 @@ public class AvaliacaoFisicaServiceImpl implements AvaliacaoFisicaService {
         avaliacaoFisica.setMedidaPerna(dto.getMedidaPerna());
         avaliacaoFisica.setMedidaPeito(dto.getMedidaPeito());
         avaliacaoFisica.setMedidaCintura(dto.getMedidaCintura());
-        avaliacaoFisica.setAluno(alunoClient.getAlunoById(dto.getAluno()).getId());
+        avaliacaoFisica.setAluno(alunoClient.getAlunoToPersonal(dto.getAluno()).getId());
 
         return convertToAvaliacaoFisicaResponseDTO(avaliacaoRepository.save(avaliacaoFisica));
     }
@@ -64,7 +64,7 @@ public class AvaliacaoFisicaServiceImpl implements AvaliacaoFisicaService {
 
     @Override
     public List<AvaliacaoFisicaResponseDTO> getAvaliacoesFisicasByIdAluno(Integer idAluno){
-        Aluno aluno = alunoClient.getAlunoById(idAluno);
+        Aluno aluno = alunoClient.getAlunoToPersonal(idAluno);
         return convertToAvaliacaoFisicaResponseDTO(avaliacaoRepository.findAllAvaliacaoFisicaByIdAluno(aluno.getId()));
     }
 
@@ -94,7 +94,7 @@ public class AvaliacaoFisicaServiceImpl implements AvaliacaoFisicaService {
         avalicaoFisica.setMedidaPerna(dto.getMedidaPerna());
         avalicaoFisica.setMedidaPeito(dto.getMedidaPeito());
         avalicaoFisica.setMedidaCintura(dto.getMedidaCintura());
-        avalicaoFisica.setAluno(alunoClient.getAlunoById(dto.getAluno()).getId());
+        avalicaoFisica.setAluno(alunoClient.getAlunoToPersonal(dto.getAluno()).getId());
 
         return avalicaoFisica;
     }
@@ -113,7 +113,7 @@ public class AvaliacaoFisicaServiceImpl implements AvaliacaoFisicaService {
                 .medidaCintura(avaliacaoFisica.getMedidaCintura())
                 .medidaBraco(avaliacaoFisica.getMedidaBraco())
                 .medidaPerna(avaliacaoFisica.getMedidaPerna())
-                .aluno(alunoClient.getAlunoById(avaliacaoFisica.getAluno()))
+                .aluno(alunoClient.getAlunoToPersonal(avaliacaoFisica.getAluno()))
                 .build();
     }
 

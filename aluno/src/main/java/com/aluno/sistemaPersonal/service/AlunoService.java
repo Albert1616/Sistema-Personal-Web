@@ -4,6 +4,7 @@ import com.aluno.sistemaPersonal.rest.dto.request.AlunoRequestDTO;
 import com.aluno.sistemaPersonal.rest.dto.response.AlunoCompletoResponseDTO;
 import com.aluno.sistemaPersonal.rest.dto.response.AlunoResponseDTO;
 import com.aluno.sistemaPersonal.entites.Aluno;
+import com.aluno.sistemaPersonal.rest.dto.response.AlunoToPersonal;
 
 import java.util.List;
 
@@ -19,5 +20,6 @@ public interface AlunoService {
     AlunoCompletoResponseDTO convertToAlunoCompletoResponseDTO(Aluno aluno);
     List<AlunoResponseDTO> convertToAlunoResponseDTO(List<Aluno> alunos);
     AlunoCompletoResponseDTO getAllInformartionsById(Integer id);
+    AlunoToPersonal getAlunoToPersonal(Integer id);
     void vinculate(Integer id, String login);
 }

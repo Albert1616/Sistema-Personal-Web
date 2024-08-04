@@ -38,7 +38,7 @@ public class AlunoController {
 
     @GetMapping("/get/{id}")
     public AlunoToPersonal getAlunoById(@PathVariable Integer id){
-        return alunoService.getById(id);
+        return alunoService.getAlunoToPersonal(id);
     }
 
     @GetMapping("{id}")

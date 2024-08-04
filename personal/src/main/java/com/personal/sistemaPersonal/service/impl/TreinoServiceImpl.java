@@ -91,7 +91,7 @@ public class TreinoServiceImpl implements TreinoService {
 
     @Override
     public List<TreinoResponseDTO> getByIdAluno(Integer idAluno) {
-        Aluno aluno = alunoClient.getAlunoById(idAluno);
+        Aluno aluno = alunoClient.getAlunoToPersonal(idAluno);
         return convertToTreinoResponseDTO(treinoRepository.findByAlunoId(aluno.getId()));
     }
 

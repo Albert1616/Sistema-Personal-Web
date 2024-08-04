@@ -34,13 +34,13 @@ public class Aluno extends User {
 
 //    @OneToMany(mappedBy = "aluno", fetch = FetchType.LAZY, cascade = CascadeType.REMOVE)
 //    @OrderBy("data desc")
-    private List<AvaliacaoFisica> avalicoes_fisicas = new ArrayList<>();
+    private List<Integer> avalicoes_fisicas = new ArrayList<>();
 
 //    @OneToOne(cascade = CascadeType.ALL)
 //    @JoinColumn(name = "ficha_treino_id", referencedColumnName = "id")
-    private FichaTreino ficha_treino;
+    private Integer ficha_treino;
 
 //    @ManyToOne
 //    @JoinColumn(name = "personal_id")
-    private Personal personal;
+    private Integer personal;
 }

@@ -85,12 +85,19 @@ public class AlunoServiceImpl implements AlunoService {
         else throw new AlunoNaoEncontradoException();
     }
 
+    @Override
     public AlunoToPersonal getAlunoToPersonal(Integer id){
         Aluno aluno = getById(id);
         AlunoToPersonal alunoToPersonal = new AlunoToPersonal();
         alunoToPersonal.setNome(aluno.getNome());
         alunoToPersonal.setEmail(aluno.getEmail());
-        alunoToPersonal.setPersonal(personalClient.getPersonalById(aluno.getPersonal()));
+        alunoToPersonal.setPersonal(aluno.getPersonal());
+        alunoToPersonal.setData_nascimento(aluno.getData_nascimento());
+        alunoToPersonal.setFicha_treino(aluno.getFicha_treino());
+        alunoToPersonal.setId(aluno.getId());
+        alunoToPersonal.setAvalicoes_fisicas(aluno.getAvalicoes_fisicas());
+
+        return alunoToPersonal;
     }
 
     @Override
