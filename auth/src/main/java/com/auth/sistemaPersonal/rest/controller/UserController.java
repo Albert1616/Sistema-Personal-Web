@@ -17,7 +17,7 @@ import jakarta.validation.Valid;
 import org.springframework.web.server.ResponseStatusException;
 
 @RestController
-@RequestMapping("/auth/api/user")
+@RequestMapping("/api/user")
 @RequiredArgsConstructor
 public class UserController {
     private final UserService userService;

@@ -8,6 +8,7 @@ import lombok.NoArgsConstructor;
 import lombok.Setter;
 
 import java.time.LocalDate;
+import java.util.ArrayList;
 import java.util.List;
 
 @Getter
@@ -28,11 +29,11 @@ public class Personal extends User {
     @Column(length = 50)
     private String email;
 
-    @JoinColumn(name="dataNascimento")
+    @Column(name="dataNascimento")
     private LocalDate dataNascimento;
 
-    @JoinColumn(name = "Alunos_id")
-    private List<Integer> alunos;
+    @Column(name = "Alunos_id")
+    private List<Integer> alunos = new ArrayList<>();
 
     public static Personal convert(PersonalRequestDTO personalRequestDTO){
         Personal personal = new Personal();
@@ -43,6 +44,7 @@ public class Personal extends User {
         personal.setLogin( personalRequestDTO.getLogin());
         personal.setPassword(personalRequestDTO.getPassword());
         personal.setPaper(personalRequestDTO.getPaper());
+        personal.setAlunos(new ArrayList<>());
 
         return personal;
     }

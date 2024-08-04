@@ -1,27 +1,21 @@
 package com.aluno.sistemaPersonal.service.impl;
 
-import com.aluno.sistemaPersonal.entites.Aluno;
+import com.aluno.sistemaPersonal.entites.*;
+import com.aluno.sistemaPersonal.enumerate.UserTypes;
 import com.aluno.sistemaPersonal.exception.AlunoNaoEncontradoException;
+import com.aluno.sistemaPersonal.exception.UsuarioNaoEncontrado;
 import com.aluno.sistemaPersonal.feingClients.*;
 import com.aluno.sistemaPersonal.repository.AlunoRepository;
 import com.aluno.sistemaPersonal.rest.dto.request.AlunoRequestDTO;
 import com.aluno.sistemaPersonal.rest.dto.response.AlunoCompletoResponseDTO;
 import com.aluno.sistemaPersonal.rest.dto.response.AlunoResponseDTO;
+import com.aluno.sistemaPersonal.rest.dto.response.AlunoToPersonal;
 import com.aluno.sistemaPersonal.service.AlunoService;
-import com.auth.sistemaPersonal.entites.User;
-import com.auth.sistemaPersonal.enumerate.UserTypes;
-import com.auth.sistemaPersonal.exception.UsuarioNaoEncontrado;
-import com.aluno.sistemaPersonal.entites.Nutricionista;
-import com.aluno.sistemaPersonal.entites.FichaTreino;
-import com.aluno.sistemaPersonal.entites.Personal;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 import org.springframework.util.CollectionUtils;
 
-import java.util.Collections;
-import java.util.List;
-import java.util.Objects;
-import java.util.Optional;
+import java.util.*;
 import java.util.stream.Collectors;
 
 @Service
@@ -51,6 +45,8 @@ public class AlunoServiceImpl implements AlunoService {
         FichaTreino fichaTreino = new FichaTreino();
         fichaTreino.setTitulo("Ficha de Treino");
         fichaTreino.setAluno(aluno.getId());
+
+        aluno.setAvalicoes_fisicas(new ArrayList<>());
 
         aluno.setFicha_treino(fichaTreino.getId());
         return convertToAlunoResponseDTO(alunoRepository.save(aluno));
@@ -87,6 +83,14 @@ public class AlunoServiceImpl implements AlunoService {
             return aluno.get();
         }
         else throw new AlunoNaoEncontradoException();
+    }
+
+    public AlunoToPersonal getAlunoToPersonal(Integer id){
+        Aluno aluno = getById(id);
+        AlunoToPersonal alunoToPersonal = new AlunoToPersonal();
+        alunoToPersonal.setNome(aluno.getNome());
+        alunoToPersonal.setEmail(aluno.getEmail());
+        alunoToPersonal.setPersonal(personalClient.getPersonalById(aluno.getPersonal()));
     }
 
     @Override

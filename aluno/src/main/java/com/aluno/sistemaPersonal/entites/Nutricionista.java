@@ -14,6 +14,8 @@ import java.util.List;
 @AllArgsConstructor
 
 public class Nutricionista extends User {
+    private Integer id;
+
     private String nome;
 
     private String email;

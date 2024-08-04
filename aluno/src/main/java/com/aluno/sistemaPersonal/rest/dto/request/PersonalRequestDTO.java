@@ -1,19 +1,21 @@
 package com.aluno.sistemaPersonal.rest.dto.request;
 
-import jakarta.validation.constraints.*;
+import jakarta.validation.constraints.Email;
+import jakarta.validation.constraints.NotBlank;
+import jakarta.validation.constraints.Past;
 import lombok.Getter;
 import lombok.Setter;
 
 import java.time.LocalDate;
 
-@Setter
 @Getter
-public class AlunoRequestDTO extends UserRequestDTO {
+@Setter
+public class PersonalRequestDTO extends UserRequestDTO {
     @NotBlank(message = "Campo não informado.")
     private String nome;
 
-    @NotBlank(message = "Campo não informado.")
     @Email(message = "Email inválido.")
+    @NotBlank(message = "Campo não informado.")
     private String email;
 
     @Past(message = "Data de nascimento inválida.")

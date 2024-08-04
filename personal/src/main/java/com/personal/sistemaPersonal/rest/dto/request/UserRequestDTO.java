@@ -1,5 +1,6 @@
 package com.personal.sistemaPersonal.rest.dto.request;
 
+import com.personal.sistemaPersonal.enumerate.UserTypes;
 import jakarta.validation.constraints.NotBlank;
 import lombok.Getter;
 import lombok.Setter;

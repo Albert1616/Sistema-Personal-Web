@@ -1,7 +1,7 @@
 package com.aluno.sistemaPersonal.entites;
 
 
-import com.personal.sistemaPersonal.rest.dto.request.PersonalRequestDTO;
+import com.aluno.sistemaPersonal.rest.dto.request.PersonalRequestDTO;
 import lombok.AllArgsConstructor;
 import lombok.Getter;
 import lombok.NoArgsConstructor;

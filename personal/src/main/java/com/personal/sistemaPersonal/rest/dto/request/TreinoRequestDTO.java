@@ -24,6 +24,6 @@ public class TreinoRequestDTO {
     @FutureOrPresent(message = "A data de vencimento não pode ser passada.")
     private LocalDate data_vencimento;
 
-//    @Positive(message = "O id dos exercicios devem ser positivos.")
+    //@Positive(message = "O id dos exercicios devem ser positivos.")
     private List<Integer> exercicios;
 }

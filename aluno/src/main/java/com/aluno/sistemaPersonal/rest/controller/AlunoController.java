@@ -3,6 +3,7 @@ package com.aluno.sistemaPersonal.rest.controller;
 import com.aluno.sistemaPersonal.rest.dto.request.AlunoRequestDTO;
 import com.aluno.sistemaPersonal.rest.dto.response.AlunoCompletoResponseDTO;
 import com.aluno.sistemaPersonal.rest.dto.response.AlunoResponseDTO;
+import com.aluno.sistemaPersonal.rest.dto.response.AlunoToPersonal;
 import com.aluno.sistemaPersonal.service.AlunoService;
 import jakarta.validation.Valid;
 import lombok.AllArgsConstructor;
@@ -33,6 +34,11 @@ public class AlunoController {
         String passwordAfter = passwordEncoder.encode(dto.getPassword());
         dto.setPassword(passwordAfter);
         return alunoService.save(dto);
+    }
+
+    @GetMapping("/get/{id}")
+    public AlunoToPersonal getAlunoById(@PathVariable Integer id){
+        return alunoService.getById(id);
     }
 
     @GetMapping("{id}")

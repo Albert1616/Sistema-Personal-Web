@@ -15,7 +15,6 @@ import java.util.List;
 @NoArgsConstructor
 @Entity
 @Table(name = "treino")
-@PersistenceContext(unitName = "aluno-personal")
 public class Treino {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)

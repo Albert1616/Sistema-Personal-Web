@@ -1,6 +1,6 @@
 package com.aluno.sistemaPersonal.rest.dto.request;
 
-import com.nutri.sistemaPersonal.enumerate.UserTypes;
+import com.aluno.sistemaPersonal.enumerate.UserTypes;
 import jakarta.validation.constraints.NotBlank;
 import lombok.Getter;
 import lombok.Setter;

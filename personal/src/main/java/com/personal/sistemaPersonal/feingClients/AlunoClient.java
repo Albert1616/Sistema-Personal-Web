@@ -9,7 +9,7 @@ import org.springframework.web.bind.annotation.PathVariable;
 @Component
 @FeignClient(name = "aluno", path = "/api/aluno")
 public interface AlunoClient {
-    @GetMapping(value = "get/{id}")
+    @GetMapping(value = "/get/{id}")
     public Aluno getAlunoById(@PathVariable Integer id);
 
 }

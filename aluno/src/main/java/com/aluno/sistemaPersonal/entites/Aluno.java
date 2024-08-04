@@ -17,9 +17,12 @@ import java.util.List;
 @NoArgsConstructor
 @Entity
 @Table(name = "aluno")
-@PrimaryKeyJoinColumn(name = "id")
-@PersistenceContext(unitName = "aluno-personal")
+
 public class Aluno extends User {
+    @Id
+    @GeneratedValue(strategy = GenerationType.IDENTITY)
+    private Integer id;
+
     @Column(length = 50)
     private String nome;
 
@@ -28,18 +31,18 @@ public class Aluno extends User {
 
     private LocalDate data_nascimento;
 
-    @JoinColumn(name = "avaliacao_id")
-    private List<Integer> avalicoes_fisicas = new ArrayList<>();
+    @Column(name = "avaliacao_id")
+    private List<Integer> avalicoes_fisicas;
 
-    @JoinColumn(name = "ficha_treino_id", referencedColumnName = "id")
+    @Column(name = "ficha_treino_id")
     private Integer ficha_treino;
 
-    @JoinColumn(name = "personal_id")
+    @Column(name = "personal_id")
     private Integer personal;
 
-    @JoinColumn(name = "nutricionista_id")
+    @Column(name = "nutricionista_id")
     private Integer nutricionista;
 
-    @JoinColumn(name = "Dietas_id")
+    @Column(name = "Dietas_id")
     private List<Integer> dietas;
 }
