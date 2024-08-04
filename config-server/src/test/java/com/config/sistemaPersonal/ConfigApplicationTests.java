@@ -1,10 +1,10 @@
-package com.personal.apigatewayzuul;
+package com.config.sistemaPersonal;
 
 import org.junit.jupiter.api.Test;
 import org.springframework.boot.test.context.SpringBootTest;
 
 @SpringBootTest
-class ApigatewayzuulApplicationTests {
+class ConfigApplicationTests {
 
 	@Test
 	void contextLoads() {

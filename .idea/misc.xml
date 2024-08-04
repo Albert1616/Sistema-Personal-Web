@@ -15,6 +15,7 @@
         <option value="$PROJECT_DIR$/nutri/pom.xml" />
         <option value="$PROJECT_DIR$/personal/pom.xml" />
         <option value="$PROJECT_DIR$/Spring-cloud-gateway/pom.xml" />
+        <option value="$PROJECT_DIR$/config-server/pom.xml" />
       </list>
     </option>
   </component>

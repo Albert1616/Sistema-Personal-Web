@@ -16,6 +16,7 @@
         <module name="apigatewayzuul" />
         <module name="eureka-server" />
         <module name="auth (1)" />
+        <module name="config" />
       </profile>
     </annotationProcessing>
     <bytecodeTargetLevel>
@@ -29,6 +30,7 @@
       <module name="apigatewayzuul" options="-parameters" />
       <module name="auth" options="-parameters" />
       <module name="auth (1)" options="-parameters" />
+      <module name="config" options="-parameters" />
       <module name="eureka-server" options="-parameters" />
       <module name="nutri" options="-parameters" />
       <module name="personal" options="-parameters" />
