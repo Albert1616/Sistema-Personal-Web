@@ -1,5 +1,6 @@
 package com.personal.sistemaPersonal.rest.controller;
 
+import com.personal.sistemaPersonal.entites.AvaliacaoFisica;
 import com.personal.sistemaPersonal.rest.dto.response.AvaliacaoFisicaResponseDTO;
 import com.personal.sistemaPersonal.rest.dto.request.AvaliacaoFisicaRequestDTO;
 import com.personal.sistemaPersonal.service.AvaliacaoFisicaService;
@@ -32,8 +33,10 @@ public class AvaliacaoFisicaController {
         return avaliacaoFisicaService.getInformacoesAvaliacaoFisicaDTOById(id);
     }
 
+
+
     @GetMapping
-    public List<AvaliacaoFisicaResponseDTO> getAll(){
+    public List<AvaliacaoFisica> getAll(){
         return avaliacaoFisicaService.getAll();
     }
 

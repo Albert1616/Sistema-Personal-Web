@@ -12,7 +12,7 @@ public interface AvaliacaoFisicaService {
     AvaliacaoFisicaResponseDTO save(AvaliacaoFisicaRequestDTO avalicaoFisica);
     void delete(Integer id);
     AvaliacaoFisicaResponseDTO update(Integer id, AvaliacaoFisicaRequestDTO avaliacaoFisicaRequestDTO);
-    List<AvaliacaoFisicaResponseDTO> getAll();
+    List<AvaliacaoFisica> getAll();
     AvaliacaoFisica getById(Integer id);
     AvaliacaoFisicaResponseDTO getInformacoesAvaliacaoFisicaDTOById(Integer id);
     List<AvaliacaoFisicaResponseDTO> getAvaliacoesFisicasByIdAluno(Integer idAluno);

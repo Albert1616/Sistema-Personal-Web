@@ -13,13 +13,13 @@
         <module name="Spring-cloud-gateway" />
         <module name="sistemaPersonal" />
         <module name="personal" />
-        <module name="apigatewayzuul" />
         <module name="eureka-server" />
         <module name="auth (1)" />
         <module name="config" />
       </profile>
     </annotationProcessing>
     <bytecodeTargetLevel>
+      <module name="apigatewayzuul" target="17" />
       <module name="worker" target="17" />
     </bytecodeTargetLevel>
   </component>

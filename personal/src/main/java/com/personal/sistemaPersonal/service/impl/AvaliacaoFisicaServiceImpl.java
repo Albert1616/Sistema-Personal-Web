@@ -58,8 +58,8 @@ public class AvaliacaoFisicaServiceImpl implements AvaliacaoFisicaService {
         return convertToAvaliacaoFisicaResponseDTO(avaliacaoRepository.save(avaliacaoFisica));
     }
 
-    public List<AvaliacaoFisicaResponseDTO> getAll(){
-        return convertToAvaliacaoFisicaResponseDTO(avaliacaoRepository.findAll());
+    public List<AvaliacaoFisica> getAll(){
+        return avaliacaoRepository.findAll();
     }
 
     @Override
