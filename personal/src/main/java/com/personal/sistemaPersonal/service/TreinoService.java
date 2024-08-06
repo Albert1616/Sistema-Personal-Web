@@ -17,4 +17,5 @@ public interface TreinoService {
     Treino getById(Integer id);
     TreinoResponseDTO getInformacoesTreinoDTO(Integer id);
     List<TreinoResponseDTO> getByIdAluno(Integer idAluno);
+    List<TreinoResponseDTO> getByFicha(Integer id);
 }

@@ -1,5 +1,6 @@
 package com.personal.sistemaPersonal.entites;
 
+import com.fasterxml.jackson.annotation.JsonManagedReference;
 import jakarta.persistence.*;
 import lombok.AllArgsConstructor;
 import lombok.Getter;
@@ -23,6 +24,7 @@ public class FichaTreino {
     private String titulo;
 
     @OneToMany(mappedBy = "ficha_treino", fetch = FetchType.LAZY, cascade = CascadeType.REMOVE)
+    @JsonManagedReference
     private List<Treino> treinos;
 
     private Integer aluno;

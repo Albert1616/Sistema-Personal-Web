@@ -1,5 +1,6 @@
 package com.personal.sistemaPersonal.entites;
 
+import com.fasterxml.jackson.annotation.JsonBackReference;
 import jakarta.persistence.*;
 import lombok.AllArgsConstructor;
 import lombok.Getter;
@@ -25,6 +26,7 @@ public class Treino {
 
     @ManyToOne
     @JoinColumn(name = "ficha_treino_id")
+    @JsonBackReference
     private FichaTreino ficha_treino;
 
     private LocalDate data_criacao;

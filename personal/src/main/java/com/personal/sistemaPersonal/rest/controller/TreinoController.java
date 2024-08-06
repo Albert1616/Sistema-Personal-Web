@@ -52,6 +52,11 @@ public class TreinoController {
         return treinoService.getByIdAluno(id);
     }
 
+    @GetMapping("/getTreinoFicha/{id}")
+    public List<TreinoResponseDTO> getTreinoFicha(@PathVariable Integer id){
+        return treinoService.getByFicha(id);
+    }
+
     @ResponseStatus(HttpStatus.BAD_REQUEST)
     @ExceptionHandler(MethodArgumentNotValidException.class)
     public Map<String, String> handleValidationException(MethodArgumentNotValidException ex){

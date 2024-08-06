@@ -3,9 +3,11 @@ package com.personal.sistemaPersonal.service.impl;
 
 import com.personal.sistemaPersonal.entites.Aluno;
 import com.personal.sistemaPersonal.entites.Exercicio;
+import com.personal.sistemaPersonal.entites.FichaTreino;
 import com.personal.sistemaPersonal.entites.Treino;
 import com.personal.sistemaPersonal.exception.TreinoNaoEncontradoException;
 import com.personal.sistemaPersonal.feingClients.AlunoClient;
+import com.personal.sistemaPersonal.repository.FichaTreinoRepository;
 import com.personal.sistemaPersonal.repository.TreinoRepository;
 import com.personal.sistemaPersonal.rest.dto.response.TreinoResponseDTO;
 import com.personal.sistemaPersonal.rest.dto.request.TreinoRequestDTO;
@@ -34,6 +36,9 @@ public class TreinoServiceImpl implements TreinoService {
     FichaTreinoService fichaTreinoService;
 
     @Autowired
+    FichaTreinoRepository fichaTreinoRepository;
+
+    @Autowired
     ExercicioService exercicioService;
 
     @Autowired
@@ -41,8 +46,14 @@ public class TreinoServiceImpl implements TreinoService {
 
     @Override
     public TreinoResponseDTO save(TreinoRequestDTO dto) {
+        FichaTreino fichaTreino = fichaTreinoService.getById(dto.getFicha_treino());
         Treino treino = convert(dto);
         treino.setData_criacao(LocalDate.now());
+        List<Treino> treinos = fichaTreino.getTreinos();
+        treinos.add(treino);
+        fichaTreino.setTreinos(treinos);
+        treinoRepository.save(treino);
+        fichaTreinoRepository.save(fichaTreino);
         return convertToTreinoResponseDTO(treinoRepository.save(treino));
     }
 
@@ -82,6 +93,13 @@ public class TreinoServiceImpl implements TreinoService {
             return treino.get();
         }
         else throw new TreinoNaoEncontradoException();
+    }
+
+    @Override
+    public List<TreinoResponseDTO> getByFicha(Integer id) {
+        FichaTreino fichaTreino = fichaTreinoService.getById(id);
+        List<Treino> treinos = fichaTreino.getTreinos();
+        return convertToTreinoResponseDTO(treinos);
     }
 
     @Override
@@ -134,5 +152,15 @@ public class TreinoServiceImpl implements TreinoService {
         return treinos.stream().map(
                 this::convertToTreinoResponseDTO
         ).collect(Collectors.toList());
+    }
+    private TreinoRequestDTO convertToTreinoRequestDTO(Treino treino) {
+        return TreinoRequestDTO.builder()
+                .titulo(treino.getTitulo())
+                .ficha_treino(treino.getFicha_treino().getId()) // Assumindo que o método de getter é getFichaTreino()
+                .data_vencimento(treino.getData_vencimento()) // Assumindo que o método de getter é getDataVencimento() e você precisa converter para LocalDate
+                .exercicios(treino.getExercicios().stream()
+                        .map(Exercicio::getId) // Assumindo que o método de getter para id do exercício é getId()
+                        .collect(Collectors.toList()))
+                .build();
     }
 }
